@@ -55,8 +55,8 @@ aarch64-none-elf-gcc
   -o  lvgl/demos/widgets/lv_demo_widgets.c.Users.Luppy.PinePhone.wip-nuttx.apps.graphics.lvgl.o
 ```
 
-We'll copy the above GCC Options to the Zig Compiler and build...
+We'll copy the above GCC Options to the Zig Compiler and build this Zig Program...
 
--   [lvgltest.zig](https://github.com/lupyuen/zig-lvgl-nuttx/blob/main/lvgltest.zig).
+-   [lvgltest.zig](https://github.com/lupyuen/zig-lvgl-nuttx/blob/main/lvgltest.zig)
 
 TODO
