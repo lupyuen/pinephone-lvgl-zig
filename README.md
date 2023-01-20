@@ -10,7 +10,7 @@ Can we build an LVGL App for PinePhone in Zig, that will run on Apache NuttX RTO
 
 # TODO
 
-This is the GCC Command for compiling `lv_demo_widgets.c`...
+This is the GCC Command for compiling [lv_demo_widgets.c](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L202-L528)...
 
 ```bash
 $ make --trace
@@ -55,6 +55,8 @@ aarch64-none-elf-gcc
   -o  lvgl/demos/widgets/lv_demo_widgets.c.Users.Luppy.PinePhone.wip-nuttx.apps.graphics.lvgl.o
 ```
 
-We'll copy the above GCC Options to the Zig Compiler.
+We'll copy the above GCC Options to the Zig Compiler and build...
+
+-   [lvgltest.zig](https://github.com/lupyuen/zig-lvgl-nuttx/blob/main/lvgltest.zig).
 
 TODO
