@@ -15,6 +15,7 @@ NuttX Build runs this GCC Command to compile [lv_demo_widgets.c](https://github.
 ```bash
 $ make --trace
 ...
+cd $HOME/PinePhone/wip-nuttx/apps/graphics/lvgl
 aarch64-none-elf-gcc
   -c
   -fno-common
