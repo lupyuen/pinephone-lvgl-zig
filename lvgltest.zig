@@ -53,6 +53,42 @@ pub export fn lv_demo_widgets() void {
 //  Create Widgets
 
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
+/// LVGL API that has been wrapped in Zig. Based on
+/// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
+fn createWidgetsWrapped() !void {
+    debug("createWidgetsWrapped: start", .{});
+    defer { debug("createWidgetsWrapped: end", .{}); }
+
+    // Get the Active Screen
+    var screen = try lvgl.getActiveScreen();
+
+    // Create a Label Widget
+    var label = try screen.createLabel();
+
+    // Wrap long lines in the label text
+    label.setLongMode(c.LV_LABEL_LONG_WRAP);
+
+    // Interpret color codes in the label text
+    label.setRecolor(true);
+
+    // Center align the label text
+    label.setAlign(c.LV_TEXT_ALIGN_CENTER);
+
+    // Set the label text and colors
+    label.setText(
+        "#ff0000 HELLO# " ++    // Red Text
+        "#00aa00 LVGL ON# " ++  // Green Text
+        "#0000ff PINEPHONE!# "  // Blue Text
+    );
+
+    // Set the label width
+    label.setWidth(200);
+
+    // Align the label to the center of the screen, shift 30 pixels up
+    label.alignObject(c.LV_ALIGN_CENTER, 0, -30);
+}
+
+/// Create the LVGL Widgets that will be rendered on the display. Calls the
 /// LVGL API directly, without wrapping in Zig. Based on
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsUnwrapped() !void {
@@ -78,8 +114,8 @@ fn createWidgetsUnwrapped() !void {
     c.lv_label_set_text(
         label, 
         "#ff0000 HELLO# " ++    // Red Text
-        "#00aa00 PINEDIO# " ++  // Green Text
-        "#0000ff STACK!# "      // Blue Text
+        "#00aa00 LVGL ON# " ++  // Green Text
+        "#0000ff PINEPHONE!# "  // Blue Text
     );
 
     // Set the label width
@@ -87,42 +123,6 @@ fn createWidgetsUnwrapped() !void {
 
     // Align the label to the center of the screen, shift 30 pixels up
     c.lv_obj_align(label, c.LV_ALIGN_CENTER, 0, -30);
-}
-
-/// Create the LVGL Widgets that will be rendered on the display. Calls the
-/// LVGL API that has been wrapped in Zig. Based on
-/// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
-fn createWidgetsWrapped() !void {
-    debug("createWidgetsWrapped: start", .{});
-    defer { debug("createWidgetsWrapped: end", .{}); }
-
-    // Get the Active Screen
-    var screen = try lvgl.getActiveScreen();
-
-    // Create a Label Widget
-    var label = try screen.createLabel();
-
-    // Wrap long lines in the label text
-    label.setLongMode(c.LV_LABEL_LONG_WRAP);
-
-    // Interpret color codes in the label text
-    label.setRecolor(true);
-
-    // Center align the label text
-    label.setAlign(c.LV_TEXT_ALIGN_CENTER);
-
-    // Set the label text and colors
-    label.setText(
-        "#ff0000 HELLO# " ++    // Red Text
-        "#00aa00 PINEDIO# " ++  // Green Text
-        "#0000ff STACK!# "      // Blue Text
-    );
-
-    // Set the label width
-    label.setWidth(200);
-
-    // Align the label to the center of the screen, shift 30 pixels up
-    label.alignObject(c.LV_ALIGN_CENTER, 0, -30);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
