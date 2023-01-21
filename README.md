@@ -20,6 +20,16 @@ _How is createWidgetsWrapped called?_
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/c7a33f1fe3af4babaa8bc5502ca2b719ae95c2ca/lvgltest.zig#L32-L41
 
+_Where's the Zig Wrapper for LVGL?_
+
+Our Zig Wrapper for LVGL is defined here...
+
+-   [lvgl.zig](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/lvgl.zig)
+
+We also have a version of the LVGL Zig Code that doesn't call the Zig Wrapper...
+
+-   [lvgltest.zig](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/lvgltest.zig#L91-L126)
+
 # Build LVGL Zig App
 
 NuttX Build runs this GCC Command to compile [lv_demo_widgets.c](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L202-L528)...
@@ -137,3 +147,5 @@ build_zig
 ## Link the LVGL Zig App with NuttX
 make -j
 ```
+
+And our LVGL Zig App runs OK on PinePhone!
