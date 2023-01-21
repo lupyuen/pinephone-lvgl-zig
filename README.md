@@ -60,4 +60,59 @@ We'll copy the above GCC Options to the Zig Compiler and build this Zig Program.
 
 -   [lvgltest.zig](https://github.com/lupyuen/zig-lvgl-nuttx/blob/main/lvgltest.zig)
 
-TODO
+Like so...
+
+```bash
+function build_zig {
+  pushd ../pinephone-lvgl-zig
+  git pull
+
+  if [ ! -f ../apps/graphics/lvgl/lvgl/demos/widgets/lv_demo_widgets.*.o ] 
+  then
+    echo "*** Error: Build NuttX first before building Zig app"
+    exit 1
+  fi
+
+  #  Compile the Zig App for PinePhone 
+  #  (armv8-a with cortex-a53)
+  #  TODO: Change ".." to your NuttX Project Directory
+  zig build-obj \
+    --verbose-cimport \
+    -target aarch64-freestanding-none \
+    -mcpu cortex_a53 \
+    -isystem "../nuttx/include" \
+    -I "../apps/include" \
+    -I "../apps/graphics/lvgl" \
+    -I "../apps/graphics/lvgl/lvgl/src/core" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/arm2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/pxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/vglite" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sdl" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/stm32_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/swm341_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/font" \
+    -I "../apps/graphics/lvgl/lvgl/src/hal" \
+    -I "../apps/graphics/lvgl/lvgl/src/misc" \
+    -I "../apps/graphics/lvgl/lvgl/src/widgets" \
+    lvgltest.zig
+
+  #  Copy the compiled app to NuttX and overwrite `lv_demo_widgets.*.o`
+  #  TODO: Change ".." to your NuttX Project Directory
+  cp lvgltest.o \
+    ../apps/graphics/lvgl/lvgl/demos/widgets/lv_demo_widgets.*.o
+
+  popd
+}
+
+## Build NuttX
+make -j
+
+## Build the Zig App
+build_zig
+
+## Link Zig App with NuttX
+make -j
+```
