@@ -8,6 +8,18 @@ Read the articles...
 
 Can we build an LVGL App for PinePhone in Zig, that will run on Apache NuttX RTOS?
 
+# LVGL Zig App
+
+Let's run this LVGL Zig App on PinePhone...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/c7a33f1fe3af4babaa8bc5502ca2b719ae95c2ca/lvgltest.zig#L55-L89
+
+_How is createWidgetsWrapped called?_
+
+`createWidgetsWrapped` will be called by `lv_demo_widgets`, which we'll replace by this Zig version...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/c7a33f1fe3af4babaa8bc5502ca2b719ae95c2ca/lvgltest.zig#L32-L41
+
 # Build LVGL Zig App
 
 NuttX Build runs this GCC Command to compile [lv_demo_widgets.c](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L202-L528)...
@@ -58,7 +70,7 @@ aarch64-none-elf-gcc
 
 We'll copy the above GCC Options to the Zig Compiler and build this Zig Program...
 
--   [lvgltest.zig](https://github.com/lupyuen/zig-lvgl-nuttx/blob/main/lvgltest.zig)
+-   [lvgltest.zig](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/lvgltest.zig)
 
 Like so...
 
@@ -112,12 +124,16 @@ function build_zig {
   popd
 }
 
-## Build NuttX
+## Download the LVGL Zig App
+git clone https://github.com/lupyuen/pinephone-lvgl-zig
+
+## Build NuttX for PinePhone
+cd nuttx
 make -j
 
-## Build the Zig App
+## Build the LVGL Zig App
 build_zig
 
-## Link Zig App with NuttX
+## Link the LVGL Zig App with NuttX
 make -j
 ```
