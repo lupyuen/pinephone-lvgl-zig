@@ -63,19 +63,23 @@ We'll copy the above GCC Options to the Zig Compiler and build this Zig Program.
 Like so...
 
 ```bash
+## Build the LVGL Zig App
 function build_zig {
+
+  ## Go to LVGL Zig Folder
   pushd ../pinephone-lvgl-zig
   git pull
 
+  ## Check that NuttX Build has completed and `lv_demo_widgets.*.o` exists
   if [ ! -f ../apps/graphics/lvgl/lvgl/demos/widgets/lv_demo_widgets.*.o ] 
   then
     echo "*** Error: Build NuttX first before building Zig app"
     exit 1
   fi
 
-  #  Compile the Zig App for PinePhone 
-  #  (armv8-a with cortex-a53)
-  #  TODO: Change ".." to your NuttX Project Directory
+  ## Compile the Zig App for PinePhone 
+  ## (armv8-a with cortex-a53)
+  ## TODO: Change ".." to your NuttX Project Directory
   zig build-obj \
     --verbose-cimport \
     -target aarch64-freestanding-none \
@@ -99,11 +103,12 @@ function build_zig {
     -I "../apps/graphics/lvgl/lvgl/src/widgets" \
     lvgltest.zig
 
-  #  Copy the compiled app to NuttX and overwrite `lv_demo_widgets.*.o`
-  #  TODO: Change ".." to your NuttX Project Directory
+  ## Copy the compiled app to NuttX and overwrite `lv_demo_widgets.*.o`
+  ## TODO: Change ".." to your NuttX Project Directory
   cp lvgltest.o \
     ../apps/graphics/lvgl/lvgl/demos/widgets/lv_demo_widgets.*.o
 
+  ## Return to NuttX Folder
   popd
 }
 
