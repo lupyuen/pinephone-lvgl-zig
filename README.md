@@ -30,7 +30,7 @@ Our Zig Wrapper for LVGL is defined here...
 
 We also have a version of the LVGL Zig Code that doesn't call the Zig Wrapper...
 
--   [lvgltest.zig](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/lvgltest.zig#L91-L126)
+-   [lvgltest.zig](https://github.com/lupyuen/pinephone-lvgl-zig/blob/c7a33f1fe3af4babaa8bc5502ca2b719ae95c2ca/lvgltest.zig#L91-L126)
 
 # Build LVGL Zig App
 
