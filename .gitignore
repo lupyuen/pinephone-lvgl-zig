@@ -1,0 +1,5 @@
+*.o
+zig-cache
+lvgltest-analysis.json
+lvgltest.bc
+lvgltest.ll

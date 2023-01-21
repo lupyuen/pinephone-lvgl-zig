@@ -53,11 +53,8 @@ pub const Object = struct {
     /// Create a Label as a child of the Object
     pub fn createLabel(self: *Object) !Label {
 
-        // Assume we won't copy from another Object 
-        const copy: ?*const c.lv_obj_t = null;
-
         // Create the Label
-        const label = c.lv_label_create(self.obj, copy);
+        const label = c.lv_label_create(self.obj);
 
         // If successfully created...
         if (label) |l| {
@@ -89,7 +86,7 @@ pub const Label = struct {
 
     /// Set the label text alignment
     pub fn setAlign(self: *Label, alignment: c.lv_label_align_t) void {
-        c.lv_label_set_align(self.obj, alignment);
+        c.lv_obj_set_style_text_align(self.obj, alignment, 0);
     }
 
     /// Enable or disable color codes in the label text
@@ -109,8 +106,7 @@ pub const Label = struct {
 
     /// Set the object alignment
     pub fn alignObject(self: *Label, alignment: c.lv_align_t, x_ofs: c.lv_coord_t, y_ofs: c.lv_coord_t) void {
-        const base: ?*const c.lv_obj_t = null;
-        c.lv_obj_align(self.obj, base, alignment, x_ofs, y_ofs);
+        c.lv_obj_align(self.obj, alignment, x_ofs, y_ofs);
     }
 };
 

@@ -29,82 +29,24 @@ const c = @cImport({
 
     // LVGL Header Files
     @cInclude("lvgl/lvgl.h");
-
-    // App Header Files
-    @cInclude("fbdev.h");
-    @cInclude("lcddev.h");
-    @cInclude("tp.h");
-    @cInclude("tp_cal.h");
 });
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Main Function
 
-/// Main Function that will be called by NuttX. We render an LVGL Screen and
-/// handle Touch Input.
-pub export fn lvgltest_main(
-    _argc: c_int, 
-    _argv: [*]const [*]const u8
-) c_int {
-    // Command-line args are not used
-    _ = _argc;
-    _ = _argv;
-    debug("Zig LVGL Test", .{});
-
-    // Init LVGL Library
-    c.lv_init();
-
-    // Init Display Buffer
-    const disp_buf = c.get_disp_buf().?;
-    c.init_disp_buf(disp_buf);
-
-    // Init Display Driver
-    const disp_drv = c.get_disp_drv().?;
-    c.init_disp_drv(disp_drv, disp_buf, monitorCallback);
-
-    // Init LCD Driver
-    if (c.lcddev_init(disp_drv) != c.EXIT_SUCCESS) {
-        // If failed, try Framebuffer Driver
-        if (c.fbdev_init(disp_drv) != c.EXIT_SUCCESS) {
-            // No possible drivers left, fail
-            return c.EXIT_FAILURE;
-        }
-    }
-
-    // Register Display Driver
-    _ = c.lv_disp_drv_register(disp_drv);
-
-    // Init Touch Panel
-    _ = c.tp_init();
-
-    // Init Input Device. tp_read will be called periodically
-    // to get the touched position and state
-    const indev_drv = c.get_indev_drv().?;
-    c.init_indev_drv(indev_drv, c.tp_read);
+/// We render an LVGL Screen with LVGL Widgets
+pub export fn lv_demo_widgets() void {
 
     // Create the widgets for display
     createWidgetsUnwrapped()
         catch |e| {
             // In case of error, quit
             std.log.err("createWidgets failed: {}", .{e});
-            return c.EXIT_FAILURE;
+            return;
         };
 
     // To call the LVGL API that's wrapped in Zig, change
     // `createWidgetsUnwrapped` above to `createWidgetsWrapped`
-
-    // Start Touch Panel calibration
-    c.tp_cal_create();
-
-    // Loop forever handing LVGL tasks
-    while (true) {
-        // Handle LVGL tasks
-        _ = c.lv_task_handler();
-
-        // Sleep a while
-        _ = c.usleep(10000);
-    }
-    return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -112,7 +54,7 @@ pub export fn lvgltest_main(
 
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
 /// LVGL API directly, without wrapping in Zig. Based on
-/// https://docs.lvgl.io/7.11/widgets/label.html#label-recoloring-and-scrolling
+/// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsUnwrapped() !void {
     debug("createWidgetsUnwrapped", .{});
 
@@ -120,16 +62,16 @@ fn createWidgetsUnwrapped() !void {
     const screen = c.lv_scr_act().?;
 
     // Create a Label Widget
-    const label = c.lv_label_create(screen, null).?;
+    const label = c.lv_label_create(screen).?;
 
     // Wrap long lines in the label text
-    c.lv_label_set_long_mode(label, c.LV_LABEL_LONG_BREAK);
+    c.lv_label_set_long_mode(label, c.LV_LABEL_LONG_WRAP);
 
     // Interpret color codes in the label text
     c.lv_label_set_recolor(label, true);
 
     // Center align the label text
-    c.lv_label_set_align(label, c.LV_LABEL_ALIGN_CENTER);
+    c.lv_obj_set_style_text_align(label, c.LV_TEXT_ALIGN_CENTER, 0);
 
     // Set the label text and colors
     c.lv_label_set_text(
@@ -143,12 +85,12 @@ fn createWidgetsUnwrapped() !void {
     c.lv_obj_set_width(label, 200);
 
     // Align the label to the center of the screen, shift 30 pixels up
-    c.lv_obj_align(label, null, c.LV_ALIGN_CENTER, 0, -30);
+    c.lv_obj_align(label, c.LV_ALIGN_CENTER, 0, -30);
 }
 
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
 /// LVGL API that has been wrapped in Zig. Based on
-/// https://docs.lvgl.io/7.11/widgets/label.html#label-recoloring-and-scrolling
+/// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsWrapped() !void {
     debug("createWidgetsWrapped", .{});
 
@@ -159,13 +101,13 @@ fn createWidgetsWrapped() !void {
     var label = try screen.createLabel();
 
     // Wrap long lines in the label text
-    label.setLongMode(c.LV_LABEL_LONG_BREAK);
+    label.setLongMode(c.LV_LABEL_LONG_WRAP);
 
     // Interpret color codes in the label text
     label.setRecolor(true);
 
     // Center align the label text
-    label.setAlign(c.LV_LABEL_ALIGN_CENTER);
+    label.setAlign(c.LV_TEXT_ALIGN_CENTER);
 
     // Set the label text and colors
     label.setText(
@@ -183,18 +125,6 @@ fn createWidgetsWrapped() !void {
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Callbacks
-
-/// Monitoring callback from LVGL every time the screen is flushed
-pub export fn monitorCallback(
-    _disp_drv: ?*c.lv_disp_drv_t,
-    _time: u32,
-    _px: u32
-) void {
-    // Do nothing
-    _ = _disp_drv;
-    _ = _time;
-    _ = _px;
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Panic Handler
