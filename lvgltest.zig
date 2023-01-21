@@ -11,11 +11,6 @@ const c = @cImport({
     // NuttX Defines
     @cDefine("__NuttX__",  "");
     @cDefine("NDEBUG",     "");
-    // @cDefine("LV_LVGL_H_INCLUDE_SIMPLE", "");
-
-    // Workaround for "Unable to translate macro: undefined identifier `LL`"
-    // @cDefine("LL", "");
-    // @cDefine("__int_c_join(a, b)", "a");  //  Bypass zig/lib/include/stdint.h
 
     // NuttX Header Files
     @cInclude("arch/types.h");
@@ -37,16 +32,21 @@ const c = @cImport({
 /// We render an LVGL Screen with LVGL Widgets
 pub export fn lv_demo_widgets() void {
 
-    // Create the widgets for display
-    createWidgetsUnwrapped()
+    // Create the widgets for display (with Zig Wrapper)
+    createWidgetsWrapped()
         catch |e| {
             // In case of error, quit
-            std.log.err("createWidgets failed: {}", .{e});
+            std.log.err("createWidgetsWrapped failed: {}", .{e});
             return;
         };
 
-    // To call the LVGL API that's wrapped in Zig, change
-    // `createWidgetsUnwrapped` above to `createWidgetsWrapped`
+    // Create the widgets for display (without Zig Wrapper)
+    // createWidgetsUnwrapped()
+    //     catch |e| {
+    //         // In case of error, quit
+    //         std.log.err("createWidgetsUnwrapped failed: {}", .{e});
+    //         return;
+    //     };
 }
 
 ///////////////////////////////////////////////////////////////////////////////

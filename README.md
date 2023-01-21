@@ -8,7 +8,7 @@ Read the articles...
 
 Can we build an LVGL App for PinePhone in Zig, that will run on Apache NuttX RTOS?
 
-# TODO
+# Build LVGL Zig App
 
 NuttX Build runs this GCC Command to compile [lv_demo_widgets.c](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L202-L528)...
 

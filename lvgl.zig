@@ -8,11 +8,6 @@ const c = @cImport({
     // NuttX Defines
     @cDefine("__NuttX__",  "");
     @cDefine("NDEBUG",     "");
-    // @cDefine("LV_LVGL_H_INCLUDE_SIMPLE", "");
-
-    // Workaround for "Unable to translate macro: undefined identifier `LL`"
-    // @cDefine("LL", "");
-    // @cDefine("__int_c_join(a, b)", "a");  //  Bypass zig/lib/include/stdint.h
 
     // NuttX Header Files
     @cInclude("arch/types.h");
@@ -85,7 +80,7 @@ pub const Label = struct {
     }
 
     /// Set the label text alignment
-    pub fn setAlign(self: *Label, alignment: c.lv_label_align_t) void {
+    pub fn setAlign(self: *Label, alignment: c.lv_text_align_t) void {
         c.lv_obj_set_style_text_align(self.obj, alignment, 0);
     }
 
