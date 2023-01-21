@@ -56,7 +56,8 @@ pub export fn lv_demo_widgets() void {
 /// LVGL API directly, without wrapping in Zig. Based on
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsUnwrapped() !void {
-    debug("createWidgetsUnwrapped", .{});
+    debug("createWidgetsUnwrapped: start", .{});
+    defer { debug("createWidgetsUnwrapped: end", .{}); }
 
     // Get the Active Screen
     const screen = c.lv_scr_act().?;
@@ -92,7 +93,8 @@ fn createWidgetsUnwrapped() !void {
 /// LVGL API that has been wrapped in Zig. Based on
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsWrapped() !void {
-    debug("createWidgetsWrapped", .{});
+    debug("createWidgetsWrapped: start", .{});
+    defer { debug("createWidgetsWrapped: end", .{}); }
 
     // Get the Active Screen
     var screen = try lvgl.getActiveScreen();
