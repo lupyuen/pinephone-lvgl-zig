@@ -6,7 +6,9 @@ Read the articles...
 
 -   ["Build an LVGL Touchscreen App with Zig"](https://lupyuen.github.io/articles/lvgl)
 
-Can we build an LVGL App for PinePhone in Zig, that will run on Apache NuttX RTOS?
+Can we build an LVGL App for PinePhone in Zig... That will run on Apache NuttX RTOS?
+
+Let's find out!
 
 # LVGL Zig App
 
@@ -16,7 +18,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/c7a33f1fe3af4babaa8bc5502ca2b
 
 _How is createWidgetsWrapped called?_
 
-`createWidgetsWrapped` will be called by `lv_demo_widgets`, which we'll replace by this Zig version...
+`createWidgetsWrapped` will be called by the LVGL Widget Demo [`lv_demo_widgets`](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L96-L198), which we'll replace by this Zig version...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/c7a33f1fe3af4babaa8bc5502ca2b719ae95c2ca/lvgltest.zig#L32-L41
 
@@ -32,7 +34,7 @@ We also have a version of the LVGL Zig Code that doesn't call the Zig Wrapper...
 
 # Build LVGL Zig App
 
-NuttX Build runs this GCC Command to compile [lv_demo_widgets.c](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L202-L528) for PinePhone...
+NuttX Build runs this GCC Command to compile [lv_demo_widgets.c](https://github.com/lvgl/lvgl/blob/v8.3.3/demos/widgets/lv_demo_widgets.c#L96-L198) for PinePhone...
 
 ```bash
 $ make --trace
@@ -149,3 +151,62 @@ make -j
 ```
 
 And our LVGL Zig App runs OK on PinePhone!
+
+# Zig Version
+
+_Which version of Zig are we using?_
+
+We're using an older version: `0.10.0-dev.2351+b64a1d5ab`
+
+Sadly Zig 0.10.1 won't run on my 10-year-old MacBook Pro that's stuck on macOS 10 😢
+
+```text
+→ #  Compile the Zig App for PinePhone
+  #  (armv8-a with cortex-a53)
+  #  TODO: Change ".." to your NuttX Project Directory
+  zig build-obj \
+    --verbose-cimport \
+    -target aarch64-freestanding-none \
+    -mcpu cortex_a53 \
+    -isystem "../nuttx/include" \
+    -I "../apps/include" \
+    lvgltest.zig
+
+dyld: lazy symbol binding faileddyld: lazy symbol binding faileddyld: lazy symbol binding failed: Symbol not found: ___ulock_wai: Symbol not found: ___ulock_wait2
+  Referenced from: /Users/Lupt2
+  Referenced from: /Users/Lupdyld: lazy symbol binding failedpy/zig-macos-x86_64-0.10.1/zig (py/zig-macos-x86_64-0.10.1/zig (dyld: lazy symbol binding failedwhich was built for Mac OS X 11.: Symbol not found: ___ulock_wai: Symbol not found: ___ulock_waiwhich was built for Mac OS X 11.7)
+  Expected in: /usr/lib/libSy: Symbol not found: ___ulock_wai7)
+  Expected in: /usr/lib/libSystem.B.dylib
+
+stem.B.dylib
+
+t2
+  Referenced from: /Users/Lupt2
+  Referenced from: /Users/Lupt2
+  Referenced from: /Users/Luppy/zig-macos-x86_64-0.10.1/zig (py/zig-macos-x86_64-0.10.1/zig (py/zig-macos-x86_64-0.10.1/zig (which was built for Mac OS X 11.which was built for Mac OS X 11.which was built for Mac OS X 11.7)
+  Expected in: /usr/lib/libSy7)
+  Expected in: /usr/lib/libSydyld: Symbol not found: ___ulock7)
+  Expected in: /usr/lib/libSystem.B.dylib
+
+stem.B.dylib
+
+_wait2
+  Referenced from: /Usersstem.B.dylib
+
+/Luppy/zig-macos-x86_64-0.10.1/zdyld: Symbol not found: ___ulockig (which was built for Mac OS X_wait2
+  Referenced from: /Users 11.7)
+  Expected in: /usr/lib/ldyld: Symbol not found: ___ulockdyld: Symbol not found: ___ulock/Luppy/zig-macos-x86_64-0.10.1/zibSystem.B.dylib
+
+_wait2
+  Referenced from: /Usersig (which was built for Mac OS X_wait2
+  Referenced from: /Users/Luppy/zig-macos-x86_64-0.10.1/z 11.7)
+  Expected in: /usr/lib/l/Luppy/zig-macos-x86_64-0.10.1/zig (which was built for Mac OS XibSystem.B.dylib
+
+ig (which was built for Mac OS X 11.7)
+  Expected in: /usr/lib/l 11.7)
+  Expected in: /usr/lib/libSystem.B.dylib
+
+ibSystem.B.dylib
+
+dyld: Symbol not found: ___ulockdyld: lazy symbol binding faileddyld: lazy symbol binding failed[1]    11157 abort      zig build-obj --verbose-cimport -target aarch64-freestanding-none -mcpu    -I
+```
