@@ -1,3 +1,5 @@
+![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
+
 # LVGL for PinePhone with Zig and Apache NuttX RTOS
 
 Read the articles...
@@ -151,6 +153,8 @@ make -j
 ```
 
 And our LVGL Zig App runs OK on PinePhone!
+
+![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
 
 # Zig Version
 
