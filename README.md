@@ -267,13 +267,44 @@ Like this...
     lvgltest.zig
 ```
 
+OK no errors, this produces `lvgltest.wasm`.
+
+Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglwasm.zig`](lvglwasm.zig)...
+
+```bash
+  ## Compile the Zig App for WebAssembly 
+  ## TODO: Change ".." to your NuttX Project Directory
+  zig build-lib \
+    --verbose-cimport \
+    -target wasm32-freestanding \
+    -dynamic \
+    -isystem "../nuttx/include" \
+    -I "../apps/include" \
+    -I "../apps/graphics/lvgl" \
+    -I "../apps/graphics/lvgl/lvgl/src/core" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/arm2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/pxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/vglite" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sdl" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/stm32_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/swm341_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/font" \
+    -I "../apps/graphics/lvgl/lvgl/src/hal" \
+    -I "../apps/graphics/lvgl/lvgl/src/misc" \
+    -I "../apps/graphics/lvgl/lvgl/src/widgets" \
+    lvglwasm.zig
+```
+
 This produces `lvgltest.wasm`.
 
 TODO: What's inside the WASM File?
 
-TODO: Can we link this with LVGL compiled with `zig build-obj`?
-
 TODO: Export some functions
+
+TODO: Can we link this with LVGL compiled with `zig build-obj`?
 
 # Zig Version
 
