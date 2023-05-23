@@ -179,6 +179,37 @@ cmake .. -DZIG_STATIC_LLVM=ON -DCMAKE_PREFIX_PATH="$(brew --prefix llvm);$(brew 
 make install
 ```
 
+But I got stuck at `brew install llvm`...
+
+```text
+TODO
+```
+
+TODO: Build LLVM from souce
+
+https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#posix
+
+```bash
+cd ~/Downloads
+git clone --depth 1 --branch release/16.x https://github.com/llvm/llvm-project llvm-project-16
+cd llvm-project-16
+git checkout release/16.x
+
+mkdir build-release
+cd build-release
+cmake ../llvm \
+  -DCMAKE_INSTALL_PREFIX=$HOME/local/llvm16-release \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DLLVM_ENABLE_PROJECTS="lld;clang" \
+  -DLLVM_ENABLE_LIBXML2=OFF \
+  -DLLVM_ENABLE_TERMINFO=OFF \
+  -DLLVM_ENABLE_LIBEDIT=OFF \
+  -DLLVM_ENABLE_ASSERTIONS=ON \
+  -DLLVM_PARALLEL_LINK_JOBS=1 \
+  -G Ninja
+ninja install
+```
+
 TODO: Does it work?
 
 # Zig Version
