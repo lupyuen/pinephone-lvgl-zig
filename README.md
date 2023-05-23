@@ -186,11 +186,33 @@ TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to 
 
 # WebAssembly Demo with Zig and JavaScript
 
-We can __Zig (WebAssembly) + JavaScript__ in a Web Browser like so...
+We can run __Zig (WebAssembly) + JavaScript__ in a Web Browser like so...
 
 - [WebAssembly With Zig in a Web Browser](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
-TODO
+Let's run a simple demo...
+
+- [demo/madelbrot.zig](demo/madelbrot.zig): Zig Program
+
+- [demo/game.js](demo/game.js): JavaScript that loads the Zig WebAssembly
+
+- [demo/demo.html](demo/demo.html): HTML that calls the JavaScript
+
+To compile Zig to WebAssembly...
+
+```bash
+git clone --recursive https://github.com/lupyuen/pinephone-lvgl-zig
+cd pinephone-lvgl-zig
+cd demo
+zig build-lib \
+  madelbrot.zig \
+  -target wasm32-freestanding \
+  -dynamic
+```
+
+This produces the Compiled WebAssembly `mandelbrot.wasm`.
+
+TODO: Local Web Server
 
 # Zig Version
 
