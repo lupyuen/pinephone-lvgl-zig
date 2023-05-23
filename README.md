@@ -179,15 +179,11 @@ cmake .. -DZIG_STATIC_LLVM=ON -DCMAKE_PREFIX_PATH="$(brew --prefix llvm);$(brew 
 make install
 ```
 
-But I got stuck at `brew install llvm`...
+`brew install llvm` failed, so we built LLVM from source. (See below)
 
-```text
-TODO
-```
+TODO: Does it work?
 
-TODO: Build LLVM from souce
-
-https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#posix
+This is how we build LLVM from source [(from here)](https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#posix)...
 
 ```bash
 cd ~/Downloads
