@@ -31,6 +31,11 @@ export fn get_pixel_color(px: i32, py: i32) u8 {
         xsquare = x * x;
         ysquare = y * y;
     }
+
+    // Test printing to JavaScript Console.
+    // Warning: This is slow!
+    if (iterations == 1) { print(iterations); }
+
     // smoothed valued
     //     return n + 1 - log(log2(abs(z)))
     // figure out import math first to get log/log2/abs

@@ -12,7 +12,11 @@ request.send();
 request.onload = function() {
     var bytes = request.response;
     WebAssembly.instantiate(bytes, {
-        env: {}
+        // JavaScript Environment exported to Zig
+        env: {
+            // JavaScript Print Function exported to Zig
+            print: function(x) { console.log(x); }
+        }
     }).then(result => {
         // Store references to Zig functions
         Game = result.instance.exports;
@@ -50,8 +54,8 @@ const main = function() {
             }
         }
 
-        // loop to next frame
-        window.requestAnimationFrame(loop);
+        // loop to next frame. Disabled for now because it slows down the browser.
+        // TODO: window.requestAnimationFrame(loop);
     };
     loop();
 };
