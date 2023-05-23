@@ -2,7 +2,6 @@
 
 // References to Exported Zig Functions
 const Game = {
-    'print': null,
     'get_pixel_color': null,
 };
 
