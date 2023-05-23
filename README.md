@@ -192,7 +192,7 @@ We can run __Zig (WebAssembly) + JavaScript__ in a Web Browser like so...
 
 Let's run a simple demo...
 
-- [demo/madelbrot.zig](demo/madelbrot.zig): Zig Program
+- [demo/madelbrot.zig](demo/madelbrot.zig): Zig Program that compiles to WebAssembly
 
 - [demo/game.js](demo/game.js): JavaScript that loads the Zig WebAssembly
 
