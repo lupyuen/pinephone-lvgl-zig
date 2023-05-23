@@ -209,8 +209,11 @@ cd demo
 zig build-lib \
   madelbrot.zig \
   -target wasm32-freestanding \
-  -dynamic
+  -dynamic \
+  -rdynamic
 ```
+
+[(According to this)](https://ziglang.org/documentation/master/#Freestanding)
 
 This produces the Compiled WebAssembly [`mandelbrot.wasm`](mandelbrot.wasm).
 
@@ -232,7 +235,7 @@ Let's take the earlier steps to compile our LVGL App `lvgltest.zig`. To compile 
 
 - Remove `-mcpu`
 
-- Add `-dynamic`
+- Add `-dynamic` and `-rdynamic`
 
 Like this...
 
@@ -243,6 +246,7 @@ Like this...
     --verbose-cimport \
     -target wasm32-freestanding \
     -dynamic \
+    -rdynamic \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
@@ -263,7 +267,9 @@ Like this...
     lvgltest.zig
 ```
 
-OK no errors, this produces `lvgltest.wasm`.
+[(According to this)](https://ziglang.org/documentation/master/#Freestanding)
+
+OK no errors, this produces the Compiled WebAssembly `lvgltest.wasm`.
 
 Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglwasm.zig`](lvglwasm.zig)...
 
@@ -294,11 +300,13 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
     lvglwasm.zig
 ```
 
-This produces [`lvglwasm.wasm`](lvglwasm.wasm).
+[(According to this)](https://ziglang.org/documentation/master/#Freestanding)
+
+This produces the Compiled WebAssembly [`lvglwasm.wasm`](lvglwasm.wasm).
 
 Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
 
-Browse to our HTML [`lvglwasm.html`](lvglwasm.html). Which calls our JavaScript [`lvglwasm.js`](lvglwasm.js) to load the WebAssembly.
+Browse to our HTML [`lvglwasm.html`](lvglwasm.html). Which calls our JavaScript [`lvglwasm.js`](lvglwasm.js) to load the Compiled WebAssembly.
 
 But the WebAssembly won't load because we haven't fixed the WebAssembly Imports...
 
