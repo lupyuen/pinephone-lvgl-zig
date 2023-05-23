@@ -1,9 +1,7 @@
 // From https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
 
 // References to Exported Zig Functions
-const Game = {
-    'get_pixel_color': null,
-};
+var Game;
 
 // Load the WebAssembly Module
 const request = new XMLHttpRequest();
@@ -34,23 +32,26 @@ const main = function() {
 
     const loop = function() {
         ctx.fillStyle = "white"; // clear the canvas
-        ctx.fillRect(0, 0, 100, 100);
-        for (var x = 0; x < 10; x++) {
-            for (var y = 0; y < 10; y++) {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for (var x = 0; x < canvas.width; x++) {
+            for (var y = 0; y < canvas.height; y++) {
+                // Get the Pixel Color
                 var cell = Game.get_pixel_color(x, y);
-                if (cell == 1) {
+
+                // Render the Pixel
+                if (cell < 10) {
                     ctx.fillStyle = "red";
-                } else if (cell == 2) {
+                } else if (cell < 128) {
                     ctx.fillStyle = "grey";
                 } else {
                     ctx.fillStyle = "white";
                 }
-                ctx.fillRect(x*10, y*10, (x*10)+10, (y*10)+10);
+                ctx.fillRect(x, y, x + 1, y + 1);
             }
         }
 
         // loop to next frame
-        window.requestAnimationFrame(loop);
+        ////window.requestAnimationFrame(loop);
     };
     loop();
 };
