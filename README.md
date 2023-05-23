@@ -300,11 +300,11 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
 
 This produces `lvgltest.wasm`.
 
-TODO: What's inside the WASM File?
-
-TODO: Export some functions
+TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
 
 TODO: Can we link this with LVGL compiled with `zig build-obj`?
+
+TODO: What's inside the WASM File?
 
 # Zig Version
 
