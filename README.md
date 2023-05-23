@@ -180,9 +180,11 @@ But LVGL doesn't work with JavaScript yet. LVGL runs in a Web Browser by compili
 
 - [LVGL with Emscripten and SDL](https://github.com/lvgl/lv_web_emscripten)
 
-TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+Therefore we shall do this...
 
-TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+1.  Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+
+1.  Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # WebAssembly Demo with Zig and JavaScript
 
@@ -217,6 +219,12 @@ Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.c
 Browse to `demo/demo.html`. We should see the Mandelbrot Set yay!
 
 ![Mandelbrot Set rendered with Zig and WebAssembly](https://lupyuen.github.io/images/zig-wasm.png)
+
+# Compile LVGL to WebAssembly with Zig Compiler
+
+TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+
+TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # Zig Version
 
