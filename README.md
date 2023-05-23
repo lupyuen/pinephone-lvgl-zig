@@ -300,6 +300,24 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
 
 This produces `lvgltest.wasm`.
 
+_What happens if we don't fix the imports?_
+
+Suppose we forgot to import `puts()`. JavaScript Console will show this error...
+
+```text
+Uncaught (in promise) LinkError: WebAssembly.instantiate(): Import #0 module="env" function="puts" error: function import requires a callable
+```
+
+_But we haven't compiled the LVGL Library to WebAssembly!_
+
+Yep that's why the LVGL Functions like `lv_label_create` are failing...
+
+```text
+Uncaught (in promise) LinkError: WebAssembly.instantiate(): Import #1 module="env" function="lv_label_create" error: function import requires a callable
+```
+
+We need to compile the LVGL Library with `zig cc` and link it in.
+
 TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
 
 TODO: Can we link this with LVGL compiled with `zig build-obj`?

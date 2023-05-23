@@ -135,16 +135,20 @@ pub fn panic(
     message: []const u8, 
     _stack_trace: ?*std.builtin.StackTrace
 ) noreturn {
+    _ = message;
+    print(1); // TODO
+
     // Print the Panic Message
     _ = _stack_trace;
-    _ = puts("\n!ZIG PANIC!");
-    _ = puts(@ptrCast([*c]const u8, message));
+    // TODO: _ = puts("\n!ZIG PANIC!");
+    // TODO: _ = puts(@ptrCast([*c]const u8, message));
 
     // Print the Stack Trace
-    _ = puts("Stack Trace:");
+    // _ = puts("Stack Trace:");
     var it = std.debug.StackIterator.init(@returnAddress(), null);
     while (it.next()) |return_address| {
-        _ = printf("%p\n", return_address);
+        print(@intCast(i32, return_address));
+        // Previously: _ = printf("%p\n", return_address);
     }
 
     // Halt
@@ -168,7 +172,7 @@ pub fn log(
     // Format the message
     var buf: [100]u8 = undefined;  // Limit to 100 chars
     var slice = std.fmt.bufPrint(&buf, format, args)
-        catch { _ = puts("*** log error: buf too small"); return; };
+        catch { print(2); return; }; // TODO
     
     // Terminate the formatted message with a null
     var buf2: [buf.len + 1 : 0]u8 = undefined;
@@ -180,7 +184,7 @@ pub fn log(
     buf2[slice.len] = 0;
 
     // Print the formatted message
-    _ = puts(&buf2);
+    // TODO: _ = puts(&buf2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -189,11 +193,6 @@ pub fn log(
 /// Extern functions refer to the exterior JS namespace
 /// when importing wasm code, the `print` func must be provided
 extern fn print(i32) void;
-
-/// For safety, we import these functions ourselves to enforce Null-Terminated Strings.
-/// We changed `[*c]const u8` to `[*:0]const u8`
-extern fn printf(format: [*:0]const u8, ...) c_int;
-extern fn puts(str: [*:0]const u8) c_int;
 
 /// Aliases for Zig Standard Library
 const assert = std.debug.assert;
