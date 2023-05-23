@@ -304,7 +304,7 @@ But the WebAssembly won't load because we haven't fixed the WebAssembly Imports.
 
 _What happens if we don't fix the WebAssembly Imports in our Zig Program?_
 
-Suppose we forgot to import `puts()`. JavaScript Console will show this error...
+Suppose we forgot to import `puts()`. JavaScript Console will show this error when the Web Browser loads our Zig WebAssembly...
 
 ```text
 Uncaught (in promise) LinkError:
@@ -333,6 +333,8 @@ TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
 TODO: What's inside the WASM File?
 
 TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
+
+TODO: How to pass Strings and Buffers between JavaScript and Zig?
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
