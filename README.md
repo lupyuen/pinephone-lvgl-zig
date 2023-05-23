@@ -217,11 +217,13 @@ ibSystem.B.dylib
 dyld: Symbol not found: ___ulockdyld: lazy symbol binding faileddyld: lazy symbol binding failed[1]    11157 abort      zig build-obj --verbose-cimport -target aarch64-freestanding-none -mcpu    -I
 ```
 
+I tried building Zig from source, but it didn't work either...
+
 # Build Zig from Source
 
 The [Official Zig Download for macOS](https://ziglang.org/download/) no longer runs on my 10-year-old MacBook Pro that's stuck on macOS 10.15.7. (See the previous section)
 
-So I built Zig from Source according to these instructions...
+So I tried building Zig from Source according to these instructions...
 
 - [Building Zig from Source](https://github.com/ziglang/zig/wiki/Building-Zig-From-Source)
 
@@ -261,7 +263,7 @@ cmake ../llvm \
 ninja install
 ```
 
-But it fails...
+But LLVM fails to build...
 
 ```text
 → ninja install
@@ -393,3 +395,5 @@ tuple(allocator_arg_t, const _Alloc&, tuple<_Args...>&&) -> tuple<_Args...>;
 [1917/4827] Building CXX object lib/Target/AMDGPU/Disassembler/CMakeFiles/LLVMAMDGPUDisassembler.dir/AMDGPUDisassembler.cpp.o
 ninja: build stopped: subcommand failed.
 ```
+
+So I can't build Zig from source on my 10-year-old MacBook Pro 😢
