@@ -223,11 +223,59 @@ Browse to `demo/demo.html`. We should see the Mandelbrot Set yay!
 
 ![Mandelbrot Set rendered with Zig and WebAssembly](https://lupyuen.github.io/images/zig-wasm.png)
 
-# Compile LVGL to WebAssembly with Zig Compiler
+# Import JavaScript Functions into Zig
 
-_Does our LVGL App lvgltest.zig compile to WebAssembly?_
+_How do we import JavaScript Functions into our Zig Program?_
 
-Let's take the earlier steps to compile our LVGL App `lvgltest.zig`. To compile for WebAssembly, we change...
+This is documented here...
+
+- [WebAssembly on Zig](https://ziglang.org/documentation/master/#WebAssembly)
+
+In our Zig Program, this is how we import and call a JavaScript Function: [demo/madelbrot.zig](demo/madelbrot.zig)
+
+```zig
+// extern functions refer to the exterior JS namespace
+// when importing wasm code, the `print` func must be provided
+extern fn print(i32) void;
+...
+// Test printing to JavaScript Console.
+// Warning: This is slow!
+if (iterations == 1) { print(iterations); }
+```
+
+We define the JavaScript Function `print` when loading the WebAssembly Module in our JavaScript: [demo/game.js](demo/game.js)
+
+```javascript
+// On Loading the WebAssembly Module...
+request.onload = function() {
+    var bytes = request.response;
+    WebAssembly.instantiate(bytes, {
+        // JavaScript Environment exported to Zig
+        env: {
+            // JavaScript Print Function exported to Zig
+            print: function(x) { console.log(x); }
+        }
+    }).then(result => {
+        // Store references to Zig functions
+        Game = result.instance.exports;
+
+        // Start the Main Loop
+        main();
+    });
+};
+```
+
+_Will this work for passing Strings and Buffers as parameters?_
+
+Nope, the parameter will be passed as a number. (Probably a WebAssembly Data Address)
+
+TODO: How to pass Strings and Buffers between JavaScript and Zig? See [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
+
+# Compile Zig LVGL App to WebAssembly
+
+_Does our Zig LVGL App lvgltest.zig compile to WebAssembly?_
+
+Let's take the earlier steps to compile our Zig LVGL App `lvgltest.zig`. To compile for WebAssembly, we change...
 
 - `zig build-obj` to `zig build-lib`
 
@@ -310,6 +358,8 @@ Browse to our HTML [`lvglwasm.html`](lvglwasm.html). Which calls our JavaScript 
 
 But the WebAssembly won't load because we haven't fixed the WebAssembly Imports...
 
+# Fix WebAssembly Imports
+
 _What happens if we don't fix the WebAssembly Imports in our Zig Program?_
 
 Suppose we forgot to import `puts()`. JavaScript Console will show this error when the Web Browser loads our Zig WebAssembly...
@@ -332,15 +382,15 @@ Import #1 module="env" function="lv_label_create" error:
 function import requires a callable
 ```
 
-We need to compile the LVGL Library with `zig cc` and link it in.
+We need to compile the LVGL Library with `zig cc` and link it in...
+
+# Compile LVGL to WebAssembly with Zig Compiler
 
 TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
 
 TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
 
 TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
-
-TODO: How to pass Strings and Buffers between JavaScript and Zig? See [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
