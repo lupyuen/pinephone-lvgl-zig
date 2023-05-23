@@ -298,9 +298,9 @@ This produces [`lvglwasm.wasm`](lvglwasm.wasm).
 
 Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
 
-Browse to the HTML [`lvglwasm.html`](lvglwasm.html). Which calls the JavaScript [`lvglwasm.js`](lvglwasm.js) to load the WebAssembly.
+Browse to our HTML [`lvglwasm.html`](lvglwasm.html). Which calls our JavaScript [`lvglwasm.js`](lvglwasm.js) to load the WebAssembly.
 
-But it won't work because we haven't fixed the WebAssembly Imports...
+But the WebAssembly won't load because we haven't fixed the WebAssembly Imports...
 
 _What happens if we don't fix the WebAssembly Imports in our Zig Program?_
 
