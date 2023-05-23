@@ -222,17 +222,13 @@ Browse to `demo/demo.html`. We should see the Mandelbrot Set yay!
 
 # Compile LVGL to WebAssembly with Zig Compiler
 
-TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+_Does our LVGL App lvgltest.zig compile to WebAssembly?_
 
-TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
-
-_Does lvgltest.zig compile to WebAssembly?_
-
-Let's take the earlier steps to compile `lvgltest.zig`. We change...
+Let's take the earlier steps to compile our LVGL App `lvgltest.zig`. To compile for WebAssembly, we change...
 
 - `zig build-obj` to `zig build-lib`
 
-- Target to `-target wasm32-freestanding`
+- Target becomes `-target wasm32-freestanding`
 
 - Remove `-mcpu`
 
@@ -304,31 +300,41 @@ Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.c
 
 Browse to the HTML [`lvglwasm.html`](lvglwasm.html). Which calls the JavaScript [`lvglwasm.js`](lvglwasm.js) to load the WebAssembly.
 
-But we haven't fixed all the WebAssembly Imports...
+But it won't work because we haven't fixed the WebAssembly Imports...
 
 _What happens if we don't fix the WebAssembly Imports in our Zig Program?_
 
 Suppose we forgot to import `puts()`. JavaScript Console will show this error...
 
 ```text
-Uncaught (in promise) LinkError: WebAssembly.instantiate(): Import #0 module="env" function="puts" error: function import requires a callable
+Uncaught (in promise) LinkError:
+WebAssembly.instantiate():
+Import #0 module="env" function="puts" error:
+function import requires a callable
 ```
 
 _But we haven't compiled the LVGL Library to WebAssembly!_
 
-Yep that's why LVGL Functions like `lv_label_create` are failing in our Zig Program...
+Yep that's why LVGL Functions like `lv_label_create` are failing when the Web Browser loads our Zig WebAssembly...
 
 ```text
-Uncaught (in promise) LinkError: WebAssembly.instantiate(): Import #1 module="env" function="lv_label_create" error: function import requires a callable
+Uncaught (in promise) LinkError:
+WebAssembly.instantiate():
+Import #1 module="env" function="lv_label_create" error:
+function import requires a callable
 ```
 
 We need to compile the LVGL Library with `zig cc` and link it in.
 
-TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
+TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
 
-TODO: Can we link this with LVGL compiled with `zig build-obj`?
+TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
 
 TODO: What's inside the WASM File?
+
+TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
+
+TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # Zig Version
 
