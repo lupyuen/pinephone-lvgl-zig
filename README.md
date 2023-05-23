@@ -212,7 +212,9 @@ zig build-lib \
 
 This produces the Compiled WebAssembly `mandelbrot.wasm`.
 
-TODO: Local Web Server
+Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
+
+Browse to `demo/demo.html`. We should see the Mandelbrot Set yay!
 
 # Zig Version
 
