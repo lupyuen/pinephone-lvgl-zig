@@ -51,7 +51,7 @@ const main = function() {
         }
 
         // loop to next frame
-        ////window.requestAnimationFrame(loop);
+        window.requestAnimationFrame(loop);
     };
     loop();
 };
