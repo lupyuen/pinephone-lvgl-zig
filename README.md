@@ -338,11 +338,9 @@ TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://gi
 
 TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
 
-TODO: What's inside the WASM File?
-
 TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
 
-TODO: How to pass Strings and Buffers between JavaScript and Zig?
+TODO: How to pass Strings and Buffers between JavaScript and Zig? See [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
