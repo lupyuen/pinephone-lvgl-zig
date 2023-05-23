@@ -152,9 +152,34 @@ build_zig
 make -j
 ```
 
+[(See the Build Script)](https://gist.github.com/lupyuen/aa1f5c0c45e6029b10e5e2f955d8386c)
+
 And our LVGL Zig App runs OK on PinePhone!
 
 ![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
+
+# Build Zig from Source
+
+The [Official Zig Download for macOS](https://ziglang.org/download/) no longer runs on my 10-year-old MacBook Pro that's stuck on macOS 10.15.7. (See the next section)
+
+So I built Zig from Source according to these instructions...
+
+- [Building Zig from Source](https://github.com/ziglang/zig/wiki/Building-Zig-From-Source)
+
+Here's what I did...
+
+```bash
+brew install llvm
+git clone --recursive https://github.com/ziglang/zig
+cd zig
+
+mkdir build
+cd build
+cmake .. -DZIG_STATIC_LLVM=ON -DCMAKE_PREFIX_PATH="$(brew --prefix llvm);$(brew --prefix zstd)"
+make install
+```
+
+TODO: Does it work?
 
 # Zig Version
 
@@ -162,7 +187,7 @@ _Which version of Zig are we using?_
 
 We're using an older version: `0.10.0-dev.2351+b64a1d5ab`
 
-Sadly Zig 0.10.1 won't run on my 10-year-old MacBook Pro that's stuck on macOS 10 😢
+Sadly Zig 0.10.1 won't run on my 10-year-old MacBook Pro that's stuck on macOS 10.15.7 😢
 
 ```text
 → #  Compile the Zig App for PinePhone
