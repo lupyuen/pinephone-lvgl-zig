@@ -212,7 +212,7 @@ zig build-lib \
   -dynamic
 ```
 
-This produces the Compiled WebAssembly `mandelbrot.wasm`.
+This produces the Compiled WebAssembly [`mandelbrot.wasm`](mandelbrot.wasm).
 
 Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
 
@@ -298,9 +298,15 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
     lvglwasm.zig
 ```
 
-This produces `lvgltest.wasm`.
+This produces [`lvglwasm.wasm`](lvglwasm.wasm).
 
-_What happens if we don't fix the imports?_
+Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
+
+Browse to the HTML [`lvglwasm.html`](lvglwasm.html). Which calls the JavaScript [`lvglwasm.js`](lvglwasm.js) to load the WebAssembly.
+
+But we haven't fixed all the WebAssembly Imports...
+
+_What happens if we don't fix the WebAssembly Imports in our Zig Program?_
 
 Suppose we forgot to import `puts()`. JavaScript Console will show this error...
 
@@ -310,7 +316,7 @@ Uncaught (in promise) LinkError: WebAssembly.instantiate(): Import #0 module="en
 
 _But we haven't compiled the LVGL Library to WebAssembly!_
 
-Yep that's why the LVGL Functions like `lv_label_create` are failing...
+Yep that's why LVGL Functions like `lv_label_create` are failing in our Zig Program...
 
 ```text
 Uncaught (in promise) LinkError: WebAssembly.instantiate(): Import #1 module="env" function="lv_label_create" error: function import requires a callable
