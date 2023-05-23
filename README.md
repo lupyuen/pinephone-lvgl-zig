@@ -158,6 +158,40 @@ And our LVGL Zig App runs OK on PinePhone!
 
 ![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
 
+# Simulate PinePhone UI with Zig, LVGL and WebAssembly
+
+We're now building a __Feature Phone UI__ for NuttX on PinePhone...
+
+Can we simulate the Feature Phone UI with __Zig, LVGL and WebAssembly__ in a Web Browser? To make the UI Coding a little easier?
+
+We have previously created a simple __LVGL App with Zig__ for PinePhone...
+
+- [pinephone-lvgl-zig](https://github.com/lupyuen/pinephone-lvgl-zig)
+
+Zig natively supports __WebAssembly__...
+
+- [WebAssembly on Zig](https://ziglang.org/documentation/master/#WebAssembly)
+
+So we might run __Zig + JavaScript__ in a Web Browser like so...
+
+- [WebAssembly With Zig in a Web Browser](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+
+But LVGL doesn't work with JavaScript yet. LVGL runs in a Web Browser by compiling with Emscripten and SDL...
+
+- [LVGL with Emscripten and SDL](https://github.com/lvgl/lv_web_emscripten)
+
+TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+
+TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+
+# WebAssembly Demo with Zig and JavaScript
+
+We can __Zig (WebAssembly) + JavaScript__ in a Web Browser like so...
+
+- [WebAssembly With Zig in a Web Browser](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+
+TODO
+
 # Zig Version
 
 _Which version of Zig are we using?_
