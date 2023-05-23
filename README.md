@@ -216,6 +216,8 @@ Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.c
 
 Browse to `demo/demo.html`. We should see the Mandelbrot Set yay!
 
+![Mandelbrot Set rendered with Zig and WebAssembly](https://lupyuen.github.io/images/zig-wasm.png)
+
 # Zig Version
 
 _Which version of Zig are we using?_
