@@ -607,7 +607,11 @@ Here how...
     zig-linux-x86_64-0.11.0-dev.3283+7cb3a6750/zig version
     ```
 
+1.  To configure the features in the Alpine Linux Container, edit the file `.devcontainer/devcontainer.json`
+
 # Zig Version
+
+(Here's what happens if we don't run Zig in a Container)
 
 _Which version of Zig are we using?_
 
