@@ -564,6 +564,13 @@ Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to We
 
 # Compile Entire LVGL Library to WebAssembly
 
+TODO: Where is `lv_obj_clear_flag`
+
+```text
+apps/graphics/lvgl/lvgl/src/core/lv_obj.c
+apps/graphics/lvgl/lvgl/src/misc/lv_mem.c
+```
+
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # Zig with Rancher Desktop
