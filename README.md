@@ -8,7 +8,9 @@ Read the articles...
 
 -   ["Build an LVGL Touchscreen App with Zig"](https://lupyuen.github.io/articles/lvgl)
 
-Can we build an LVGL App for PinePhone in Zig... That will run on Apache NuttX RTOS?
+Can we build an __LVGL App in Zig__ for PinePhone... That will run on Apache NuttX RTOS?
+
+Can we simulate a PinePhone App with __Zig, LVGL and WebAssembly__ in a Web Browser? To make the UI Coding a little easier?
 
 Let's find out!
 
