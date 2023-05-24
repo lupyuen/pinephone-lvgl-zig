@@ -1,6 +1,6 @@
-![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
+![LVGL for PinePhone (and WebAssembly) with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
 
-# LVGL for PinePhone with Zig and Apache NuttX RTOS
+# LVGL for PinePhone (and WebAssembly) with Zig and Apache NuttX RTOS
 
 Read the articles...
 
