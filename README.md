@@ -607,6 +607,10 @@ Here's how...
     zig-linux-x86_64-0.11.0-dev.3283+7cb3a6750/zig version
     ```
 
+1.  To install the NuttX Toolchain on Alpine Linux...
+
+    ["Build Apache NuttX RTOS on Alpine Linux"](https://gist.github.com/lupyuen/880caa0547378028243b8cc5cfdc50a8)
+
 1.  To configure the features in the Alpine Linux Container, edit the file `.devcontainer/devcontainer.json`
 
 # Zig Version
