@@ -358,6 +358,8 @@ Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.c
 
 Browse to our HTML [`lvglwasm.html`](lvglwasm.html). Which calls our JavaScript [`lvglwasm.js`](lvglwasm.js) to load the Compiled WebAssembly.
 
+Our JavaScript [`lvglwasm.js`](lvglwasm.js) calls the Zig Function `lv_demo_widgets` that's exported to WebAssembly by our Zig App [`lvglwasm.zig`](lvglwasm.zig).
+
 But the WebAssembly won't load because we haven't fixed the WebAssembly Imports...
 
 # Fix WebAssembly Imports
@@ -403,6 +405,8 @@ apps/lvgl/src/widgets/lv_label.c
 According to `make --trace`, `lv_label.c` is compiled with...
 
 ```bash
+## Compile LVGL in C
+## TODO: Change "../../.." to your NuttX Project Directory
 cd apps/graphics/lvgl
 aarch64-none-elf-gcc \
   -c \
@@ -462,6 +466,8 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 Like this...
 
 ```bash
+## Compile LVGL from C to WebAssembly
+## TODO: Change "../../.." to your NuttX Project Directory
 cd apps/graphics/lvgl
 zig cc \
   -target wasm32-freestanding \
@@ -511,7 +517,7 @@ This produces the Compiled WebAssembly `lv_label.o`.
 
 _Will Zig Compiler let us link `lv_label.o` with our Zig LVGL App?_
 
-Let's link `lv_label.o` with our Zig LVGL App...
+Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig`](lvglwasm.zig)...
 
 ```bash
   ## Compile the Zig App for WebAssembly 
@@ -550,15 +556,11 @@ Import #0 module="env" function="lv_obj_clear_flag" error:
 function import requires a callable
 ```
 
-`lv_label_create` is no longer missing. Yep Zig Compiler will happily link WebAssembly Object Files with our Zig App yay!
+`lv_label_create` is no longer missing, because Zig Compiler has linked `lv_label.o` into our Zig LVGL App.
+
+Yep Zig Compiler will happily link WebAssembly Object Files with our Zig App yay!
 
 Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to WebAssembly with Zig Compiler.
-
-TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
-
-TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
-
-TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
