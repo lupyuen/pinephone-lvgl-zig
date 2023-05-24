@@ -574,7 +574,7 @@ To run the latest version of Zig Compiler, I use Rancher Desktop and VSCode Remo
 
 - [VSCode Remote Containers on Rancher Desktop](https://docs.rancherdesktop.io/how-to-guides/vs-code-remote-containers)
 
-Here how...
+Here's how...
 
 1.  Install [Rancher Desktop](https://rancherdesktop.io/)
 
@@ -584,7 +584,7 @@ Here how...
 
 1.  Install the VSCode Docker Extension
 
-1.  In VSCode, click "Docker" in the Left Bar.
+1.  In VSCode, click the Docker icon in the Left Bar
 
 1.  Under "Containers", click "+" and "New Dev Container"
 
