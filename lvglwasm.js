@@ -9,6 +9,7 @@ request.open('GET', 'lvglwasm.wasm');
 request.responseType = 'arraybuffer';
 request.send();
 
+// On Loading the WebAssembly Module...
 request.onload = function() {
     var bytes = request.response;
     WebAssembly.instantiate(bytes, {

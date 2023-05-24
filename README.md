@@ -248,20 +248,20 @@ We define the JavaScript Function `print` when loading the WebAssembly Module in
 ```javascript
 // On Loading the WebAssembly Module...
 request.onload = function() {
-    var bytes = request.response;
-    WebAssembly.instantiate(bytes, {
-        // JavaScript Environment exported to Zig
-        env: {
-            // JavaScript Print Function exported to Zig
-            print: function(x) { console.log(x); }
-        }
-    }).then(result => {
-        // Store references to Zig functions
-        Game = result.instance.exports;
+  var bytes = request.response;
+  WebAssembly.instantiate(bytes, {
+    // JavaScript Environment exported to Zig
+    env: {
+      // JavaScript Print Function exported to Zig
+      print: function(x) { console.log(x); }
+    }
+  }).then(result => {
+    // Store references to Zig functions
+    Game = result.instance.exports;
 
-        // Start the Main Loop
-        main();
-    });
+    // Start the Main Loop
+    main();
+  });
 };
 ```
 
