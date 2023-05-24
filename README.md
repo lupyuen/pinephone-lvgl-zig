@@ -590,7 +590,7 @@ Here's how...
 
 1.  Select "Alpine"
 
-1.  In a while, we'll see VSCode running inside the Alpine Linux Container.
+1.  In a while, we'll see VSCode running inside the Alpine Linux Container
 
 1.  We have finally Linux on macOS!
 
