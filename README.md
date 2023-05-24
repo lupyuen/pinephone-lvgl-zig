@@ -396,6 +396,125 @@ TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
+`lv_label_create` is defined in this file...
+
+```text
+apps/lvgl/src/widgets/lv_label.c
+```
+
+According to `make --trace`, `lv_label.c` is compiled with...
+
+```bash
+cd apps/graphics/lvgl
+aarch64-none-elf-gcc \
+  -c \
+  -fno-common \
+  -Wall \
+  -Wstrict-prototypes \
+  -Wshadow \
+  -Wundef \
+  -Werror \
+  -Os \
+  -fno-strict-aliasing \
+  -fomit-frame-pointer \
+  -ffunction-sections \
+  -fdata-sections \
+  -g \
+  -march=armv8-a \
+  -mtune=cortex-a53 \
+  -isystem ../../../nuttx/include \
+  -D__NuttX__  \
+  -pipe \
+  -I ../../../apps/graphics/lvgl \
+  -I "../../../apps/include" \
+  -Wno-format \
+  -Wno-format-security \
+  -Wno-unused-variable \
+  "-I./lvgl/src/core" \
+  "-I./lvgl/src/draw" \
+  "-I./lvgl/src/draw/arm2d" \
+  "-I./lvgl/src/draw/nxp" \
+  "-I./lvgl/src/draw/nxp/pxp" \
+  "-I./lvgl/src/draw/nxp/vglite" \
+  "-I./lvgl/src/draw/sdl" \
+  "-I./lvgl/src/draw/stm32_dma2d" \
+  "-I./lvgl/src/draw/sw" \
+  "-I./lvgl/src/draw/swm341_dma2d" \
+  "-I./lvgl/src/font" \
+  "-I./lvgl/src/hal" \
+  "-I./lvgl/src/misc" \
+  "-I./lvgl/src/widgets" \
+  "-DLV_ASSERT_HANDLER=ASSERT(0);" \
+  ./lvgl/src/widgets/lv_label.c \
+  -o  lv_label.c.Users.Luppy.PinePhone.wip-nuttx.apps.graphics.lvgl.o
+```
+
+Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
+
+- Change `aarch64-none-elf-gcc` to `zig cc`
+
+- Remove `-march`, `-mtune`
+
+- Add the target `-target wasm32-freestanding`
+
+- Add `-dynamic` and `-rdynamic`
+
+- Change the output to `-o ../../../pinephone-lvgl-zig/lv_label.o`
+
+Like this...
+
+```bash
+cd apps/graphics/lvgl
+zig cc \
+  -target wasm32-freestanding \
+  -dynamic \
+  -rdynamic \
+  -c \
+  -fno-common \
+  -Wall \
+  -Wstrict-prototypes \
+  -Wshadow \
+  -Wundef \
+  -Werror \
+  -Os \
+  -fno-strict-aliasing \
+  -fomit-frame-pointer \
+  -ffunction-sections \
+  -fdata-sections \
+  -g \
+  -isystem ../../../nuttx/include \
+  -D__NuttX__  \
+  -pipe \
+  -I ../../../apps/graphics/lvgl \
+  -I "../../../apps/include" \
+  -Wno-format \
+  -Wno-format-security \
+  -Wno-unused-variable \
+  "-I./lvgl/src/core" \
+  "-I./lvgl/src/draw" \
+  "-I./lvgl/src/draw/arm2d" \
+  "-I./lvgl/src/draw/nxp" \
+  "-I./lvgl/src/draw/nxp/pxp" \
+  "-I./lvgl/src/draw/nxp/vglite" \
+  "-I./lvgl/src/draw/sdl" \
+  "-I./lvgl/src/draw/stm32_dma2d" \
+  "-I./lvgl/src/draw/sw" \
+  "-I./lvgl/src/draw/swm341_dma2d" \
+  "-I./lvgl/src/font" \
+  "-I./lvgl/src/hal" \
+  "-I./lvgl/src/misc" \
+  "-I./lvgl/src/widgets" \
+  "-DLV_ASSERT_HANDLER=ASSERT(0);" \
+  ./lvgl/src/widgets/lv_label.c \
+  -o ../../../pinephone-lvgl-zig/lv_label.o
+```
+
+This produces the Compiled WebAssembly `lv_label.o`.
+
+Let's link this with our Zig LVGL App...
+
+TODO
+
 # Zig Version
 
 _Which version of Zig are we using?_
