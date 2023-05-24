@@ -388,13 +388,11 @@ We need to compile the LVGL Library with `zig cc` and link it in...
 
 # Compile LVGL to WebAssembly with Zig Compiler
 
-TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+_How to compile LVGL from C to WebAssembly with Zig Compiler?_
 
-TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
+We'll use [`zig cc`](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc), since Zig can compile C programs to WebAssembly.
 
-TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
-
-TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+In the previous section, we're missing the LVGL Function `lv_label_create` in our Zig WebAssembly Module.
 
 `lv_label_create` is defined in this file...
 
@@ -511,9 +509,58 @@ zig cc \
 
 This produces the Compiled WebAssembly `lv_label.o`.
 
-Let's link this with our Zig LVGL App...
+_Will Zig Compiler let us link `lv_label.o` with our Zig LVGL App?_
 
-TODO
+Let's link `lv_label.o` with our Zig LVGL App...
+
+```bash
+  ## Compile the Zig App for WebAssembly 
+  ## TODO: Change ".." to your NuttX Project Directory
+  zig build-lib \
+    --verbose-cimport \
+    -target wasm32-freestanding \
+    -dynamic \
+    -isystem "../nuttx/include" \
+    -I "../apps/include" \
+    -I "../apps/graphics/lvgl" \
+    -I "../apps/graphics/lvgl/lvgl/src/core" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/arm2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/pxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/vglite" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sdl" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/stm32_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/swm341_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/font" \
+    -I "../apps/graphics/lvgl/lvgl/src/hal" \
+    -I "../apps/graphics/lvgl/lvgl/src/misc" \
+    -I "../apps/graphics/lvgl/lvgl/src/widgets" \
+    lvglwasm.zig \
+    lv_label.o
+```
+
+Now we see this error in the Web Browser...
+
+```text
+Uncaught (in promise) LinkError: 
+WebAssembly.instantiate(): 
+Import #0 module="env" function="lv_obj_clear_flag" error:
+function import requires a callable
+```
+
+`lv_label_create` is no longer missing. Yep Zig Compiler will happily link WebAssembly Object Files with our Zig App yay!
+
+Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to WebAssembly with Zig Compiler.
+
+TODO: Use Zig to compile LVGL from C to WebAssembly [(With `zig cc`)](https://github.com/lupyuen/zig-bl602-nuttx#zig-compiler-as-drop-in-replacement-for-gcc)
+
+TODO: Can we link `lvglwasm.wasm` with LVGL compiled with `zig build-obj`?
+
+TODO: Call `lv_demo_widgets` exported by `lvgltest.wasm`
+
+TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # Zig Version
 
