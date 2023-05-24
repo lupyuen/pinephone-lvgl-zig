@@ -566,6 +566,47 @@ Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to We
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
+# Zig with Rancher Desktop
+
+The [Official Zig Download for macOS](https://ziglang.org/download/) no longer runs on my 10-year-old MacBook Pro that's stuck on macOS 10.15.7. 😢
+
+To run the latest version of Zig Compiler, I use Rancher Desktop and VSCode Remote Containers...
+
+- [VSCode Remote Containers on Rancher Desktop](https://docs.rancherdesktop.io/how-to-guides/vs-code-remote-containers)
+
+Here how...
+
+1.  Install [Rancher Desktop](https://rancherdesktop.io/)
+
+1.  In Rancher Desktop Settings, set "Container Engine" to "dockerd (moby)"
+
+1.  Restart VSCode to use the new PATH
+
+1.  Install the VSCode Docker Extension
+
+1.  In VSCode, click "Docker" in the Left Bar.
+
+1.  Under "Containers", click "+" and "New Dev Container"
+
+1.  Select "Alpine"
+
+1.  In a while, we'll see VSCode running inside the Alpine Linux Container.
+
+1.  We have finally Linux on macOS!
+
+    ```text
+    $ uname -a
+    Linux bc0c45900671 5.15.96-0-virt #1-Alpine SMP Sun, 26 Feb 2023 15:14:12 +0000 x86_64 GNU/Linux
+    ```
+
+1.  Now we can download and run the latest and greatest Zig Compiler for Linux x64 [(from here)](https://ziglang.org/download/)
+
+    ```bash
+    wget https://ziglang.org/builds/zig-linux-x86_64-0.11.0-dev.3283+7cb3a6750.tar.xz
+    tar -xvf zig-linux-x86_64-0.11.0-dev.3283+7cb3a6750.tar.xz 
+    zig-linux-x86_64-0.11.0-dev.3283+7cb3a6750/zig version
+    ```
+
 # Zig Version
 
 _Which version of Zig are we using?_
