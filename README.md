@@ -560,7 +560,9 @@ function import requires a callable
 
 Yep Zig Compiler will happily link WebAssembly Object Files with our Zig App yay!
 
-Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to WebAssembly with Zig Compiler.
+Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to WebAssembly with Zig Compiler...
+
+# Compile Entire LVGL Library to WebAssembly
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
