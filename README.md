@@ -578,21 +578,27 @@ Here's how...
 
 1.  Install [Rancher Desktop](https://rancherdesktop.io/)
 
-1.  In Rancher Desktop Settings, set "Container Engine" to "dockerd (moby)"
+1.  In Rancher Desktop, click "Settings"...
+
+    Set "Container Engine" to "dockerd (moby)"
+
+    Under "Kubernetes", uncheck "Enable Kubernetes"
+
+    (To reduce CPU Utilisation)
 
 1.  Restart VSCode to use the new PATH
 
-1.  Install the VSCode Docker Extension
+    Install the VSCode Docker Extension
 
-1.  In VSCode, click the Docker icon in the Left Bar
+    In VSCode, click the Docker icon in the Left Bar
 
 1.  Under "Containers", click "+" and "New Dev Container"
 
-1.  Select "Alpine"
+    Select "Alpine"
 
 1.  In a while, we'll see VSCode running inside the Alpine Linux Container
 
-1.  We have finally Linux on macOS!
+    We have finally Linux on macOS!
 
     ```text
     $ uname -a
@@ -611,7 +617,9 @@ Here's how...
 
     ["Build Apache NuttX RTOS on Alpine Linux"](https://gist.github.com/lupyuen/880caa0547378028243b8cc5cfdc50a8)
 
-1.  To configure the features in the Alpine Linux Container, edit the file `.devcontainer/devcontainer.json`
+1.  To forward Network Ports, click the "Ports" tab beside "Terminal"
+
+    To configure other features in the Alpine Linux Container, edit the file `.devcontainer/devcontainer.json`
 
 # Zig Version
 
