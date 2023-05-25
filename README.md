@@ -636,7 +636,7 @@ This seems to be the [same problem mentioned here](https://github.com/andrewrk/l
 
 [(And this issue)](https://github.com/ziglang/zig/issues/5854)
 
-TODO: Do we compile `strlen` ourselves? From musl? Newlib? [wasi-libc](https://github.com/WebAssembly/wasi-libc)?
+TODO: Do we compile C Standard Library ourselves? From musl? Newlib? [wasi-libc](https://github.com/WebAssembly/wasi-libc)?
 
 _What if we change the target to `wasm32-freestanding-musl`?_
 
