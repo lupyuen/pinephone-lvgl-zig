@@ -659,6 +659,10 @@ Import #0 module="env" function="millis" error:
 function import requires a callable
 ```
 
+We implemented `millis` ourselves...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/e99593df6b46ced52f3f8ed644b9c6e455a9d682/lvglwasm.zig#L137-L143
+
 TODO: Fix the missing LVGL Functions
 
 # Render LVGL App in Web Browser

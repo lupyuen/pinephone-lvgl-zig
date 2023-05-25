@@ -36,26 +36,13 @@ const main = function() {
     console.log("Main function started");
 
     const loop = function() {
+        // TODO: Init LVGL
+
+        // Render the LVGL Widgets
         Game.lv_demo_widgets();
+        console.log("lv_demo_widgets done");
 
-        // ctx.fillStyle = "white"; // clear the canvas
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
-        // for (var x = 0; x < canvas.width; x++) {
-        //     for (var y = 0; y < canvas.height; y++) {
-        //         // Get the Pixel Color
-        //         var cell = Game.get_pixel_color(x, y);
-
-        //         // Render the Pixel
-        //         if (cell < 10) {
-        //             ctx.fillStyle = "red";
-        //         } else if (cell < 128) {
-        //             ctx.fillStyle = "grey";
-        //         } else {
-        //             ctx.fillStyle = "white";
-        //         }
-        //         ctx.fillRect(x, y, x + 1, y + 1);
-        //     }
-        // }
+        // TODO: Render the LVGL Display
 
         // loop to next frame. Disabled for now because it slows down the browser.
         // TODO: window.requestAnimationFrame(loop);
