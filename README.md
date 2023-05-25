@@ -625,15 +625,19 @@ Import #0 module="env" function="strlen" error:
 function import requires a callable
 ```
 
+Let's fix `strlen`...
+
+# C Standard Library is Missing
+
 _But strlen should come from the C Standard Library! (musl)_
-
-This seems to be the same issue [mentioned here](https://github.com/andrewrk/lua-in-the-browser#status)...
-
-[(Referenced by this issue)](https://github.com/ziglang/zig/pull/2512)
 
 Not sure why `strlen` is missing, but we fixed it temporarily by copying from the Zig Library Source Code...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/5372dac5baf42da68f3ac93d7193141b267946c4/lvglwasm.zig#L202-L218
+
+This seems to be the [same problem mentioned here](https://github.com/andrewrk/lua-in-the-browser#status).
+
+[(Referenced by this issue)](https://github.com/ziglang/zig/pull/2512)
 
 TODO: Do we compile `strlen` ourselves? From musl? Newlib? [wasi-libc](https://github.com/WebAssembly/wasi-libc)?
 
