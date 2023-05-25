@@ -132,6 +132,17 @@ fn createWidgetsUnwrapped() !void {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+//  LVGL Porting Layer for WebAssembly
+
+/// TODO: Return the number of elapsed milliseconds
+export fn millis() u32 {
+    elapsed_ms += 1;
+    return elapsed_ms;
+}
+
+var elapsed_ms: u32 = 0;
+
+///////////////////////////////////////////////////////////////////////////////
 //  Panic Handler
 
 /// Called by Zig when it hits a Panic. We print the Panic Message, Stack Trace and halt. See
@@ -202,6 +213,23 @@ const debug = std.log.debug;
 ///////////////////////////////////////////////////////////////////////////////
 //  C Standard Library
 //  From zig-macos-x86_64-0.10.0-dev.2351+b64a1d5ab/lib/zig/c.zig
+
+export fn memset(dest: ?[*]u8, c2: u8, len: usize) callconv(.C) ?[*]u8 {
+    @setRuntimeSafety(false);
+
+    if (len != 0) {
+        var d = dest.?;
+        var n = len;
+        while (true) {
+            d.* = c2;
+            n -= 1;
+            if (n == 0) break;
+            d += 1;
+        }
+    }
+
+    return dest;
+}
 
 export fn memcpy(noalias dest: ?[*]u8, noalias src: ?[*]const u8, len: usize) callconv(.C) ?[*]u8 {
     @setRuntimeSafety(false);
