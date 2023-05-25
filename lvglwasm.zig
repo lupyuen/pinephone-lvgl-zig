@@ -9,8 +9,8 @@ const lvgl = @import("lvgl.zig");
 /// Import the LVGL Library from C
 const c = @cImport({
     // NuttX Defines
-    @cDefine("__NuttX__",  "");
-    @cDefine("NDEBUG",     "");
+    @cDefine("__NuttX__", "");
+    @cDefine("NDEBUG", "");
 
     // NuttX Header Files
     @cInclude("arch/types.h");
@@ -29,16 +29,21 @@ const c = @cImport({
 ///////////////////////////////////////////////////////////////////////////////
 //  Main Function
 
+/// Empty Main Function
+// pub export fn main() void {}
+
+/// Empty Start Function
+// pub export fn _start() void {}
+
 /// We render an LVGL Screen with LVGL Widgets
 pub export fn lv_demo_widgets() void {
 
     // Create the widgets for display (with Zig Wrapper)
-    createWidgetsWrapped()
-        catch |e| {
-            // In case of error, quit
-            std.log.err("createWidgetsWrapped failed: {}", .{e});
-            return;
-        };
+    createWidgetsWrapped() catch |e| {
+        // In case of error, quit
+        std.log.err("createWidgetsWrapped failed: {}", .{e});
+        return;
+    };
 
     // Create the widgets for display (without Zig Wrapper)
     // createWidgetsUnwrapped()
@@ -57,7 +62,9 @@ pub export fn lv_demo_widgets() void {
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsWrapped() !void {
     debug("createWidgetsWrapped: start", .{});
-    defer { debug("createWidgetsWrapped: end", .{}); }
+    defer {
+        debug("createWidgetsWrapped: end", .{});
+    }
 
     // Get the Active Screen
     var screen = try lvgl.getActiveScreen();
@@ -75,10 +82,9 @@ fn createWidgetsWrapped() !void {
     label.setAlign(c.LV_TEXT_ALIGN_CENTER);
 
     // Set the label text and colors
-    label.setText(
-        "#ff0000 HELLO# " ++    // Red Text
-        "#00aa00 LVGL ON# " ++  // Green Text
-        "#0000ff PINEPHONE!# "  // Blue Text
+    label.setText("#ff0000 HELLO# " ++ // Red Text
+        "#00aa00 LVGL ON# " ++ // Green Text
+        "#0000ff PINEPHONE!# " // Blue Text
     );
 
     // Set the label width
@@ -93,7 +99,9 @@ fn createWidgetsWrapped() !void {
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsUnwrapped() !void {
     debug("createWidgetsUnwrapped: start", .{});
-    defer { debug("createWidgetsUnwrapped: end", .{}); }
+    defer {
+        debug("createWidgetsUnwrapped: end", .{});
+    }
 
     // Get the Active Screen
     const screen = c.lv_scr_act().?;
@@ -111,11 +119,9 @@ fn createWidgetsUnwrapped() !void {
     c.lv_obj_set_style_text_align(label, c.LV_TEXT_ALIGN_CENTER, 0);
 
     // Set the label text and colors
-    c.lv_label_set_text(
-        label, 
-        "#ff0000 HELLO# " ++    // Red Text
-        "#00aa00 LVGL ON# " ++  // Green Text
-        "#0000ff PINEPHONE!# "  // Blue Text
+    c.lv_label_set_text(label, "#ff0000 HELLO# " ++ // Red Text
+        "#00aa00 LVGL ON# " ++ // Green Text
+        "#0000ff PINEPHONE!# " // Blue Text
     );
 
     // Set the label width
@@ -128,13 +134,10 @@ fn createWidgetsUnwrapped() !void {
 ///////////////////////////////////////////////////////////////////////////////
 //  Panic Handler
 
-/// Called by Zig when it hits a Panic. We print the Panic Message, Stack Trace and halt. See 
+/// Called by Zig when it hits a Panic. We print the Panic Message, Stack Trace and halt. See
 /// https://andrewkelley.me/post/zig-stack-traces-kernel-panic-bare-bones-os.html
 /// https://github.com/ziglang/zig/blob/master/lib/std/builtin.zig#L763-L847
-pub fn panic(
-    message: []const u8, 
-    _stack_trace: ?*std.builtin.StackTrace
-) noreturn {
+pub fn panic(message: []const u8, _stack_trace: ?*std.builtin.StackTrace) noreturn {
     _ = message;
     print(1); // TODO
 
@@ -152,7 +155,7 @@ pub fn panic(
     }
 
     // Halt
-    while(true) {}
+    while (true) {}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -170,17 +173,15 @@ pub fn log(
     _ = _scope;
 
     // Format the message
-    var buf: [100]u8 = undefined;  // Limit to 100 chars
-    var slice = std.fmt.bufPrint(&buf, format, args)
-        catch { print(2); return; }; // TODO
-    
+    var buf: [100]u8 = undefined; // Limit to 100 chars
+    var slice = std.fmt.bufPrint(&buf, format, args) catch {
+        print(2);
+        return;
+    }; // TODO
+
     // Terminate the formatted message with a null
-    var buf2: [buf.len + 1 : 0]u8 = undefined;
-    std.mem.copy(
-        u8, 
-        buf2[0..slice.len], 
-        slice[0..slice.len]
-    );
+    var buf2: [buf.len + 1:0]u8 = undefined;
+    std.mem.copy(u8, buf2[0..slice.len], slice[0..slice.len]);
     buf2[slice.len] = 0;
 
     // Print the formatted message
@@ -196,4 +197,4 @@ extern fn print(i32) void;
 
 /// Aliases for Zig Standard Library
 const assert = std.debug.assert;
-const debug  = std.log.debug;
+const debug = std.log.debug;

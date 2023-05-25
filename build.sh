@@ -32,11 +32,14 @@ function build_zig {
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
+  ## TODO: Try `zig build-exe` to fix `strlen` missing
   zig build-lib \
     --verbose-cimport \
     -target wasm32-freestanding \
     -dynamic \
     -rdynamic \
+    -DFAR= \
+    -lc \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
