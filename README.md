@@ -611,6 +611,8 @@ TODO: Try `zig build-exe` to fix `strlen` missing
 
 https://www.fermyon.com/wasm-languages/c-lang
 
+https://github.com/WebAssembly/wasi-libc
+
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # Zig with Rancher Desktop
