@@ -650,7 +650,9 @@ Sorry `zig build-exe` is meant for building WASI Executables. [(See this)](https
 
 `zig build-exe` is not supposed to work for WebAssembly in the Web Browser. [(See this)](https://github.com/ziglang/zig/issues/1570#issuecomment-426370371)
 
-TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
+# LVGL Porting Layer for WebAssembly
+
+LVGL expects us to provide a `millis` function that returns the number of elapsed milliseconds...
 
 ```text
 Uncaught (in promise) LinkError: 
@@ -659,13 +661,17 @@ Import #0 module="env" function="millis" error:
 function import requires a callable
 ```
 
-We implemented `millis` ourselves...
+We implemented `millis` ourselves for WebAssembly...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/e99593df6b46ced52f3f8ed644b9c6e455a9d682/lvglwasm.zig#L137-L143
 
-TODO: Fix the missing LVGL Functions
+TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 # Render LVGL App in Web Browser
+
+TODO: Init LVGL
+
+TODO: Render LVGL Display
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
