@@ -273,6 +273,18 @@ Nope, the parameter will be passed as a number. (Probably a WebAssembly Data Add
 
 TODO: How to pass Strings and Buffers between JavaScript and Zig? See [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
 
+https://github.com/daneelsan/zig-wasm-logger
+
+https://github.com/daneelsan/minimal-zig-wasm-canvas
+
+https://github.com/daneelsan/Dodgeballz/tree/master/src
+
+https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
+
+TODO: Change `request.onload` to `fetch`
+
+https://github.com/meheleventyone/zig-wasm-test/blob/master/www/wasmtest.js
+
 # Compile Zig LVGL App to WebAssembly
 
 _Does our Zig LVGL App lvgltest.zig compile to WebAssembly?_
