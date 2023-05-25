@@ -585,7 +585,18 @@ Which calls `compile_lvgl` to compile a single LVGL Source File from C to WebAss
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/4a396978c4d12dc02e140aba068c87a175054ab5/build.sh#L104-L155
 
-TODO: What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?
+_What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?_
+
+Now the Web Browser says that `strlen` is missing...
+
+```text
+Uncaught (in promise) LinkError: 
+WebAssembly.instantiate(): 
+Import #0 module="env" function="strlen" error: 
+function import requires a callable
+```
+
+TODO: Fix `strlen`
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
