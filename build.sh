@@ -16,9 +16,9 @@ function build_zig {
   fi
 
   ## Compile LVGL Library from C to WebAssembly with Zig Compiler
-  compile_lvgl ./lvgl/src/widgets/lv_label.c ../../../pinephone-lvgl-zig/lv_label.o
-  compile_lvgl ./lvgl/src/core/lv_obj.c ../../../pinephone-lvgl-zig/lv_obj.o
-  compile_lvgl ./lvgl/src/misc/lv_mem.c ../../../pinephone-lvgl-zig/lv_mem.o
+  compile_lvgl widgets/lv_label.c lv_label.o
+  compile_lvgl core/lv_obj.c lv_obj.o
+  compile_lvgl misc/lv_mem.c lv_mem.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -128,8 +128,8 @@ function compile_lvgl {
     "-I./lvgl/src/misc" \
     "-I./lvgl/src/widgets" \
     "-DLV_ASSERT_HANDLER=ASSERT(0);" \
-    $source_file \
-    -o $object_file
+    lvgl/src/$source_file \
+    -o ../../../pinephone-lvgl-zig/$object_file
   popd
 }
 

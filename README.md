@@ -567,13 +567,18 @@ Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to We
 When we track down `lv_obj_clear_flag` and the other Missing Functions, we get this trail of LVGL Source Files that need to be compiled from C to WebAssembly...
 
 ```text
+apps/graphics/lvgl/src/widgets/lv_label.c
 apps/graphics/lvgl/lvgl/src/core/lv_obj.c
 apps/graphics/lvgl/lvgl/src/misc/lv_mem.c
 ```
 
 So we wrote a script to compile them with `zig cc`...
 
-TODO: Script
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/13b68c917e4128b740699c034e7e6b784da0d379/build.sh#L7-L50
+
+`compile_lvgl` is defined as...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/13b68c917e4128b740699c034e7e6b784da0d379/build.sh#L84-L134
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
