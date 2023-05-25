@@ -461,6 +461,8 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-dynamic` and `-rdynamic`
 
+- Add `-DFAR=` (because we won't need Far Pointers)
+
 - Change the output to `-o ../../../pinephone-lvgl-zig/lv_label.o`
 
 Like this...
@@ -473,6 +475,7 @@ zig cc \
   -target wasm32-freestanding \
   -dynamic \
   -rdynamic \
+  -DFAR= \
   -c \
   -fno-common \
   -Wall \

@@ -21,6 +21,14 @@ function build_zig {
   compile_lvgl misc/lv_mem.c lv_mem.o
   compile_lvgl core/lv_event.c lv_event.o
   compile_lvgl core/lv_obj_style.c lv_obj_style.o
+  compile_lvgl core/lv_obj_pos.c lv_obj_pos.o
+  compile_lvgl misc/lv_txt.c lv_txt.o
+  compile_lvgl draw/lv_draw_label.c lv_draw_label.o
+  compile_lvgl core/lv_obj_draw.c lv_obj_draw.o
+  compile_lvgl misc/lv_area.c lv_area.o
+  compile_lvgl core/lv_obj_scroll.c lv_obj_scroll.o
+  compile_lvgl font/lv_font.c lv_font.o
+  compile_lvgl core/lv_obj_class.c lv_obj_class.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -52,6 +60,14 @@ function build_zig {
     lv_obj.o \
     lv_event.o \
     lv_obj_style.o \
+    lv_obj_pos.o \
+    lv_txt.o \
+    lv_draw_label.o \
+    lv_obj_draw.o \
+    lv_area.o \
+    lv_obj_scroll.o \
+    lv_font.o \
+    lv_obj_class.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
@@ -96,6 +112,7 @@ function compile_lvgl {
     -target wasm32-freestanding \
     -dynamic \
     -rdynamic \
+    -DFAR= \
     -c \
     -fno-common \
     -Wall \
