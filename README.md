@@ -10,7 +10,7 @@ Read the articles...
 
 Can we build an __LVGL App in Zig__ for PinePhone... That will run on Apache NuttX RTOS?
 
-Can we simulate a PinePhone App with __Zig, LVGL and WebAssembly__ in a Web Browser? To make the UI Coding a little easier?
+Can we preview a PinePhone App with __Zig, LVGL and WebAssembly__ in a Web Browser? To make the UI Coding a little easier?
 
 Let's find out!
 
@@ -603,11 +603,11 @@ core/lv_obj_class.c
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/4a396978c4d12dc02e140aba068c87a175054ab5/build.sh#L7-L70
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d953c19a63ee9f8dcc87359668bec2ef892f302a/build.sh#L7-L115
 
 Which calls `compile_lvgl` to compile a single LVGL Source File from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/4a396978c4d12dc02e140aba068c87a175054ab5/build.sh#L104-L155
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d953c19a63ee9f8dcc87359668bec2ef892f302a/build.sh#L149-L202
 
 _What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?_
 
