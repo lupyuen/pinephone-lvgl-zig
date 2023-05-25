@@ -29,6 +29,27 @@ function build_zig {
   compile_lvgl core/lv_obj_scroll.c lv_obj_scroll.o
   compile_lvgl font/lv_font.c lv_font.o
   compile_lvgl core/lv_obj_class.c lv_obj_class.o
+  compile_lvgl core/lv_obj_tree.c lv_obj_tree.o
+  compile_lvgl hal/lv_hal_disp.c lv_hal_disp.o
+  compile_lvgl misc/lv_anim.c lv_anim.o
+  compile_lvgl misc/lv_tlsf.c lv_tlsf.o
+  compile_lvgl core/lv_group.c lv_group.o
+  compile_lvgl core/lv_indev.c lv_indev.o
+  compile_lvgl draw/lv_draw_rect.c lv_draw_rect.o
+  compile_lvgl draw/lv_draw_mask.c lv_draw_mask.o
+  compile_lvgl misc/lv_style.c lv_style.o
+  compile_lvgl misc/lv_ll.c lv_ll.o
+  compile_lvgl core/lv_obj_style_gen.c lv_obj_style_gen.o
+  compile_lvgl misc/lv_timer.c lv_timer.o
+  compile_lvgl core/lv_disp.c lv_disp.o
+  compile_lvgl core/lv_refr.c lv_refr.o
+  compile_lvgl misc/lv_color.c lv_color.o
+  compile_lvgl draw/lv_draw_line.c lv_draw_line.o
+  compile_lvgl draw/lv_draw_img.c lv_draw_img.o
+  compile_lvgl misc/lv_math.c lv_math.o
+  compile_lvgl hal/lv_hal_indev.c lv_hal_indev.o
+  compile_lvgl core/lv_theme.c lv_theme.o
+  compile_lvgl hal/lv_hal_tick.c lv_hal_tick.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -71,6 +92,27 @@ function build_zig {
     lv_obj_scroll.o \
     lv_font.o \
     lv_obj_class.o \
+    lv_obj_tree.o \
+    lv_hal_disp.o \
+    lv_anim.o \
+    lv_tlsf.o \
+    lv_group.o \
+    lv_indev.o \
+    lv_draw_rect.o \
+    lv_draw_mask.o \
+    lv_style.o \
+    lv_ll.o \
+    lv_obj_style_gen.o \
+    lv_timer.o \
+    lv_disp.o \
+    lv_refr.o \
+    lv_color.o \
+    lv_draw_line.o \
+    lv_draw_img.o \
+    lv_math.o \
+    lv_hal_indev.o \
+    lv_theme.o \
+    lv_hal_tick.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)

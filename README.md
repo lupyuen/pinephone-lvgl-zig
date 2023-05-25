@@ -275,12 +275,6 @@ TODO: How to pass Strings and Buffers between JavaScript and Zig? See [mitchellh
 
 https://github.com/daneelsan/zig-wasm-logger
 
-https://github.com/daneelsan/minimal-zig-wasm-canvas
-
-https://github.com/daneelsan/Dodgeballz/tree/master/src
-
-https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
-
 TODO: Change `request.onload` to `fetch`
 
 https://github.com/meheleventyone/zig-wasm-test/blob/master/www/wasmtest.js
@@ -604,6 +598,7 @@ misc/lv_area.c
 core/lv_obj_scroll.c
 font/lv_font.c
 core/lv_obj_class.c
+(Many more)
 ```
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
@@ -637,7 +632,9 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/5372dac5baf42da68f3ac93d71931
 
 This seems to be the [same problem mentioned here](https://github.com/andrewrk/lua-in-the-browser#status).
 
-[(Referenced by this issue)](https://github.com/ziglang/zig/pull/2512)
+[(Referenced by this pull request)](https://github.com/ziglang/zig/pull/2512)
+
+[(And this issue)](https://github.com/ziglang/zig/issues/5854)
 
 TODO: Do we compile `strlen` ourselves? From musl? Newlib? [wasi-libc](https://github.com/WebAssembly/wasi-libc)?
 
@@ -651,7 +648,17 @@ Sorry `zig build-exe` is meant for building WASI Executables. [(See this)](https
 
 `zig build-exe` is not supposed to work for WebAssembly in the Web Browser. [(See this)](https://github.com/ziglang/zig/issues/1570#issuecomment-426370371)
 
+TODO: Fix the missing LVGL Functions
+
+# Render LVGL App in Web Browser
+
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+
+https://github.com/daneelsan/minimal-zig-wasm-canvas
+
+https://github.com/daneelsan/Dodgeballz/tree/master/src
+
+https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
 
 # Zig with Rancher Desktop
 

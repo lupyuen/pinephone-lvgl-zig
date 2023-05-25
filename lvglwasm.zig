@@ -203,6 +203,25 @@ const debug = std.log.debug;
 //  C Standard Library
 //  From zig-macos-x86_64-0.10.0-dev.2351+b64a1d5ab/lib/zig/c.zig
 
+export fn memcpy(noalias dest: ?[*]u8, noalias src: ?[*]const u8, len: usize) callconv(.C) ?[*]u8 {
+    @setRuntimeSafety(false);
+
+    if (len != 0) {
+        var d = dest.?;
+        var s = src.?;
+        var n = len;
+        while (true) {
+            d[0] = s[0];
+            n -= 1;
+            if (n == 0) break;
+            d += 1;
+            s += 1;
+        }
+    }
+
+    return dest;
+}
+
 export fn strcpy(dest: [*:0]u8, src: [*:0]const u8) callconv(.C) [*:0]u8 {
     var i: usize = 0;
     while (src[i] != 0) : (i += 1) {
