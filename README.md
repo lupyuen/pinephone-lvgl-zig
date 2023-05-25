@@ -669,6 +669,10 @@ TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 # Render LVGL App in Web Browser
 
+TODO: Fix Assertion
+
+TODO: Trace Execution
+
 TODO: Init LVGL
 
 TODO: Render LVGL Display
