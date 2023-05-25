@@ -582,6 +582,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/13b68c917e4128b740699c034e7e6
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/13b68c917e4128b740699c034e7e6b784da0d379/build.sh#L84-L134
 
+TODO: What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?
+
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
 # Zig with Rancher Desktop
