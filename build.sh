@@ -116,6 +116,8 @@ function compile_lvgl {
     -dynamic \
     -rdynamic \
     -DFAR= \
+    -DASSERT= \
+    -lc \
     -c \
     -fno-common \
     -Wall \

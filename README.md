@@ -463,6 +463,10 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DFAR=` (because we won't need Far Pointers)
 
+- Add `-DASSERT=` (TODO: Why?)
+
+- Add `-lc` (TODO: Why use libc?)
+
 - Change the output to `-o ../../../pinephone-lvgl-zig/lv_label.o`
 
 Like this...
@@ -476,6 +480,8 @@ zig cc \
   -dynamic \
   -rdynamic \
   -DFAR= \
+  -DASSERT= \
+  -lc \
   -c \
   -fno-common \
   -Wall \
@@ -529,6 +535,9 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     --verbose-cimport \
     -target wasm32-freestanding \
     -dynamic \
+    -rdynamic \
+    -DFAR= \
+    -lc \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
