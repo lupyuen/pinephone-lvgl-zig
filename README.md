@@ -627,7 +627,7 @@ function import requires a callable
 
 _But strlen should come from the C Standard Library! (musl)_
 
-TODO: Fix `strlen`
+TODO: Do we compile `strlen` ourselves? From musl? Newlib? [wasi-libc](https://github.com/WebAssembly/wasi-libc)?
 
 _What if we change the target to `wasm32-freestanding-musl`?_
 
@@ -638,8 +638,6 @@ _What if we use `zig build-exe` instead of `zig build-lib`?_
 Sorry `zig build-exe` is meant for building WASI Executables. [(See this)](https://www.fermyon.com/wasm-languages/c-lang)
 
 `zig build-exe` is not supposed to work for WebAssembly in the Web Browser. [(See this)](https://github.com/ziglang/zig/issues/1570#issuecomment-426370371)
-
-TODO: [wasi-libc](https://github.com/WebAssembly/wasi-libc)
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
