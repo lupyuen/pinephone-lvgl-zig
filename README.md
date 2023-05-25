@@ -648,7 +648,7 @@ Sorry `zig build-exe` is meant for building WASI Executables. [(See this)](https
 
 `zig build-exe` is not supposed to work for WebAssembly in the Web Browser. [(See this)](https://github.com/ziglang/zig/issues/1570#issuecomment-426370371)
 
-TODO: Fix `millis`
+TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 ```text
 Uncaught (in promise) LinkError: 
