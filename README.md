@@ -584,9 +584,17 @@ core/lv_obj.c
 misc/lv_mem.c
 core/lv_event.c
 core/lv_obj_style.c
+core/lv_obj_pos.c
+misc/lv_txt.c
+draw/lv_draw_label.c
+core/lv_obj_draw.c
+misc/lv_area.c
+core/lv_obj_scroll.c
+font/lv_font.c
+core/lv_obj_class.c
 ```
 
-So we wrote a script to compile the LVGL Source Files from C to WebAssembly with `zig cc`...
+So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/4a396978c4d12dc02e140aba068c87a175054ab5/build.sh#L7-L70
 
