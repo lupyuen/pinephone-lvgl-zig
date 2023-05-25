@@ -574,11 +574,11 @@ core/lv_event.c
 core/lv_obj_style.c
 ```
 
-So we wrote a script to compile them with `zig cc`...
+So we wrote a script to compile the LVGL Source Files from C to WebAssembly with `zig cc`...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/13b68c917e4128b740699c034e7e6b784da0d379/build.sh#L7-L50
 
-`compile_lvgl` is defined as...
+`compile_lvgl` compiles a single LVGL Source File from C to WebAssembly with `zig cc`...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/13b68c917e4128b740699c034e7e6b784da0d379/build.sh#L84-L134
 
