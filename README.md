@@ -598,6 +598,8 @@ function import requires a callable
 
 TODO: Fix `strlen`
 
+TODO: Try `zig build-exe` to fix `strlen` missing
+
 https://www.fermyon.com/wasm-languages/c-lang
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
