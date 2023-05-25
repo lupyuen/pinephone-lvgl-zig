@@ -627,6 +627,10 @@ function import requires a callable
 
 _But strlen should come from the C Standard Library! (musl)_
 
+This seems to be the same issue [mentioned here](https://github.com/andrewrk/lua-in-the-browser#status)...
+
+[(Referenced by this issue)](https://github.com/ziglang/zig/pull/2512)
+
 TODO: Do we compile `strlen` ourselves? From musl? Newlib? [wasi-libc](https://github.com/WebAssembly/wasi-libc)?
 
 _What if we change the target to `wasm32-freestanding-musl`?_
