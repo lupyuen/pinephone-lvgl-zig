@@ -19,6 +19,8 @@ function build_zig {
   compile_lvgl widgets/lv_label.c lv_label.o
   compile_lvgl core/lv_obj.c lv_obj.o
   compile_lvgl misc/lv_mem.c lv_mem.o
+  compile_lvgl core/lv_event.c lv_event.o
+  compile_lvgl core/lv_obj_style.c lv_obj_style.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -48,6 +50,8 @@ function build_zig {
     lv_label.o \
     lv_mem.o \
     lv_obj.o \
+    lv_event.o \
+    lv_obj_style.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
