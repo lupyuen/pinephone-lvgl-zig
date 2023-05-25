@@ -158,8 +158,8 @@ function compile_lvgl {
     -dynamic \
     -rdynamic \
     -DFAR= \
-    -DASSERT= \
     -lc \
+    "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -c \
     -fno-common \
     -Wall \
@@ -195,7 +195,6 @@ function compile_lvgl {
     "-I./lvgl/src/hal" \
     "-I./lvgl/src/misc" \
     "-I./lvgl/src/widgets" \
-    "-DLV_ASSERT_HANDLER=ASSERT(0);" \
     lvgl/src/$source_file \
     -o ../../../pinephone-lvgl-zig/$object_file
   popd

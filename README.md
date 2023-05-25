@@ -469,11 +469,19 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DFAR=` (because we won't need Far Pointers)
 
-- Add `-DASSERT=` (TODO: Why?)
-
 - Add `-lc` (TODO: Why use libc?)
 
-- Change the output to `-o ../../../pinephone-lvgl-zig/lv_label.o`
+- Change `"-DLV_ASSERT_HANDLER..."` to...
+
+  ```text
+  "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}"
+  ```
+
+- Change the output to...
+
+  ```text
+  -o ../../../pinephone-lvgl-zig/lv_label.o`
+  ```
 
 Like this...
 
@@ -486,8 +494,8 @@ zig cc \
   -dynamic \
   -rdynamic \
   -DFAR= \
-  -DASSERT= \
   -lc \
+  "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
   -c \
   -fno-common \
   -Wall \
@@ -628,7 +636,7 @@ _But strlen should come from the C Standard Library! (musl)_
 
 Not sure why `strlen` is missing, but we fixed it temporarily by copying from the Zig Library Source Code...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/5372dac5baf42da68f3ac93d7193141b267946c4/lvglwasm.zig#L202-L218
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/e99593df6b46ced52f3f8ed644b9c6e455a9d682/lvglwasm.zig#L213-L265
 
 This seems to be the [same problem mentioned here](https://github.com/andrewrk/lua-in-the-browser#status).
 
