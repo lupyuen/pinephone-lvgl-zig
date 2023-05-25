@@ -564,12 +564,16 @@ Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to We
 
 # Compile Entire LVGL Library to WebAssembly
 
-TODO: Where is `lv_obj_clear_flag`
+When we track down `lv_obj_clear_flag` and the other Missing Functions, we get this trail of LVGL Source Files that need to be compiled from C to WebAssembly...
 
 ```text
 apps/graphics/lvgl/lvgl/src/core/lv_obj.c
 apps/graphics/lvgl/lvgl/src/misc/lv_mem.c
 ```
+
+So we wrote a script to compile them with `zig cc`...
+
+TODO: Script
 
 TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
 
