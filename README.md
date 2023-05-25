@@ -567,9 +567,11 @@ Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to We
 When we track down `lv_obj_clear_flag` and the other Missing Functions, we get this trail of LVGL Source Files that need to be compiled from C to WebAssembly...
 
 ```text
-apps/graphics/lvgl/src/widgets/lv_label.c
-apps/graphics/lvgl/lvgl/src/core/lv_obj.c
-apps/graphics/lvgl/lvgl/src/misc/lv_mem.c
+widgets/lv_label.c
+core/lv_obj.c
+misc/lv_mem.c
+core/lv_event.c
+core/lv_obj_style.c
 ```
 
 So we wrote a script to compile them with `zig cc`...
