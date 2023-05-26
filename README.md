@@ -154,7 +154,9 @@ build_zig
 make -j
 ```
 
-[(See the Build Script)](https://gist.github.com/lupyuen/aa1f5c0c45e6029b10e5e2f955d8386c)
+[(Original Build Script)](https://gist.github.com/lupyuen/aa1f5c0c45e6029b10e5e2f955d8386c)
+
+[(Updated Build Script)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L143-L173)
 
 And our LVGL Zig App runs OK on PinePhone!
 
@@ -559,6 +561,7 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
+    -I . \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
@@ -579,6 +582,8 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     lvglwasm.zig \
     lv_label.o
 ```
+
+[(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L65-L141)
 
 Now we see this error in the Web Browser...
 
@@ -620,11 +625,11 @@ core/lv_obj_class.c
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/c3885c828d2cf536be37c1178dc6d2297787e0a9/build.sh#L7-L122
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L7-L141
 
 Which calls `compile_lvgl` to compile a single LVGL Source File from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/c3885c828d2cf536be37c1178dc6d2297787e0a9/build.sh#L156-L210
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L176-L231
 
 _What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?_
 
@@ -744,7 +749,8 @@ To register the LVGL Display, we should do this...
 But we can't do this in Zig...
 
 ```zig
-var disp_drv = c.lv_disp_drv_t{};  // Nope!
+// Nope! lv_disp_drv_t is an Opaque Type
+var disp_drv = c.lv_disp_drv_t{};
 c.lv_disp_drv_init(&disp_drv);
 ```
 
