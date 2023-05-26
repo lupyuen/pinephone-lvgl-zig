@@ -687,6 +687,8 @@ TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 # Render LVGL App in Web Browser
 
+TODO: Set custom logger with `lv_log_register_print_cb`
+
 TODO: Fix Assertion
 
 TODO: Trace Execution
