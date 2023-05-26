@@ -780,8 +780,8 @@ lv_demo_widgets: start
 lv_assert_handler: assertion failed
 [Error]	block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
 lv_assert_handler: assertion failed
-
 [Trace]	lv_init: finished 	(in lv_obj.c line #183)
+
 [Info]	lv_mem_alloc: couldn't allocate memory (106824 bytes) 	(in lv_mem.c line #140)
 [Info]	lv_mem_alloc: used:   1480 (  3 %), frag:   0 %, biggest free:  64056 	(in lv_mem.c line #146)
 [Error]	lv_disp_drv_register: Asserted at expression: disp != NULL (Out of memory) 	(in lv_hal_disp.c line #162)
@@ -789,6 +789,12 @@ lv_assert_handler: assertion failed
 ```
 
 TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
+
+[`lv_mem_alloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_mem.c#L120-L148) calls [`lv_tlsf_malloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L1098-L1104) and fails to allocate memory
+
+TODO: Is there a problem with [`lv_tlsf_malloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L1098-L1104)?
+
+TODO: Is the Memory Pool too small? We need 106,824 bytes but only 64,056 bytes available
 
 # Render LVGL Display in Web Browser
 
