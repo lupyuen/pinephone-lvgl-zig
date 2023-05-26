@@ -687,6 +687,10 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/39da0a4251a15b8a83d6631db37d5
 
 TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
+# Custom Logger for LVGL
+
+
+
 # Render LVGL App in Web Browser
 
 TODO: Set custom logger with `lv_log_register_print_cb`
