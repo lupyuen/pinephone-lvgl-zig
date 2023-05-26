@@ -693,6 +693,8 @@ TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 Let's trace the LVGL Execution with a WebAssembly Logger.
 
+(Remember: `printf` won't work in WebAssembly)
+
 We set the Custom Logger for LVGL, so that we can print Log Messages to the JavaScript Console...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/f9dc7e1afba2f876c8397d753a79a9cb40b90b75/lvglwasm.zig#L32-L43
