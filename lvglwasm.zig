@@ -38,6 +38,9 @@ const c = @cImport({
 /// We render an LVGL Screen with LVGL Widgets
 pub export fn lv_demo_widgets() void {
 
+    // Set the Custom Logger for LVGL
+    c.lv_log_register_print_cb(custom_logger);
+
     // Create the widgets for display (with Zig Wrapper)
     createWidgetsWrapped() catch |e| {
         // In case of error, quit
@@ -145,6 +148,12 @@ var elapsed_ms: u32 = 0;
 /// TODO: Print a Stack Trace on Assertion Failure
 export fn lv_assert_handler() void {
     print(3000);
+}
+
+/// TODO: Custom Logger for LVGL
+export fn custom_logger(buf: [*:0]const u8) void {
+    _ = buf;
+    print(4000);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

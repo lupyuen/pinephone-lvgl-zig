@@ -51,6 +51,7 @@ function build_zig {
   compile_lvgl core/lv_theme.c lv_theme.o
   compile_lvgl hal/lv_hal_tick.c lv_hal_tick.o
   compile_lvgl misc/lv_log.c lv_log.o
+  compile_lvgl misc/lv_printf.c lv_printf.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -115,6 +116,7 @@ function build_zig {
     lv_theme.o \
     lv_hal_tick.o \
     lv_log.o \
+    lv_printf.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
