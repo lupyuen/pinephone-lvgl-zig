@@ -723,21 +723,38 @@ Let's initialise the LVGL Display...
 
 # Initialise LVGL Display
 
-TODO: Init LVGL
+According to the LVGL Docs, this is how we inititialise LVGL...
 
-https://docs.lvgl.io/8.3/porting/project.html#initialization
+1.  Call `lv_init()`
 
-1.  Call lv_init()
+1.  Register the LVGL Display and LVGL Input Devices
 
-1.  Register the display and input devices drivers in LVGL
+1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
 
-1.  Call lv_tick_inc(x) every x milliseconds in an interrupt to report the elapsed time to LVGL
+1.  Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
 
-1.  Call lv_timer_handler() every few milliseconds to handle LVGL related tasks
+[(Source)](https://docs.lvgl.io/8.3/porting/project.html#initialization)
 
-TODO: Create Display
+To register the LVGL Display, we should do this...
 
-https://docs.lvgl.io/8.3/porting/display.html#examples
+- [Register LVGL Display](https://docs.lvgl.io/8.3/porting/display.html#examples)
+
+But we can't do this in Zig...
+
+```zig
+var disp_drv: c.lv_disp_drv_t = c.lv_disp_drv_t{};
+c.lv_disp_drv_init(&disp_drv);
+```
+
+Because `lv_disp_drv_t` is an Opaque Type.
+
+[(`lv_disp_drv_t` contains Bit Fields, hence it's Opaque)](https://lupyuen.github.io/articles/lvgl#appendix-zig-opaque-types)
+
+Thus we apply this workaround to create `lv_disp_drv_t` in C...
+
+- ["Fix Opaque Types"](https://lupyuen.github.io/articles/lvgl#fix-opaque-types)
+
+TODO
 
 # Render LVGL Display in Web Browser
 
