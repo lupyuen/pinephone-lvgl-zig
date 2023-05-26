@@ -766,6 +766,10 @@ Thus we apply this workaround to create `lv_disp_drv_t` in C...
 
 And we get this LVGL Display Interface for Zig: [display.c](display.c)
 
+Finally this is how we initialise the LVGL Display in Zig WebAssembly...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/lvglwasm.zig#L39-L71
+
 TODO: Memory Allocation Failed
 
 ```text
