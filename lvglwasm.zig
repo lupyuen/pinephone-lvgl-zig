@@ -144,7 +144,7 @@ var elapsed_ms: u32 = 0;
 
 /// TODO: Print a Stack Trace on Assertion Failure
 export fn lv_assert_handler() void {
-    print(3);
+    print(3000);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
