@@ -742,7 +742,7 @@ To register the LVGL Display, we should do this...
 But we can't do this in Zig...
 
 ```zig
-var disp_drv: c.lv_disp_drv_t = c.lv_disp_drv_t{};
+var disp_drv = c.lv_disp_drv_t{};  // Nope!
 c.lv_disp_drv_init(&disp_drv);
 ```
 
