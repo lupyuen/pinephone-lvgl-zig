@@ -143,13 +143,12 @@ var elapsed_ms: u32 = 0;
 
 /// TODO: Print a Stack Trace on Assertion Failure
 export fn lv_assert_handler() void {
-    print(3000);
+    wasmlog.Console.log("lv_assert_handler: assertion failed", .{});
 }
 
-/// TODO: Custom Logger for LVGL
+/// Custom Logger for LVGL that writes to JavaScript Console
 export fn custom_logger(buf: [*c]const u8) void {
-    _ = buf;
-    print(4000);
+    wasmlog.Console.log("custom_logger: {s}", .{buf});
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -714,9 +714,20 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/f81cc3148dd487abc7660b9e634d4
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/f81cc3148dd487abc7660b9e634d40735c42ccf8/lvglwasm.zig#L35-L39
 
-# Render LVGL App in Web Browser
+TODO
+
+```text
+custom_logger: [Warn]	(0.001, +1)
+lv_disp_get_scr_act:
+no display registered to get its active screen
+(in lv_disp.c line #54)
+```
+
+# Initialise LVGL Display
 
 TODO: Init LVGL
+
+# Render LVGL App in Web Browser
 
 TODO: Render LVGL Display
 
