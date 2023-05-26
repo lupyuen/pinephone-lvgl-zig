@@ -29,12 +29,6 @@ const c = @cImport({
 ///////////////////////////////////////////////////////////////////////////////
 //  Main Function
 
-/// Empty Main Function
-// pub export fn main() void {}
-
-/// Empty Start Function
-// pub export fn _start() void {}
-
 /// We render an LVGL Screen with LVGL Widgets
 pub export fn lv_demo_widgets() void {
 
