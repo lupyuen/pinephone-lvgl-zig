@@ -708,7 +708,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L67-L87
 
-Now we can see the LVGL Log Messages in the JavaScript Console yay!
+Now we can see the LVGL Log Messages in the JavaScript Console yay! (Pic below)
 
 ```text
 custom_logger: [Warn]	(0.001, +1)
@@ -718,6 +718,8 @@ no display registered to get its active screen
 ```
 
 Let's initialise the LVGL Display...
+
+![WebAssembly Logger for LVGL](https://lupyuen.github.io/images/zig-wasm2.png)
 
 # Initialise LVGL Display
 
