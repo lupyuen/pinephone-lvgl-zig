@@ -271,13 +271,10 @@ _Will this work for passing Strings and Buffers as parameters?_
 
 Nope, the parameter will be passed as a number. (Probably a WebAssembly Data Address)
 
-TODO: How to pass Strings and Buffers between JavaScript and Zig? See [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
+To pass Strings and Buffers between JavaScript and Zig, see [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger)
+ and [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
 
-https://github.com/daneelsan/zig-wasm-logger
-
-TODO: Change `request.onload` to `fetch`
-
-https://github.com/meheleventyone/zig-wasm-test/blob/master/www/wasmtest.js
+TODO: Change `request.onload` to `fetch` [(Like this)](https://github.com/meheleventyone/zig-wasm-test/blob/master/www/wasmtest.js)
 
 # Compile Zig LVGL App to WebAssembly
 
@@ -681,13 +678,15 @@ Import #0 module="env" function="millis" error:
 function import requires a callable
 ```
 
-We implemented `millis` ourselves for WebAssembly...
+We implement `millis` ourselves for WebAssembly...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/39da0a4251a15b8a83d6631db37d554defc2daad/lvglwasm.zig#L134-L148
 
 TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 # Custom Logger for LVGL
+
+Let's trace the LVGL Execution with a Custom Logger.
 
 We set the Custom Logger for LVGL, so that we can print Log Messages to the JavaScript Console...
 
@@ -697,13 +696,9 @@ The Custom Logger is defined here...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L147-L151
 
+TODO: Implement logger [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger)
+
 # Render LVGL App in Web Browser
-
-TODO: Set custom logger with `lv_log_register_print_cb`
-
-TODO: Fix Assertion
-
-TODO: Trace Execution
 
 TODO: Init LVGL
 
