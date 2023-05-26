@@ -774,21 +774,21 @@ TODO: Memory Allocation Failed
 
 ```text
 lv_demo_widgets: start
-[Info]	(0.001, +1)	 lv_init: begin 	(in lv_obj.c line #102)
-[Warn]	(0.003, +2)	 lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
-[Error]	(0.004, +1)	 block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
+[Info]	lv_init: begin 	(in lv_obj.c line #102)
+[Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
+[Error]	block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
 lv_assert_handler: assertion failed
-[Error]	(0.005, +1)	 block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
-lvglwasm.js:30 lv_assert_handler: assertion failed
+[Error]	block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
+lv_assert_handler: assertion failed
 
-[Trace]	(0.006, +1)	 lv_init: finished 	(in lv_obj.c line #183)
-[Info]	(0.007, +1)	 lv_mem_alloc: couldn't allocate memory (106824 bytes) 	(in lv_mem.c line #140)
-[Info]	(0.008, +1)	 lv_mem_alloc: used:   1480 (  3 %), frag:   0 %, biggest free:  64056 	(in lv_mem.c line #146)
-[Error]	(0.009, +1)	 lv_disp_drv_register: Asserted at expression: disp != NULL (Out of memory) 	(in lv_hal_disp.c line #162)
-lvglwasm.js:30 lv_assert_handler: assertion failed
+[Trace]	lv_init: finished 	(in lv_obj.c line #183)
+[Info]	lv_mem_alloc: couldn't allocate memory (106824 bytes) 	(in lv_mem.c line #140)
+[Info]	lv_mem_alloc: used:   1480 (  3 %), frag:   0 %, biggest free:  64056 	(in lv_mem.c line #146)
+[Error]	lv_disp_drv_register: Asserted at expression: disp != NULL (Out of memory) 	(in lv_hal_disp.c line #162)
+lv_assert_handler: assertion failed
 ```
 
-TODO: What is `lv_tlsf.c` line #458?
+TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
 
 # Render LVGL Display in Web Browser
 
