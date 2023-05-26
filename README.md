@@ -696,7 +696,11 @@ The Custom Logger is defined here...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L147-L151
 
-TODO: Implement logger [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger)
+`wasmlog` is defined here: [wasmlog.zig](wasmlog.zig)
+
+(Based on [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger))
+
+TODO: `jsConsoleLogWrite` and `jsConsoleLogFlush`
 
 # Render LVGL App in Web Browser
 

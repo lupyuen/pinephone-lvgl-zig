@@ -1,4 +1,4 @@
-// Log WebAssembly Messages to JavaScript Console
+// Log WebAssembly Messages from Zig to JavaScript Console
 // From https://github.com/daneelsan/zig-wasm-logger/blob/master/JS.zig
 const std = @import("std");
 
