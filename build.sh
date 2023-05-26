@@ -75,6 +75,10 @@ function build_zig {
   compile_lvgl draw/sw/lv_draw_sw_img.c lv_draw_sw_img.o
   compile_lvgl draw/sw/lv_draw_sw_gradient.c lv_draw_sw_gradient.o
   compile_lvgl draw/lv_draw_transform.c lv_draw_transform.o
+  compile_lvgl extra/themes/default/lv_theme_default.c lv_theme_default.o
+  compile_lvgl font/lv_font_fmt_txt.c lv_font_fmt_txt.o
+  compile_lvgl draw/lv_draw_layer.c lv_draw_layer.o
+  compile_lvgl misc/lv_style_gen.c lv_style_gen.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -167,6 +171,10 @@ function build_zig {
     lv_draw_sw_img.o \
     lv_draw_sw_gradient.o \
     lv_draw_transform.o \
+    lv_theme_default.o \
+    lv_font_fmt_txt.o \
+    lv_draw_layer.o \
+    lv_style_gen.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)

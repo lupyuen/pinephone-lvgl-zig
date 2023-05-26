@@ -59,6 +59,10 @@ pub export fn lv_demo_widgets() void {
         1280 // Vertical Resolution
     );
 
+    // Register the Display Driver
+    const disp = c.lv_disp_drv_register(disp_drv);
+    _ = disp;
+
     // Create the widgets for display (with Zig Wrapper)
     createWidgetsWrapped() catch |e| {
         // In case of error, quit
