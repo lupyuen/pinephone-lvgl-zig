@@ -70,13 +70,12 @@ pub export fn lv_demo_widgets() void {
         return;
     };
 
-    // Create the widgets for display (without Zig Wrapper)
-    // createWidgetsUnwrapped()
-    //     catch |e| {
-    //         // In case of error, quit
-    //         std.log.err("createWidgetsUnwrapped failed: {}", .{e});
-    //         return;
-    //     };
+    // TODO: Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
+    // TODO: Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
+    var i: usize = 0;
+    while (i < 10) : (i += 1) {
+        _ = c.lv_timer_handler();
+    }
 }
 
 /// LVGL Callback Function to Flush Display
@@ -86,6 +85,7 @@ export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t,
     _ = color_p;
     debug("flushDisplay: start", .{});
     defer debug("flushDisplay: end", .{});
+    // TODO: lv_disp_flush_ready(&disp_drv)
 }
 
 ///////////////////////////////////////////////////////////////////////////////

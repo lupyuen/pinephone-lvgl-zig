@@ -806,13 +806,21 @@ TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/l
 
 # TODO
 
-TODO: Why no screen found?
+TODO: Why no screen found in [lv_obj_get_disp](https://github.com/lvgl/lvgl/blob/v8.3.3/src/core/lv_obj_tree.c#L270-L289)?
 
 ```text
 [Trace]	lv_init: finished 	(in lv_obj.c line #183)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
 [Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #287)
 ```
+
+TODO: Call `lv_tick_inc` and `lv_timer_handler`
+
+1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
+
+1.  Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
+
+[(Source)](https://docs.lvgl.io/8.3/porting/project.html#initialization)
 
 # Render LVGL Display in Web Browser
 
