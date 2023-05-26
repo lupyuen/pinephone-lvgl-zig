@@ -142,6 +142,11 @@ export fn millis() u32 {
 
 var elapsed_ms: u32 = 0;
 
+/// TODO: Print a Stack Trace on Assertion Failure
+export fn lv_assert_handler() void {
+    print(3);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //  Panic Handler
 
@@ -150,7 +155,7 @@ var elapsed_ms: u32 = 0;
 /// https://github.com/ziglang/zig/blob/master/lib/std/builtin.zig#L763-L847
 pub fn panic(message: []const u8, _stack_trace: ?*std.builtin.StackTrace) noreturn {
     _ = message;
-    print(1); // TODO
+    print(1000); // TODO
 
     // Print the Panic Message
     _ = _stack_trace;
@@ -186,7 +191,7 @@ pub fn log(
     // Format the message
     var buf: [100]u8 = undefined; // Limit to 100 chars
     var slice = std.fmt.bufPrint(&buf, format, args) catch {
-        print(2);
+        print(2000);
         return;
     }; // TODO
 
