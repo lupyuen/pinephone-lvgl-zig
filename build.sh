@@ -61,8 +61,11 @@ function build_zig {
     -target wasm32-freestanding \
     -dynamic \
     -rdynamic \
-    -DFAR= \
     -lc \
+    -DFAR= \
+    -DLV_USE_LOG \
+    -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+    "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \

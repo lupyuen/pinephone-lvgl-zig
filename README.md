@@ -539,7 +539,6 @@ zig cc \
   "-I./lvgl/src/hal" \
   "-I./lvgl/src/misc" \
   "-I./lvgl/src/widgets" \
-  "-DLV_ASSERT_HANDLER=ASSERT(0);" \
   ./lvgl/src/widgets/lv_label.c \
   -o ../../../pinephone-lvgl-zig/lv_label.o
 ```
@@ -558,8 +557,11 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     -target wasm32-freestanding \
     -dynamic \
     -rdynamic \
-    -DFAR= \
     -lc \
+    -DFAR= \
+    -DLV_USE_LOG \
+    -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+    "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \

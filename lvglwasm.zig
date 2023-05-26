@@ -151,7 +151,7 @@ export fn lv_assert_handler() void {
 }
 
 /// TODO: Custom Logger for LVGL
-export fn custom_logger(buf: [*:0]const u8) void {
+export fn custom_logger(buf: [*c]const u8) void {
     _ = buf;
     print(4000);
 }
