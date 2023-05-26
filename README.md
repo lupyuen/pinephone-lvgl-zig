@@ -606,8 +606,10 @@ misc/lv_area.c
 core/lv_obj_scroll.c
 font/lv_font.c
 core/lv_obj_class.c
-(Many more)
+(And many more)
 ```
+
+[(Based on LVGL 8.3.3)](https://github.com/lvgl/lvgl/tree/v8.3.3)
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
