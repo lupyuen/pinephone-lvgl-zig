@@ -700,7 +700,13 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad85
 
 (Based on [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger))
 
-TODO: `jsConsoleLogWrite` and `jsConsoleLogFlush`
+`jsConsoleLogWrite` and `jsConsoleLogFlush` are defined in our JavaScript...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L14-L42
+
+`wasm.getString` also comes from our JavaScript...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L67-L87
 
 # Render LVGL App in Web Browser
 
