@@ -725,7 +725,7 @@ Let's initialise the LVGL Display...
 
 TODO: Init LVGL
 
-https://docs.lvgl.io/master/porting/project.html#initialization
+https://docs.lvgl.io/8.3/porting/project.html#initialization
 
 1.  Call lv_init()
 
@@ -734,6 +734,10 @@ https://docs.lvgl.io/master/porting/project.html#initialization
 1.  Call lv_tick_inc(x) every x milliseconds in an interrupt to report the elapsed time to LVGL
 
 1.  Call lv_timer_handler() every few milliseconds to handle LVGL related tasks
+
+TODO: Create Display
+
+https://docs.lvgl.io/8.3/porting/display.html#examples
 
 # Render LVGL Display in Web Browser
 

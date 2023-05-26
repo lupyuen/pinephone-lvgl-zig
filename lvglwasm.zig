@@ -38,11 +38,20 @@ pub export fn lv_demo_widgets() void {
     wasmlog.Console.log("lv_demo_widgets: start", .{});
     defer wasmlog.Console.log("lv_demo_widgets: end", .{});
 
+    // Set the Custom Logger for LVGL
+    c.lv_log_register_print_cb(custom_logger);
+
     // Init LVGL
     c.lv_init();
 
-    // Set the Custom Logger for LVGL
-    c.lv_log_register_print_cb(custom_logger);
+    // Init LVGL Display
+    // c.lv_disp_drv_init(&disp_drv);
+    // disp_drv.draw_buf = &disp_buf; // Display Buffer
+    // disp_drv.flush_cb = flush_display; // Callback to Flush Display
+    // disp_drv.hor_res = 720; // Horizontal Resolution
+    // disp_drv.ver_res = 1280; // Vertical Resolution
+    // const disp = c.lv_disp_drv_register(&disp_drv);
+    // _ = disp; // Register the Display Driver
 
     // Create the widgets for display (with Zig Wrapper)
     createWidgetsWrapped() catch |e| {
@@ -59,6 +68,15 @@ pub export fn lv_demo_widgets() void {
     //         return;
     //     };
 }
+
+/// LVGL Callback Function to Flush Display
+export fn flush_display() void {}
+
+/// LVGL Display Driver
+// const disp_drv: c.lv_disp_drv_t = c.lv_disp_drv_t{};
+
+/// LVGL Display Buffer
+const disp_buf: u8 = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
@@ -208,7 +226,7 @@ pub fn log(
     buf2[slice.len] = 0;
 
     // Print the formatted message
-    // TODO: _ = puts(&buf2);
+    wasmlog.Console.log("log: {s}", .{buf2});
 }
 
 ///////////////////////////////////////////////////////////////////////////////
