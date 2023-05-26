@@ -274,7 +274,7 @@ Nope, the parameter will be passed as a number. (Probably a WebAssembly Data Add
 To pass Strings and Buffers between JavaScript and Zig, see [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger)
  and [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
 
-TODO: Change `request.onload` to `fetch` [(Like this)](https://github.com/meheleventyone/zig-wasm-test/blob/master/www/wasmtest.js)
+TODO: Change `request.onload` to `fetch` [(Like this)](https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js)
 
 # Compile Zig LVGL App to WebAssembly
 
@@ -597,7 +597,7 @@ Now we need to compile `lv_obj_clear_flag` and the other LVGL Files from C to We
 
 # Compile Entire LVGL Library to WebAssembly
 
-When we track down `lv_obj_clear_flag` and the other Missing Functions, we get this trail of LVGL Source Files that need to be compiled from C to WebAssembly...
+When we track down `lv_obj_clear_flag` and the other Missing Functions (by sheer tenacity), we get this trail of LVGL Source Files that need to be compiled from C to WebAssembly...
 
 ```text
 widgets/lv_label.c
@@ -620,11 +620,11 @@ core/lv_obj_class.c
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d953c19a63ee9f8dcc87359668bec2ef892f302a/build.sh#L7-L115
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/c3885c828d2cf536be37c1178dc6d2297787e0a9/build.sh#L7-L122
 
 Which calls `compile_lvgl` to compile a single LVGL Source File from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d953c19a63ee9f8dcc87359668bec2ef892f302a/build.sh#L149-L202
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/c3885c828d2cf536be37c1178dc6d2297787e0a9/build.sh#L156-L210
 
 _What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?_
 

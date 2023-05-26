@@ -6,6 +6,9 @@ const std = @import("std");
 /// Import the LVGL Module
 const lvgl = @import("lvgl.zig");
 
+/// Import the WebAssembly Logger
+const wasmlog = @import("wasmlog.zig");
+
 /// Import the LVGL Library from C
 const c = @cImport({
     // NuttX Defines
@@ -31,6 +34,9 @@ const c = @cImport({
 
 /// We render an LVGL Screen with LVGL Widgets
 pub export fn lv_demo_widgets() void {
+    // TODO: Change to `debug`
+    wasmlog.Console.log("lv_demo_widgets: start", .{});
+    defer wasmlog.Console.log("lv_demo_widgets: end", .{});
 
     // Set the Custom Logger for LVGL
     c.lv_log_register_print_cb(custom_logger);
@@ -59,9 +65,7 @@ pub export fn lv_demo_widgets() void {
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsWrapped() !void {
     debug("createWidgetsWrapped: start", .{});
-    defer {
-        debug("createWidgetsWrapped: end", .{});
-    }
+    defer debug("createWidgetsWrapped: end", .{});
 
     // Get the Active Screen
     var screen = try lvgl.getActiveScreen();
@@ -96,9 +100,7 @@ fn createWidgetsWrapped() !void {
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
 fn createWidgetsUnwrapped() !void {
     debug("createWidgetsUnwrapped: start", .{});
-    defer {
-        debug("createWidgetsUnwrapped: end", .{});
-    }
+    defer debug("createWidgetsUnwrapped: end", .{});
 
     // Get the Active Screen
     const screen = c.lv_scr_act().?;
