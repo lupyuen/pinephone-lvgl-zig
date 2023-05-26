@@ -625,11 +625,11 @@ core/lv_obj_class.c
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L7-L141
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/build.sh#L7-L177
 
 Which calls `compile_lvgl` to compile a single LVGL Source File from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L176-L231
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/build.sh#L212-L267
 
 _What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?_
 
