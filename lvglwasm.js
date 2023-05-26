@@ -47,9 +47,10 @@ const ctx = canvas.getContext('2d');
 
 // Main Loop
 const main = function() {
-    console.log("Main function started");
+    console.log("main: start");
 
     const loop = function() {
+        console.log("loop: start");
         // TODO: Init LVGL
 
         // Render the LVGL Widgets
@@ -60,8 +61,11 @@ const main = function() {
 
         // loop to next frame. Disabled for now because it slows down the browser.
         // TODO: window.requestAnimationFrame(loop);
+
+        console.log("loop: end");
     };
     loop();
+    console.log("main: end");
 };
 
 // Log WebAssembly Messages from Zig to JavaScript Console
