@@ -52,6 +52,12 @@ function build_zig {
   compile_lvgl hal/lv_hal_tick.c lv_hal_tick.o
   compile_lvgl misc/lv_log.c lv_log.o
   compile_lvgl misc/lv_printf.c lv_printf.o
+  compile_lvgl misc/lv_fs.c lv_fs.o
+  compile_lvgl draw/lv_draw.c lv_draw.o
+  compile_lvgl draw/lv_img_decoder.c lv_img_decoder.o
+  compile_lvgl extra/lv_extra.c lv_extra.o
+  compile_lvgl extra/layouts/flex/lv_flex.c lv_flex.o
+  compile_lvgl extra/layouts/grid/lv_grid.c lv_grid.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -66,6 +72,7 @@ function build_zig {
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
+    \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
@@ -83,6 +90,7 @@ function build_zig {
     -I "../apps/graphics/lvgl/lvgl/src/hal" \
     -I "../apps/graphics/lvgl/lvgl/src/misc" \
     -I "../apps/graphics/lvgl/lvgl/src/widgets" \
+    \
     lvglwasm.zig \
     lv_label.o \
     lv_mem.o \
@@ -120,6 +128,12 @@ function build_zig {
     lv_hal_tick.o \
     lv_log.o \
     lv_printf.o \
+    lv_fs.o \
+    lv_draw.o \
+    lv_img_decoder.o \
+    lv_extra.o \
+    lv_flex.o \
+    lv_grid.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
@@ -128,6 +142,7 @@ function build_zig {
     --verbose-cimport \
     -target aarch64-freestanding-none \
     -mcpu cortex_a53 \
+    \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
@@ -169,6 +184,7 @@ function compile_lvgl {
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
+    \
     -c \
     -fno-common \
     -Wall \

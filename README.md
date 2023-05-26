@@ -725,6 +725,16 @@ Let's initialise the LVGL Display...
 
 TODO: Init LVGL
 
+https://docs.lvgl.io/master/porting/project.html#initialization
+
+1.  Call lv_init()
+
+1.  Register the display and input devices drivers in LVGL
+
+1.  Call lv_tick_inc(x) every x milliseconds in an interrupt to report the elapsed time to LVGL
+
+1.  Call lv_timer_handler() every few milliseconds to handle LVGL related tasks
+
 # Render LVGL Display in Web Browser
 
 TODO: Render LVGL Display

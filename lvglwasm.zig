@@ -38,6 +38,9 @@ pub export fn lv_demo_widgets() void {
     wasmlog.Console.log("lv_demo_widgets: start", .{});
     defer wasmlog.Console.log("lv_demo_widgets: end", .{});
 
+    // Init LVGL
+    c.lv_init();
+
     // Set the Custom Logger for LVGL
     c.lv_log_register_print_cb(custom_logger);
 
@@ -267,6 +270,10 @@ export fn strcpy(dest: [*:0]u8, src: [*:0]const u8) callconv(.C) [*:0]u8 {
     dest[i] = 0;
 
     return dest;
+}
+
+export fn strcmp(s1: [*:0]const u8, s2: [*:0]const u8) callconv(.C) c_int {
+    return std.cstr.cmp(s1, s2);
 }
 
 export fn strlen(s: [*:0]const u8) callconv(.C) usize {
