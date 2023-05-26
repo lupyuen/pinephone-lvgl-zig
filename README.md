@@ -684,19 +684,19 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/39da0a4251a15b8a83d6631db37d5
 
 TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
-# Custom Logger for LVGL
+# WebAssembly Logger for LVGL
 
-Let's trace the LVGL Execution with a Custom Logger.
+Let's trace the LVGL Execution with a WebAssembly Logger.
 
 We set the Custom Logger for LVGL, so that we can print Log Messages to the JavaScript Console...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L32-L43
 
-The Custom Logger is defined here...
+The Custom Logger is defined in our Zig Program...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L147-L151
 
-`wasmlog` is defined here: [wasmlog.zig](wasmlog.zig)
+`wasmlog` comes from our Zig Module: [wasmlog.zig](wasmlog.zig)
 
 (Based on [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger))
 
@@ -707,6 +707,12 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266
 `wasm.getString` also comes from our JavaScript...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L67-L87
+
+This is how we call the WebAssembly Logger...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/f81cc3148dd487abc7660b9e634d40735c42ccf8/lvglwasm.zig#L9-L10
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/f81cc3148dd487abc7660b9e634d40735c42ccf8/lvglwasm.zig#L35-L39
 
 # Render LVGL App in Web Browser
 
