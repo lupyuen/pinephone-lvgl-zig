@@ -15,6 +15,9 @@ function build_zig {
     exit 1
   fi
 
+  ## Compile our LVGL Display Driver from C to WebAssembly with Zig Compiler
+  compile_lvgl ../../../../../pinephone-lvgl-zig/display.c display.o
+
   ## Compile LVGL Library from C to WebAssembly with Zig Compiler
   compile_lvgl widgets/lv_label.c lv_label.o
   compile_lvgl core/lv_obj.c lv_obj.o
@@ -72,6 +75,7 @@ function build_zig {
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
+    -I . \
     \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
@@ -92,6 +96,7 @@ function build_zig {
     -I "../apps/graphics/lvgl/lvgl/src/widgets" \
     \
     lvglwasm.zig \
+    display.o \
     lv_label.o \
     lv_mem.o \
     lv_obj.o \

@@ -27,6 +27,9 @@ const c = @cImport({
 
     // LVGL Header Files
     @cInclude("lvgl/lvgl.h");
+
+    // LVGL Display Interface for Zig
+    @cInclude("display.h");
 });
 
 ///////////////////////////////////////////////////////////////////////////////
