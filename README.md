@@ -473,6 +473,8 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DLV_USE_LOG` (to enable logging)
 
+- Add `-DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE` (for detailed logging)
+
 - Change `"-DLV_ASSERT_HANDLER..."` to...
 
   ```text
@@ -500,6 +502,7 @@ zig cc \
   -lc \
   -DFAR= \
   -DLV_USE_LOG \
+  -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
   -c \
   -fno-common \
