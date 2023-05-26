@@ -61,6 +61,20 @@ function build_zig {
   compile_lvgl extra/lv_extra.c lv_extra.o
   compile_lvgl extra/layouts/flex/lv_flex.c lv_flex.o
   compile_lvgl extra/layouts/grid/lv_grid.c lv_grid.o
+  compile_lvgl draw/sw/lv_draw_sw.c lv_draw_sw.o
+  compile_lvgl draw/sw/lv_draw_sw_rect.c lv_draw_sw_rect.o
+  compile_lvgl draw/lv_img_cache.c lv_img_cache.o
+  compile_lvgl draw/lv_img_buf.c lv_img_buf.o
+  compile_lvgl draw/sw/lv_draw_sw_arc.c lv_draw_sw_arc.o
+  compile_lvgl draw/sw/lv_draw_sw_letter.c lv_draw_sw_letter.o
+  compile_lvgl draw/sw/lv_draw_sw_blend.c lv_draw_sw_blend.o
+  compile_lvgl draw/sw/lv_draw_sw_layer.c lv_draw_sw_layer.o
+  compile_lvgl draw/sw/lv_draw_sw_transform.c lv_draw_sw_transform.o
+  compile_lvgl draw/sw/lv_draw_sw_polygon.c lv_draw_sw_polygon.o
+  compile_lvgl draw/sw/lv_draw_sw_line.c lv_draw_sw_line.o
+  compile_lvgl draw/sw/lv_draw_sw_img.c lv_draw_sw_img.o
+  compile_lvgl draw/sw/lv_draw_sw_gradient.c lv_draw_sw_gradient.o
+  compile_lvgl draw/lv_draw_transform.c lv_draw_transform.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -139,6 +153,20 @@ function build_zig {
     lv_extra.o \
     lv_flex.o \
     lv_grid.o \
+    lv_draw_sw.o \
+    lv_draw_sw_rect.o \
+    lv_img_cache.o \
+    lv_img_buf.o \
+    lv_draw_sw_arc.o \
+    lv_draw_sw_letter.o \
+    lv_draw_sw_blend.o \
+    lv_draw_sw_layer.o \
+    lv_draw_sw_transform.o \
+    lv_draw_sw_polygon.o \
+    lv_draw_sw_line.o \
+    lv_draw_sw_img.o \
+    lv_draw_sw_gradient.o \
+    lv_draw_transform.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)

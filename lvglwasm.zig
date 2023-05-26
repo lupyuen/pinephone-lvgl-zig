@@ -37,9 +37,8 @@ const c = @cImport({
 
 /// We render an LVGL Screen with LVGL Widgets
 pub export fn lv_demo_widgets() void {
-    // TODO: Change to `debug`
-    wasmlog.Console.log("lv_demo_widgets: start", .{});
-    defer wasmlog.Console.log("lv_demo_widgets: end", .{});
+    debug("lv_demo_widgets: start", .{});
+    defer debug("lv_demo_widgets: end", .{});
 
     // Set the Custom Logger for LVGL
     c.lv_log_register_print_cb(custom_logger);
@@ -47,14 +46,18 @@ pub export fn lv_demo_widgets() void {
     // Init LVGL
     c.lv_init();
 
-    // Init LVGL Display
-    // c.lv_disp_drv_init(&disp_drv);
-    // disp_drv.draw_buf = &disp_buf; // Display Buffer
-    // disp_drv.flush_cb = flush_display; // Callback to Flush Display
-    // disp_drv.hor_res = 720; // Horizontal Resolution
-    // disp_drv.ver_res = 1280; // Vertical Resolution
-    // const disp = c.lv_disp_drv_register(&disp_drv);
-    // _ = disp; // Register the Display Driver
+    // Fetch pointers to Display Driver and Display Buffer
+    const disp_drv = c.get_disp_drv();
+    const disp_buf = c.get_disp_buf();
+
+    // Init Display Buffer and Display Driver as pointers
+    c.init_disp_buf(disp_buf);
+    c.init_disp_drv(disp_drv, // Display Driver
+        disp_buf, // Display Buffer
+        flushDisplay, // Callback Function to Flush Display
+        720, // Horizontal Resolution
+        1280 // Vertical Resolution
+    );
 
     // Create the widgets for display (with Zig Wrapper)
     createWidgetsWrapped() catch |e| {
@@ -73,13 +76,13 @@ pub export fn lv_demo_widgets() void {
 }
 
 /// LVGL Callback Function to Flush Display
-export fn flush_display() void {}
-
-/// LVGL Display Driver
-// const disp_drv: c.lv_disp_drv_t = c.lv_disp_drv_t{};
-
-/// LVGL Display Buffer
-const disp_buf: u8 = 0;
+export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t, color_p: [*c]c.lv_color_t) void {
+    _ = disp_drv;
+    _ = area;
+    _ = color_p;
+    debug("flushDisplay: start", .{});
+    defer debug("flushDisplay: end", .{});
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
