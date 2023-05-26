@@ -756,6 +756,8 @@ Thus we apply this workaround to create `lv_disp_drv_t` in C...
 
 - ["Fix Opaque Types"](https://lupyuen.github.io/articles/lvgl#fix-opaque-types)
 
+And we get this LVGL Display Interface for Zig: [display.c](display.c)
+
 TODO
 
 # Render LVGL Display in Web Browser
