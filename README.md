@@ -671,7 +671,7 @@ function import requires a callable
 
 We implemented `millis` ourselves for WebAssembly...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/e99593df6b46ced52f3f8ed644b9c6e455a9d682/lvglwasm.zig#L137-L143
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7f833250effe27328f48793611a9c2639ca2a0c1/lvglwasm.zig#L134-L148
 
 TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
