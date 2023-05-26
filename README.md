@@ -690,13 +690,13 @@ Let's trace the LVGL Execution with a WebAssembly Logger.
 
 We set the Custom Logger for LVGL, so that we can print Log Messages to the JavaScript Console...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L32-L43
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/f9dc7e1afba2f876c8397d753a79a9cb40b90b75/lvglwasm.zig#L32-L43
 
 The Custom Logger is defined in our Zig Program...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L147-L151
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/f9dc7e1afba2f876c8397d753a79a9cb40b90b75/lvglwasm.zig#L149-L152
 
-`wasmlog` comes from our Zig Module: [wasmlog.zig](wasmlog.zig)
+`wasmlog` is our Zig Logger for WebAssembly: [wasmlog.zig](wasmlog.zig)
 
 (Based on [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger))
 
@@ -708,13 +708,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L67-L87
 
-This is how we call the WebAssembly Logger...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/f81cc3148dd487abc7660b9e634d40735c42ccf8/lvglwasm.zig#L9-L10
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/f81cc3148dd487abc7660b9e634d40735c42ccf8/lvglwasm.zig#L35-L39
-
-TODO
+Now we can see the LVGL Log Messages in the JavaScript Console yay!
 
 ```text
 custom_logger: [Warn]	(0.001, +1)
@@ -723,11 +717,13 @@ no display registered to get its active screen
 (in lv_disp.c line #54)
 ```
 
+Let's initialise the LVGL Display...
+
 # Initialise LVGL Display
 
 TODO: Init LVGL
 
-# Render LVGL App in Web Browser
+# Render LVGL Display in Web Browser
 
 TODO: Render LVGL Display
 
