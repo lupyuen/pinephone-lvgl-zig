@@ -157,8 +157,9 @@ function compile_lvgl {
     -target wasm32-freestanding \
     -dynamic \
     -rdynamic \
-    -DFAR= \
     -lc \
+    -DFAR= \
+    -DLV_USE_LOG \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -c \
     -fno-common \

@@ -467,15 +467,19 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-dynamic` and `-rdynamic`
 
+- Add `-lc` (because we're calling C Standard Library)
+
 - Add `-DFAR=` (because we won't need Far Pointers)
 
-- Add `-lc` (TODO: Why use libc?)
+- Add `-DLV_USE_LOG` (to enable logging)
 
 - Change `"-DLV_ASSERT_HANDLER..."` to...
 
   ```text
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}"
   ```
+
+  (To handle Assertion Failures ourselves)
 
 - Change the output to...
 
@@ -493,8 +497,9 @@ zig cc \
   -target wasm32-freestanding \
   -dynamic \
   -rdynamic \
-  -DFAR= \
   -lc \
+  -DFAR= \
+  -DLV_USE_LOG \
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
   -c \
   -fno-common \
