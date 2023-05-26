@@ -92,6 +92,7 @@ function build_zig {
     -DFAR= \
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+    -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -I . \
     \
@@ -224,6 +225,7 @@ function compile_lvgl {
     -DFAR= \
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+    -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     \
     -c \

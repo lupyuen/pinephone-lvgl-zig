@@ -474,6 +474,8 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE` (for detailed logging)
 
+- Add `-DLV_MEM_SIZE=1000000` (for 1,000,000 bytes of dynamically-allocated memory)
+
 - Change `"-DLV_ASSERT_HANDLER..."` to...
 
   ```text
@@ -502,6 +504,7 @@ zig cc \
   -DFAR= \
   -DLV_USE_LOG \
   -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+  -DLV_MEM_SIZE=1000000 \
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
   -c \
   -fno-common \
@@ -560,6 +563,7 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     -DFAR= \
     -DLV_USE_LOG \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+    -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -I . \
     -isystem "../nuttx/include" \
@@ -770,7 +774,11 @@ Finally this is how we initialise the LVGL Display in Zig WebAssembly...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/lvglwasm.zig#L39-L71
 
-TODO: Memory Allocation Failed
+# LVGL Memory Allocation
+
+_What happens if we don't set `-DLV_MEM_SIZE=1000000`?_
+
+The LVGL Memory Allocation fails...
 
 ```text
 lv_demo_widgets: start
@@ -788,13 +796,23 @@ lv_assert_handler: assertion failed
 lv_assert_handler: assertion failed
 ```
 
+[`lv_mem_alloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_mem.c#L120-L148) calls [`lv_tlsf_malloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L1098-L1104) and fails to allocate memory.
+
+That's because the Dynamic Memory Pool is too small: We need 106,824 bytes but only 64,056 bytes are available.
+
+Hence we set `-DLV_MEM_SIZE=1000000` in the Zig Compiler.
+
 TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
 
-[`lv_mem_alloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_mem.c#L120-L148) calls [`lv_tlsf_malloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L1098-L1104) and fails to allocate memory
+# TODO
 
-TODO: Is there a problem with [`lv_tlsf_malloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L1098-L1104)?
+TODO: Why no screen found?
 
-TODO: Is the Memory Pool too small? We need 106,824 bytes but only 64,056 bytes available
+```text
+[Trace]	lv_init: finished 	(in lv_obj.c line #183)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #287)
+```
 
 # Render LVGL Display in Web Browser
 
