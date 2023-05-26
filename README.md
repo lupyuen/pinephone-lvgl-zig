@@ -689,7 +689,13 @@ TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
 # Custom Logger for LVGL
 
+We set the Custom Logger for LVGL, so that we can print Log Messages to the JavaScript Console...
 
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L32-L43
+
+The Custom Logger is defined here...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/590466167836019bbe56bab03ad859a4174bb0e8/lvglwasm.zig#L147-L151
 
 # Render LVGL App in Web Browser
 
