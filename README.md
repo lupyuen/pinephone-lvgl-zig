@@ -470,7 +470,7 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DFAR=` (because we won't need Far Pointers)
 
-- Add `-DLV_USE_LOG` (to enable logging)
+- Add `-DLV_USE_LOG=1` (to enable logging)
 
 - Add `-DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE` (for detailed logging)
 
@@ -502,7 +502,7 @@ zig cc \
   -rdynamic \
   -lc \
   -DFAR= \
-  -DLV_USE_LOG \
+  -DLV_USE_LOG=1 \
   -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
   -DLV_MEM_SIZE=1000000 \
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
@@ -561,7 +561,7 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     -rdynamic \
     -lc \
     -DFAR= \
-    -DLV_USE_LOG \
+    -DLV_USE_LOG=1 \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \

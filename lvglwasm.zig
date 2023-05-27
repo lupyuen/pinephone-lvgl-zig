@@ -60,7 +60,9 @@ pub export fn lv_demo_widgets() void {
     );
 
     // Register the Display Driver
+    debug("before lv_disp_drv_register", .{}); ////
     const disp = c.lv_disp_drv_register(disp_drv);
+    debug("after lv_disp_drv_register", .{}); ////
     _ = disp;
 
     // Create the widgets for display (with Zig Wrapper)
@@ -74,7 +76,9 @@ pub export fn lv_demo_widgets() void {
     // TODO: Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
     var i: usize = 0;
     while (i < 10) : (i += 1) {
+        debug("lv_timer_handler: start", .{});
         _ = c.lv_timer_handler();
+        debug("lv_timer_handler: end", .{});
     }
 }
 
