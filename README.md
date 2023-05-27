@@ -805,17 +805,30 @@ Hence we set `-DLV_MEM_SIZE=1000000` in the Zig Compiler.
 TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
 
 ```text
-004a515a:0x298ce Uncaught (in promise) RuntimeError: unreachable
-    at std.builtin.default_panic (004a515a:0x298ce)
-    at lv_assert_handler (004a515a:0x2aa88)
-    at block_next (004a515a:0xd3cf)
-    at lv_tlsf_realloc (004a515a:0xe042)
-    at lv_mem_realloc (004a515a:0x1fd8)
-    at lv_layout_register (004a515a:0x73f4)
-    at lv_flex_init (004a515a:0x1691a)
-    at lv_extra_init (004a515a:0x16901)
-    at lv_init (004a515a:0x3d44)
-    at lv_demo_widgets (004a515a:0x299d5)
+main: start
+loop: start
+lv_demo_widgets: start
+before lv_init
+[Info]	lv_init: begin 	(in lv_obj.c line #102)
+[Trace]	lv_mem_alloc: allocating 76 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x1a700 	(in lv_mem.c line #160)
+[Trace]	lv_mem_alloc: allocating 28 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x1a750 	(in lv_mem.c line #160)
+[Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
+[Trace]	lv_mem_realloc: reallocating 0x14 with 8 size 	(in lv_mem.c line #196)
+[Error]	block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #459)
+
+004a5b4a:0x29ab2 Uncaught (in promise) RuntimeError: unreachable
+    at std.builtin.default_panic (004a5b4a:0x29ab2)
+    at lv_assert_handler (004a5b4a:0x2ac6c)
+    at block_next (004a5b4a:0xd5b3)
+    at lv_tlsf_realloc (004a5b4a:0xe226)
+    at lv_mem_realloc (004a5b4a:0x20f1)
+    at lv_layout_register (004a5b4a:0x75d8)
+    at lv_flex_init (004a5b4a:0x16afe)
+    at lv_extra_init (004a5b4a:0x16ae5)
+    at lv_init (004a5b4a:0x3f28)
+    at lv_demo_widgets (004a5b4a:0x29bb9)
 ```
 
 [Two-Level Segregate Fit (TLSF) Allocator](http://www.gii.upv.es/tlsf/)
