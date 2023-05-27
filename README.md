@@ -804,6 +804,11 @@ Hence we set `-DLV_MEM_SIZE=1000000` in the Zig Compiler.
 
 TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
 
+[Two-Level Segregate Fit (TLSF) Allocator](http://www.gii.upv.es/tlsf/)
+
+[`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) calls [`offset_to_block`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L440-L444), which calls...
+- [`tlsf_cast`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L274)
+
 # TODO
 
 TODO: Why no screen found in [lv_obj_get_disp](https://github.com/lvgl/lvgl/blob/v8.3.3/src/core/lv_obj_tree.c#L270-L289)?
