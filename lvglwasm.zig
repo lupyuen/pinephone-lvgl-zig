@@ -40,6 +40,9 @@ pub export fn lv_demo_widgets() void {
     debug("lv_demo_widgets: start", .{});
     defer debug("lv_demo_widgets: end", .{});
 
+    // Create the Memory Allocator for malloc
+    memory_allocator = std.heap.FixedBufferAllocator.init(&memory_buffer);
+
     // Set the Custom Logger for LVGL
     c.lv_log_register_print_cb(custom_logger);
 
@@ -188,6 +191,45 @@ export fn lv_assert_handler() void {
 export fn custom_logger(buf: [*c]const u8) void {
     wasmlog.Console.log("{s}", .{buf});
 }
+
+///////////////////////////////////////////////////////////////////////////////
+//  Memory Allocator for malloc
+
+/// Zig replacement for malloc
+export fn malloc(size: usize) ?*anyopaque {
+    const mem = memory_allocator.allocator().alloc(u8, size) catch {
+        @panic("*** malloc error: out of memory");
+    };
+    return mem.ptr;
+}
+
+/// Zig replacement for realloc
+export fn realloc(old_mem: [*c]u8, size: usize) ?*anyopaque {
+    if (old_mem != null) {
+        // TODO: memory_allocator.allocator().free(old_mem[0..1]);
+    }
+    // const mem = memory_allocator.allocator().realloc(old_mem[0..1], size) catch {
+    //     @panic("*** malloc error: out of memory");
+    // };
+    const mem = memory_allocator.allocator().alloc(u8, size) catch {
+        @panic("*** realloc error: out of memory");
+    };
+    return mem.ptr;
+}
+
+/// Zig replacement for free
+export fn free(mem: [*c]u8) void {
+    if (mem == null) {
+        @panic("*** free error: pointer is null");
+    }
+    // TODO: memory_allocator.allocator().free(mem[0..1]);
+}
+
+/// Memory Allocator for malloc
+var memory_allocator: std.heap.FixedBufferAllocator = undefined;
+
+/// Memory Buffer for malloc
+var memory_buffer: [1024 * 1024]u8 = undefined;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Logging

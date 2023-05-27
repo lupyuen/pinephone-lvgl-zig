@@ -357,6 +357,8 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
 
 [(According to this)](https://ziglang.org/documentation/master/#Freestanding)
 
+(We removed our Custom Panic Handler, the default one works fine for WebAssembly)
+
 This produces the Compiled WebAssembly [`lvglwasm.wasm`](lvglwasm.wasm).
 
 Start a Local Web Server. [(Like Web Server for Chrome)](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
@@ -470,11 +472,11 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DFAR=` (because we won't need Far Pointers)
 
+- Add `-DLV_MEM_CUSTOM=1` (because we're using `malloc` instead of LVGL's TLSF Allocator)
+
 - Add `-DLV_USE_LOG=1` (to enable logging)
 
 - Add `-DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE` (for detailed logging)
-
-- Add `-DLV_MEM_SIZE=1000000` (for 1,000,000 bytes of dynamically-allocated memory)
 
 - Change `"-DLV_ASSERT_HANDLER..."` to...
 
@@ -502,9 +504,9 @@ zig cc \
   -rdynamic \
   -lc \
   -DFAR= \
+  -DLV_MEM_CUSTOM=1 \
   -DLV_USE_LOG=1 \
   -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
-  -DLV_MEM_SIZE=1000000 \
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
   -c \
   -fno-common \
@@ -561,9 +563,9 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     -rdynamic \
     -lc \
     -DFAR= \
+    -DLV_MEM_CUSTOM=1 \
     -DLV_USE_LOG=1 \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
-    -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -I . \
     -isystem "../nuttx/include" \
@@ -776,33 +778,11 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd
 
 # LVGL Memory Allocation
 
-_What happens if we don't set `-DLV_MEM_SIZE=1000000`?_
+_What happens if we omit `-DLV_MEM_CUSTOM=1`?_
 
-The LVGL Memory Allocation fails...
+By default, LVGL uses the [Two-Level Segregate Fit (TLSF) Allocator](http://www.gii.upv.es/tlsf/) for Heap Memory.
 
-```text
-lv_demo_widgets: start
-[Info]	lv_init: begin 	(in lv_obj.c line #102)
-[Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
-[Error]	block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
-lv_assert_handler: assertion failed
-[Error]	block_next: Asserted at expression: !block_is_last(block) 	(in lv_tlsf.c line #458)
-lv_assert_handler: assertion failed
-[Trace]	lv_init: finished 	(in lv_obj.c line #183)
-
-[Info]	lv_mem_alloc: couldn't allocate memory (106824 bytes) 	(in lv_mem.c line #140)
-[Info]	lv_mem_alloc: used:   1480 (  3 %), frag:   0 %, biggest free:  64056 	(in lv_mem.c line #146)
-[Error]	lv_disp_drv_register: Asserted at expression: disp != NULL (Out of memory) 	(in lv_hal_disp.c line #162)
-lv_assert_handler: assertion failed
-```
-
-[`lv_mem_alloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_mem.c#L120-L148) calls [`lv_tlsf_malloc`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L1098-L1104) and fails to allocate memory.
-
-That's because the Dynamic Memory Pool is too small: We need 106,824 bytes but only 64,056 bytes are available.
-
-Hence we set `-DLV_MEM_SIZE=1000000` in the Zig Compiler.
-
-TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
+But TLSF Allocator fails in [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460)...
 
 ```text
 main: start
@@ -831,10 +811,15 @@ before lv_init
     at lv_demo_widgets (004a5b4a:0x29bb9)
 ```
 
-[Two-Level Segregate Fit (TLSF) Allocator](http://www.gii.upv.es/tlsf/)
+Thus we set `-DLV_MEM_CUSTOM=1` to use `malloc` instead of LVGL's TLSF Allocator.
 
-[`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) calls [`offset_to_block`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L440-L444), which calls...
-- [`tlsf_cast`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L274)
+([`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) calls [`offset_to_block`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L440-L444), which calls [`tlsf_cast`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L274). Maybe the Pointer Cast doesn't work for Clang WebAssembly?)
+
+_But Zig doesn't support `malloc` for WebAssembly!_
+
+We implemented `malloc` ourselves...
+
+TODO
 
 # TODO
 
