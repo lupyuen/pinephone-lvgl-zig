@@ -170,16 +170,17 @@ export fn millis() u32 {
     return elapsed_ms;
 }
 
+/// Number of elapsed milliseconds
 var elapsed_ms: u32 = 0;
 
-/// TODO: Print a Stack Trace on Assertion Failure
+/// TODO: Print a Stack Trace on Assertion Failure and halt
 export fn lv_assert_handler() void {
-    wasmlog.Console.log("lv_assert_handler: assertion failed", .{});
+    wasmlog.Console.log("*** lv_assert_handler: ASSERTION FAILED", .{});
 }
 
 /// Custom Logger for LVGL that writes to JavaScript Console
 export fn custom_logger(buf: [*c]const u8) void {
-    wasmlog.Console.log("custom_logger: {s}", .{buf});
+    wasmlog.Console.log("{s}", .{buf});
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -189,24 +190,21 @@ export fn custom_logger(buf: [*c]const u8) void {
 /// https://andrewkelley.me/post/zig-stack-traces-kernel-panic-bare-bones-os.html
 /// https://github.com/ziglang/zig/blob/master/lib/std/builtin.zig#L763-L847
 pub fn panic(message: []const u8, _stack_trace: ?*std.builtin.StackTrace) noreturn {
-    _ = message;
-    print(1000); // TODO
-
     // Print the Panic Message
     _ = _stack_trace;
-    // TODO: _ = puts("\n!ZIG PANIC!");
-    // TODO: _ = puts(@ptrCast([*c]const u8, message));
+    wasmlog.Console.log("\n!ZIG PANIC!\n{s}", .{message});
 
-    // Print the Stack Trace
-    // _ = puts("Stack Trace:");
+    // TODO: Print the Stack Trace
+    wasmlog.Console.log("Stack Trace:", .{});
     var it = std.debug.StackIterator.init(@returnAddress(), null);
     while (it.next()) |return_address| {
-        print(@intCast(i32, return_address));
-        // Previously: _ = printf("%p\n", return_address);
+        wasmlog.Console.log("{}", .{@intCast(i32, return_address)});
     }
 
     // Halt
-    while (true) {}
+    while (true) {
+        wasmlog.Console.log("Halted", .{});
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -226,17 +224,12 @@ pub fn log(
     // Format the message
     var buf: [100]u8 = undefined; // Limit to 100 chars
     var slice = std.fmt.bufPrint(&buf, format, args) catch {
-        print(2000);
+        wasmlog.Console.log("*** log error: buf too small", .{});
         return;
-    }; // TODO
-
-    // Terminate the formatted message with a null
-    var buf2: [buf.len + 1:0]u8 = undefined;
-    std.mem.copy(u8, buf2[0..slice.len], slice[0..slice.len]);
-    buf2[slice.len] = 0;
+    };
 
     // Print the formatted message
-    wasmlog.Console.log("log: {s}", .{buf2});
+    wasmlog.Console.log("{s}", .{slice});
 }
 
 ///////////////////////////////////////////////////////////////////////////////
