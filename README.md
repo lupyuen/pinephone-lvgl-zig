@@ -482,7 +482,7 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
   "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}"
   ```
 
-  (To handle Assertion Failures ourselves)
+  [(To handle Assertion Failures ourselves)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/bee0e8d8ab9eae3a8c7cea6c64cc7896a5678f53/lvglwasm.zig#L170-L190)
 
 - Change the output to...
 
@@ -689,7 +689,7 @@ function import requires a callable
 
 We implement `millis` ourselves for WebAssembly...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/39da0a4251a15b8a83d6631db37d554defc2daad/lvglwasm.zig#L134-L148
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/bee0e8d8ab9eae3a8c7cea6c64cc7896a5678f53/lvglwasm.zig#L170-L190
 
 TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
 
