@@ -832,9 +832,463 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb8801
 TODO: Why no screen found in [lv_obj_get_disp](https://github.com/lvgl/lvgl/blob/v8.3.3/src/core/lv_obj_tree.c#L270-L289)?
 
 ```text
+main: start
+loop: start
+lv_demo_widgets: start
+before lv_init
+[Info]	lv_init: begin 	(in lv_obj.c line #102)
+[Trace]	lv_mem_alloc: allocating 76 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x19d78 	(in lv_mem.c line #160)
+[Trace]	lv_mem_alloc: allocating 28 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x19dc4 	(in lv_mem.c line #160)
+[Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
+[Trace]	lv_mem_realloc: reallocating 0x14 with 8 size 	(in lv_mem.c line #196)
+[Trace]	lv_mem_realloc: allocated at 0x19de0 	(in lv_mem.c line #215)
+[Trace]	lv_mem_realloc: reallocating 0x19de0 with 32 size 	(in lv_mem.c line #196)
+[Trace]	lv_mem_realloc: allocated at 0x19de8 	(in lv_mem.c line #215)
+[Trace]	lv_mem_realloc: reallocating 0x19de8 with 16 size 	(in lv_mem.c line #196)
+[Trace]	lv_mem_realloc: allocated at 0x19e08 	(in lv_mem.c line #215)
 [Trace]	lv_init: finished 	(in lv_obj.c line #183)
+after lv_init
+before lv_disp_drv_register
+lv_disp_drv_register
+[Trace]	lv_mem_alloc: allocating 106000 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x19e18 	(in lv_mem.c line #160)
+lv_disp_drv_register: disp=0x19e18
+[Trace]	lv_mem_alloc: allocating 84 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x33c28 	(in lv_mem.c line #160)
+[Trace]	lv_mem_alloc: allocating 106000 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x33c7c 	(in lv_mem.c line #160)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #287)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x12014 class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_mem_alloc: allocating 36 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4da8c 	(in lv_mem.c line #160)
+[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+[Trace]	lv_mem_alloc: allocating 4 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4dab0 	(in lv_mem.c line #160)
+screen_cnt1=1
+new screen1=0x4da8c
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x12014 class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_mem_alloc: allocating 36 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4dab4 	(in lv_mem.c line #160)
+[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+[Trace]	lv_mem_realloc: reallocating 0x4dab0 with 8 size 	(in lv_mem.c line #196)
+[Trace]	lv_mem_realloc: allocated at 0x4dad8 	(in lv_mem.c line #215)
+screen_cnt2=2
+new screen2=0x4dab4
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x12014 class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_mem_alloc: allocating 36 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4dae0 	(in lv_mem.c line #160)
+[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+[Trace]	lv_mem_realloc: reallocating 0x4dad8 with 12 size 	(in lv_mem.c line #196)
+[Trace]	lv_mem_realloc: allocated at 0x4db04 	(in lv_mem.c line #215)
+screen_cnt2=3
+new screen2=0x4dae0
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	lv_mem_alloc: allocating 28 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4db10 	(in lv_mem.c line #160)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dab4
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	lv_mem_alloc: allocating 28 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4db2c 	(in lv_mem.c line #160)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4dae0
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+lv_disp_drv_register OK
+after lv_disp_drv_register
+createWidgetsWrapped: start
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x10000 class on 0x4da8c parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_mem_alloc: allocating 76 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4db48 	(in lv_mem.c line #160)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #86)
+[Trace]	lv_mem_alloc: allocating 28 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4db94 	(in lv_mem.c line #160)
+[Trace]	lv_mem_alloc: allocating 4 bytes 	(in lv_mem.c line #127)
+[Trace]	lv_mem_alloc: allocated at 0x4dbb0 	(in lv_mem.c line #160)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.100, +1)	 lv_mem_alloc: allocating 5 bytes 	(in lv_mem.c line #127)
+[Trace]	(0.101, +1)	 lv_mem_alloc: allocated at 0x4dbb4 	(in lv_mem.c line #160)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.102, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.103, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.104, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.105, +1)	 lv_label_constructor: finished 	(in lv_label.c line #721)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.106, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.107, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.108, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.109, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.110, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.111, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.112, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.113, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.114, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.115, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.116, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.117, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.118, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.119, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.120, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.121, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.122, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.123, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.124, +1)	 lv_mem_realloc: reallocating 0 with 8 size 	(in lv_mem.c line #196)
+[Trace]	(0.125, +1)	 lv_mem_realloc: allocated at 0x4dbb9 	(in lv_mem.c line #215)
+[Trace]	(0.126, +1)	 lv_mem_alloc: allocating 8 bytes 	(in lv_mem.c line #127)
+[Trace]	(0.127, +1)	 lv_mem_alloc: allocated at 0x4dbc1 	(in lv_mem.c line #160)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.128, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.129, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.130, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.131, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.132, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.133, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.134, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.135, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.136, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.137, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.138, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.139, +1)	 lv_mem_free: freeing 0x4dbb4 	(in lv_mem.c line #171)
+[Trace]	(0.140, +1)	 lv_mem_alloc: allocating 53 bytes 	(in lv_mem.c line #127)
+[Trace]	(0.141, +1)	 lv_mem_alloc: allocated at 0x4dbc9 	(in lv_mem.c line #160)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.142, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.143, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.144, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.145, +1)	 lv_mem_alloc: allocating 12 bytes 	(in lv_mem.c line #127)
+[Trace]	(0.146, +1)	 lv_mem_alloc: allocated at 0x4dbfe 	(in lv_mem.c line #160)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.147, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.148, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.149, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.150, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.151, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.152, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.153, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.154, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.155, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.156, +1)	 lv_mem_realloc: reallocating 0x4dbfe with 18 size 	(in lv_mem.c line #196)
+[Trace]	(0.157, +1)	 lv_mem_realloc: allocated at 0x4dc0a 	(in lv_mem.c line #215)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.158, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.159, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.160, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.161, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.162, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.163, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.164, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.165, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.166, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.167, +1)	 lv_mem_realloc: reallocating 0x4dc0a with 24 size 	(in lv_mem.c line #196)
+[Trace]	(0.168, +1)	 lv_mem_realloc: allocated at 0x4dc1c 	(in lv_mem.c line #215)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.169, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.170, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.171, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.172, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.173, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.174, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.175, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.176, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.177, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+[Trace]	(0.178, +1)	 lv_mem_realloc: reallocating 0x4dc1c with 30 size 	(in lv_mem.c line #196)
+[Trace]	(0.179, +1)	 lv_mem_realloc: allocated at 0x4dc34 	(in lv_mem.c line #215)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.180, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.181, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.182, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.183, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.184, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.185, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.186, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0x4da8c
+scr=0x4da8c
+[Warn]	(0.187, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+obj->parent=0
+scr=0x4da8c
+[Warn]	(0.188, +1)	 lv_obj_get_disp: No screen found 	(in lv_obj_tree.c line #290)
+createWidgetsWrapped: end
+lv_timer_handler: start
+[Trace]	(0.189, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.193, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.194, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.198, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.199, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.203, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.204, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.208, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.209, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.213, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.214, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.218, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.219, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.223, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.224, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.228, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.229, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.233, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	(0.234, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	(0.238, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_demo_widgets: end
+lv_demo_widgets: done
+loop: end
+main: end
 ```
 
 TODO: Call `lv_tick_inc` and `lv_timer_handler`
