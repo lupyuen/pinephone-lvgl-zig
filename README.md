@@ -825,6 +825,8 @@ To implement `malloc` ourselves...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb88018e0b8ab981f/lvglwasm.zig#L195-L232
 
+[(If we ever remove `-DLV_MEM_CUSTOM=1`, remember to set `-DLV_MEM_SIZE=1000000`)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/aa080fb2ce55f9959cce2b6fff7e5fd5c9907cd6/README.md#lvgl-memory-allocation)
+
 # TODO
 
 TODO: Why no screen found in [lv_obj_get_disp](https://github.com/lvgl/lvgl/blob/v8.3.3/src/core/lv_obj_tree.c#L270-L289)?
