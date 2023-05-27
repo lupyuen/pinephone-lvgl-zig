@@ -197,6 +197,7 @@ export fn custom_logger(buf: [*c]const u8) void {
 
 /// Zig replacement for malloc
 export fn malloc(size: usize) ?*anyopaque {
+    // TODO: Save the slice length
     const mem = memory_allocator.allocator().alloc(u8, size) catch {
         @panic("*** malloc error: out of memory");
     };
@@ -206,10 +207,12 @@ export fn malloc(size: usize) ?*anyopaque {
 /// Zig replacement for realloc
 export fn realloc(old_mem: [*c]u8, size: usize) ?*anyopaque {
     if (old_mem != null) {
-        // TODO: memory_allocator.allocator().free(old_mem[0..1]);
+        // TODO: How to free without the slice length?
+        // memory_allocator.allocator().free(old_mem[0..???]);
     }
-    // const mem = memory_allocator.allocator().realloc(old_mem[0..1], size) catch {
-    //     @panic("*** malloc error: out of memory");
+    // TODO: Call realloc instead
+    // const mem = memory_allocator.allocator().realloc(old_mem[0..???], size) catch {
+    //     @panic("*** realloc error: out of memory");
     // };
     const mem = memory_allocator.allocator().alloc(u8, size) catch {
         @panic("*** realloc error: out of memory");
@@ -222,7 +225,8 @@ export fn free(mem: [*c]u8) void {
     if (mem == null) {
         @panic("*** free error: pointer is null");
     }
-    // TODO: memory_allocator.allocator().free(mem[0..1]);
+    // TODO: How to free without the slice length?
+    // memory_allocator.allocator().free(mem[0..???]);
 }
 
 /// Memory Allocator for malloc
