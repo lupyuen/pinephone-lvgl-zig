@@ -93,6 +93,7 @@ function build_zig {
     -DLV_USE_LOG=1 \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     -DLV_LOG_TRACE_OBJ_CREATE=1 \
+    -DLV_LOG_TRACE_TIMER=1 \
     -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     -I . \
@@ -227,6 +228,7 @@ function compile_lvgl {
     -DLV_USE_LOG=1 \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     -DLV_LOG_TRACE_OBJ_CREATE=1 \
+    -DLV_LOG_TRACE_TIMER=1 \
     -DLV_MEM_SIZE=1000000 \
     "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
     \

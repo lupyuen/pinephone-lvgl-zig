@@ -44,7 +44,9 @@ pub export fn lv_demo_widgets() void {
     c.lv_log_register_print_cb(custom_logger);
 
     // Init LVGL
+    debug("before lv_init", .{}); ////
     c.lv_init();
+    debug("after lv_init", .{}); ////
 
     // Fetch pointers to Display Driver and Display Buffer
     const disp_drv = c.get_disp_drv();
@@ -177,38 +179,14 @@ export fn millis() u32 {
 /// Number of elapsed milliseconds
 var elapsed_ms: u32 = 0;
 
-/// TODO: Print a Stack Trace on Assertion Failure and halt
+/// On Assertion Failure, print a Stack Trace and halt
 export fn lv_assert_handler() void {
-    wasmlog.Console.log("*** lv_assert_handler: ASSERTION FAILED", .{});
+    @panic("*** lv_assert_handler: ASSERTION FAILED");
 }
 
 /// Custom Logger for LVGL that writes to JavaScript Console
 export fn custom_logger(buf: [*c]const u8) void {
     wasmlog.Console.log("{s}", .{buf});
-}
-
-///////////////////////////////////////////////////////////////////////////////
-//  Panic Handler
-
-/// Called by Zig when it hits a Panic. We print the Panic Message, Stack Trace and halt. See
-/// https://andrewkelley.me/post/zig-stack-traces-kernel-panic-bare-bones-os.html
-/// https://github.com/ziglang/zig/blob/master/lib/std/builtin.zig#L763-L847
-pub fn panic(message: []const u8, _stack_trace: ?*std.builtin.StackTrace) noreturn {
-    // Print the Panic Message
-    _ = _stack_trace;
-    wasmlog.Console.log("\n!ZIG PANIC!\n{s}", .{message});
-
-    // TODO: Print the Stack Trace
-    wasmlog.Console.log("Stack Trace:", .{});
-    var it = std.debug.StackIterator.init(@returnAddress(), null);
-    while (it.next()) |return_address| {
-        wasmlog.Console.log("{}", .{@intCast(i32, return_address)});
-    }
-
-    // Halt
-    while (true) {
-        wasmlog.Console.log("Halted", .{});
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
