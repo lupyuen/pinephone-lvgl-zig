@@ -79,6 +79,7 @@ function build_zig {
   compile_lvgl font/lv_font_fmt_txt.c lv_font_fmt_txt.o
   compile_lvgl draw/lv_draw_layer.c lv_draw_layer.o
   compile_lvgl misc/lv_style_gen.c lv_style_gen.o
+  compile_lvgl misc/lv_gc.c lv_gc.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -179,6 +180,7 @@ function build_zig {
     lv_font_fmt_txt.o \
     lv_draw_layer.o \
     lv_style_gen.o \
+    lv_gc.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
