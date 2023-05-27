@@ -817,9 +817,13 @@ Thus we set `-DLV_MEM_CUSTOM=1` to use `malloc` instead of LVGL's TLSF Allocator
 
 _But Zig doesn't support `malloc` for WebAssembly!_
 
-We implemented `malloc` ourselves...
+We used Zig's FixedBufferAllocator...
 
-TODO
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb88018e0b8ab981f/lvglwasm.zig#L38-L44
+
+To implement `malloc` ourselves...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb88018e0b8ab981f/lvglwasm.zig#L195-L232
 
 # TODO
 
