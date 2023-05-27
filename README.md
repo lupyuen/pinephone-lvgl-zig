@@ -804,6 +804,20 @@ Hence we set `-DLV_MEM_SIZE=1000000` in the Zig Compiler.
 
 TODO: Why did [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) fail? (`lv_tlsf.c` line #458)
 
+```text
+004a515a:0x298ce Uncaught (in promise) RuntimeError: unreachable
+    at std.builtin.default_panic (004a515a:0x298ce)
+    at lv_assert_handler (004a515a:0x2aa88)
+    at block_next (004a515a:0xd3cf)
+    at lv_tlsf_realloc (004a515a:0xe042)
+    at lv_mem_realloc (004a515a:0x1fd8)
+    at lv_layout_register (004a515a:0x73f4)
+    at lv_flex_init (004a515a:0x1691a)
+    at lv_extra_init (004a515a:0x16901)
+    at lv_init (004a515a:0x3d44)
+    at lv_demo_widgets (004a515a:0x299d5)
+```
+
 [Two-Level Segregate Fit (TLSF) Allocator](http://www.gii.upv.es/tlsf/)
 
 [`block_next`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L453-L460) calls [`offset_to_block`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_tlsf.c#L440-L444), which calls...
