@@ -90,14 +90,18 @@ export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t,
     debug("flushDisplay: start", .{});
     defer debug("flushDisplay: end", .{});
 
+    // Call the Web Browser JavaScript o render the LVGL Canvas Buffer
+    render();
+
     // Notify LVGL that the display is flushed
     c.lv_disp_flush_ready(disp_drv);
 }
 
-// Return a WebAssembly Pointer to the Display Buffer
-// export fn getCheckerboardBufferPointer() [*]u8 {
-//     return @ptrCast([*]u8, &checkerboard_buffer);
-// }
+/// Return a WebAssembly Pointer to the LVGL Canvas Buffer for JavaScript Rendering
+export fn getCanvasBuffer() [*]u8 {
+    const buf = c.get_canvas_buffer();
+    return @ptrCast([*]u8, buf);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
@@ -266,9 +270,8 @@ pub fn log(
 ///////////////////////////////////////////////////////////////////////////////
 //  Imported Functions and Variables
 
-/// Extern functions refer to the exterior JS namespace
-/// when importing wasm code, the `print` func must be provided
-extern fn print(i32) void;
+/// JavaScript Functions imported into Zig WebAssembly
+extern fn render() void;
 
 /// Aliases for Zig Standard Library
 const assert = std.debug.assert;

@@ -6,12 +6,25 @@
 #include <lvgl/lvgl.h>
 #include "display.h"
 
-// Display Buffer
+// Canvas Buffer for rendering LVGL Display
 #define HOR_RES     720      // Horizontal Resolution
 #define VER_RES     1280     // Vertical Resolution
 #define BUFFER_ROWS VER_RES  // Number of rows to buffer
 #define BUFFER_SIZE (HOR_RES * BUFFER_ROWS)
-static lv_color_t display_buffer[BUFFER_SIZE];
+static lv_color_t canvas_buffer[BUFFER_SIZE];
+
+lv_color_t *get_canvas_buffer(void)
+{
+  int count = 0;
+  for (int i = 0; i < BUFFER_SIZE; i++) {
+    if (canvas_buffer[i].full != 0xfff5f5f5) {  // TODO
+      lv_log("get_canvas_buffer: 0x%x", canvas_buffer[i].full);
+      count++; 
+    }
+  }
+  lv_log("get_canvas_buffer: %d", count);
+  return canvas_buffer;
+}
 
 /****************************************************************************
  * Name: get_disp_drv
@@ -89,5 +102,5 @@ void init_disp_drv(
 void init_disp_buf(lv_disp_draw_buf_t *disp_buf)
 {
   LV_ASSERT(disp_buf != NULL);
-  lv_disp_draw_buf_init(disp_buf, display_buffer, NULL, BUFFER_SIZE);
+  lv_disp_draw_buf_init(disp_buf, canvas_buffer, NULL, BUFFER_SIZE);
 }
