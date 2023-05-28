@@ -874,8 +874,7 @@ Why the invalid Style Pointer `0xaaaaaaaa`?
 
 Because we forgot to copy the old memory in `realloc`. Duh!
 
-
-
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b006a9faa95b58/lvglwasm.zig#L207-L222
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
