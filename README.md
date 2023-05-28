@@ -915,7 +915,7 @@ flushDisplay: start
 flushDisplay: end
 ```
 
-TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
+TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
 # LVGL Screen Not Found
 
