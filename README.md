@@ -870,6 +870,8 @@ obj->styles[i].style=0xaaaaaaaa
 RuntimeError: memory access out of bounds
 ```
 
+Why the invalid Style Pointer `0xaaaaaaaa`?
+
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
 ```text
