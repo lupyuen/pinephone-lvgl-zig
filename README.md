@@ -851,6 +851,18 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 [(If we ever remove `-DLV_MEM_CUSTOM=1`, remember to set `-DLV_MEM_SIZE=1000000`)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/aa080fb2ce55f9959cce2b6fff7e5fd5c9907cd6/README.md#lvgl-memory-allocation)
 
+# Render LVGL Display in Web Browser
+
+TODO: Render LVGL Display
+
+TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+
+https://github.com/daneelsan/minimal-zig-wasm-canvas
+
+https://github.com/daneelsan/Dodgeballz/tree/master/src
+
+https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
+
 # TODO
 
 TODO: Call `lv_tick_inc` and `lv_timer_handler`
@@ -1010,18 +1022,6 @@ before lv_disp_drv_register
 ```
 
 [(See the Complete Log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/9610bb5209a072fc5950cf0559b1274d53dd8b8b/README.md#lvgl-screen-not-found)
-
-# Render LVGL Display in Web Browser
-
-TODO: Render LVGL Display
-
-TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
-
-https://github.com/daneelsan/minimal-zig-wasm-canvas
-
-https://github.com/daneelsan/Dodgeballz/tree/master/src
-
-https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
 
 # Zig with Rancher Desktop
 
