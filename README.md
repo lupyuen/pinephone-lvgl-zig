@@ -855,7 +855,22 @@ TODO: Memory access out of bounds at [`lv_obj_get_style_prop`](https://github.co
 
 Which calls [`get_prop_core`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/core/lv_obj_style.c#L572-L637) and crashes
 
-TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code?
+```text
+get_prop_core9a
+obj=0x1bde0
+obj->style_cnt=3
+i=0
+obj->styles[i].style=0x1a3a8
+
+get_prop_core9a
+obj=0x1bde0
+obj->style_cnt=3
+i=1
+obj->styles[i].style=0xaaaaaaaa
+RuntimeError: memory access out of bounds
+```
+
+TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
 ```text
 main: start
