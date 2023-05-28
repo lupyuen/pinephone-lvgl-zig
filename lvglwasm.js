@@ -1,4 +1,5 @@
 // Based on
+// https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
 // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
 // https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
 
@@ -39,11 +40,13 @@ request.onload = function() {
             },
 
             // Write to JavaScript Console from Zig
+            // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
             jsConsoleLogWrite: function(ptr, len) {
                 console_log_buffer += wasm.getString(ptr, len);
             },
 
             // Flush JavaScript Console from Zig
+            // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
             jsConsoleLogFlush: function() {
                 console.log(console_log_buffer);
                 console_log_buffer = "";
@@ -57,12 +60,6 @@ request.onload = function() {
         main();
     });
 };
-
-// WebAssembly Memory for copying the LVGL Canvas from Zig
-var wasmMemory = new WebAssembly.Memory({
-    initial: 2 /* pages */,
-    maximum: 2 /* pages */,
-});
 
 // Get the HTML Canvas Context and Image Data
 const canvas = window.document.getElementById("lvgl_canvas");
@@ -80,7 +77,6 @@ const main = function() {
 
         // Render the LVGL Widgets in Zig
         wasm.instance.exports.lv_demo_widgets();
-        console.log("lv_demo_widgets: done");
 
         // loop to next frame. Disabled for now because it slows down the browser.
         // TODO: window.requestAnimationFrame(loop);
@@ -92,6 +88,7 @@ const main = function() {
 };
 
 // Log WebAssembly Messages from Zig to JavaScript Console
+// https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
 const text_decoder = new TextDecoder();
 let console_log_buffer = "";
 
