@@ -841,11 +841,11 @@ _But Zig doesn't support `malloc` for WebAssembly!_
 
 We used Zig's FixedBufferAllocator...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb88018e0b8ab981f/lvglwasm.zig#L38-L44
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b006a9faa95b58/lvglwasm.zig#L38-L44
 
 To implement `malloc` ourselves...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb88018e0b8ab981f/lvglwasm.zig#L195-L232
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b006a9faa95b58/lvglwasm.zig#L195-L237
 
 [(If we ever remove `-DLV_MEM_CUSTOM=1`, remember to set `-DLV_MEM_SIZE=1000000`)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/aa080fb2ce55f9959cce2b6fff7e5fd5c9907cd6/README.md#lvgl-memory-allocation)
 
