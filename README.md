@@ -896,6 +896,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a
 
 And the LVGL Display renders OK in our HTML Canvas yay!
 
+![Render LVGL Display in Web Browser](https://lupyuen.github.io/images/zig-wasm3.png)
+
 # LVGL Fonts
 
 TODO: Font
