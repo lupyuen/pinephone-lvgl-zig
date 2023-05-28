@@ -843,6 +843,8 @@ LVGL renders the display pixels to `canvas_buffer`...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L95-L107
 
+[(`init_disp_buf` is called by our Zig Program)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L49-L63)
+
 LVGL calls `flushDisplay` (in Zig) when the LVGL Display Canvas is ready to be rendered...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L49-L63
