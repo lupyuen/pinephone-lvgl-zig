@@ -14,26 +14,12 @@ let importObject = {
     }
 };
 
-// Load the WebAssembly Module
-// https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
-async function bootstrap() {
-    // Store references to WebAssembly Functions and Memory exported by Zig
-    Game = await WebAssembly.instantiateStreaming(
-        fetch("mandelbrot.wasm"),
-        importObject
-    );
-
-    // Start the Main Loop
-    main();
-}
-bootstrap();
-
 // Get the HTML Canvas Context
 const canvas = window.document.getElementById("game_canvas");
 const context = canvas.getContext("2d");
 
 // Main Function
-const main = function() {
+function main() {
     console.log("main: start");
 
     // Render Loop
@@ -72,3 +58,20 @@ const main = function() {
     loop();
     console.log("main: end");
 };
+
+// Load the WebAssembly Module
+// https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
+async function bootstrap() {
+
+    // Store references to WebAssembly Functions and Memory exported by Zig
+    Game = await WebAssembly.instantiateStreaming(
+        fetch("mandelbrot.wasm"),
+        importObject
+    );
+
+    // Start the Main Function
+    main();
+}
+
+// Start the loading of WebAssembly Module
+bootstrap();
