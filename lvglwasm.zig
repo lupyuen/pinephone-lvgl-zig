@@ -47,9 +47,7 @@ pub export fn lv_demo_widgets() void {
     c.lv_log_register_print_cb(custom_logger);
 
     // Init LVGL
-    debug("before lv_init", .{}); ////
     c.lv_init();
-    debug("after lv_init", .{}); ////
 
     // Fetch pointers to Display Driver and Display Buffer
     const disp_drv = c.get_disp_drv();
@@ -65,9 +63,7 @@ pub export fn lv_demo_widgets() void {
     );
 
     // Register the Display Driver
-    debug("before lv_disp_drv_register", .{}); ////
     const disp = c.lv_disp_drv_register(disp_drv);
-    debug("after lv_disp_drv_register", .{}); ////
     _ = disp;
 
     // Create the widgets for display (with Zig Wrapper)

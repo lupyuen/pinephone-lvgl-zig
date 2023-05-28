@@ -853,6 +853,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 # TODO
 
+TODO: Why does Web Browser reload hang?
+
 TODO: Call `lv_tick_inc` and `lv_timer_handler`
 
 1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
