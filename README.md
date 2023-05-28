@@ -853,6 +853,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/6cb8fee917d07c268e32e8bcb8801
 
 TODO: Memory access out of bounds at [`lv_obj_get_style_prop`](https://github.com/lvgl/lvgl/blob/v8.3.3/src/core/lv_obj_style.c#L223-L268)
 
+TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code?
+
 ```text
 main: start
 loop: start
