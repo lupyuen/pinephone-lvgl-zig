@@ -156,7 +156,7 @@ make -j
 
 [(Original Build Script)](https://gist.github.com/lupyuen/aa1f5c0c45e6029b10e5e2f955d8386c)
 
-[(Updated Build Script)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L143-L173)
+[(Updated Build Script)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L192-L223)
 
 And our LVGL Zig App runs OK on PinePhone!
 
@@ -620,7 +620,7 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     lv_label.o
 ```
 
-[(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/7ea517d66934fb17a8521e6629e9640670290db8/build.sh#L65-L141)
+[(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L87-L191)
 
 Now we see this error in the Web Browser...
 
@@ -662,11 +662,11 @@ core/lv_obj_class.c
 
 So we wrote a script to compile the above LVGL Source Files from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/build.sh#L7-L177
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L7-L191
 
 Which calls `compile_lvgl` to compile a single LVGL Source File from C to WebAssembly with `zig cc`...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/build.sh#L212-L267
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L226-L288
 
 _What happens after we compile the whole bunch of LVGL Source Files from C to WebAssembly?_
 
@@ -694,6 +694,8 @@ And remember to compile the LVGL Fonts!
 TODO: Disassemble the Compiled WebAssembly and look for other Undefined Variables at WebAssembly Address 0
 
 # C Standard Library is Missing
+
+_strlen is missing from our Zig WebAssembly..._
 
 _But strlen should come from the C Standard Library! (musl)_
 
@@ -737,6 +739,10 @@ We implement `millis` ourselves for WebAssembly...
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/bee0e8d8ab9eae3a8c7cea6c64cc7896a5678f53/lvglwasm.zig#L170-L190
 
 TODO: Fix `millis`. How would it work in WebAssembly? Using a counter?
+
+In the code above, we defined `lv_assert_handler` and `custom_logger` to handle Assertions and Logging in LVGL.
+
+Let's talk about LVGL Logging...
 
 # WebAssembly Logger for LVGL
 
@@ -786,6 +792,8 @@ According to the LVGL Docs, this is how we inititialise and operate LVGL...
 1.  Register the LVGL Display and LVGL Input Devices
 
 1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
+
+    (Not required, because LVGL calls `millis` to fetch the elapsed time)
 
 1.  Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
 
@@ -933,6 +941,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 TODO: To handle LVGL Events, call `lv_tick_inc` and `lv_timer_handler`
 
 1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
+
+    (Not required, because LVGL calls `millis` to fetch the elapsed time)
 
 1.  Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
 
