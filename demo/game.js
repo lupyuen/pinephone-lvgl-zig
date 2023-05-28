@@ -1,4 +1,4 @@
-// Render Zig Program in WebAssembly. Based on...
+// Render Mandelbrot Set with a Zig Function in WebAssembly. Based on...
 // https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
 // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
 
@@ -6,8 +6,8 @@
 let Game;
 
 // Export JavaScript Functions to Zig
-let importObject = {
-    // JavaScript Environment exported to Zig
+const importObject = {
+    // JavaScript Functions exported to Zig
     env: {
         // JavaScript Print Function exported to Zig
         print: function(x) { console.log(x); }
@@ -59,15 +59,18 @@ function main() {
     console.log("main: end");
 };
 
-// Load the WebAssembly Module
-// https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
+// Load the WebAssembly Module and start the Main Function
 async function bootstrap() {
 
-    // Store references to WebAssembly Functions and Memory exported by Zig
-    Game = await WebAssembly.instantiateStreaming(
+    // Load the WebAssembly Module
+    // https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
+    const result = await WebAssembly.instantiateStreaming(
         fetch("mandelbrot.wasm"),
         importObject
     );
+
+    // Store references to WebAssembly Functions and Memory exported by Zig
+    Game = result;
 
     // Start the Main Function
     main();

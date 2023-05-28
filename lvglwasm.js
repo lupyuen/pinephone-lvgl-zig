@@ -1,64 +1,70 @@
 // Render LVGL in WebAssembly, compiled with Zig Compiler. Based on...
 // https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
 // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
-// https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
 
-// Load the WebAssembly Module
-const request = new XMLHttpRequest();
-request.open('GET', 'lvglwasm.wasm');
-request.responseType = 'arraybuffer';
-request.send();
+// Log WebAssembly Messages from Zig to JavaScript Console
+// https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
+const text_decoder = new TextDecoder();
+let console_log_buffer = "";
 
-// On Loading the WebAssembly Module...
-request.onload = function() {
+// WebAssembly Helper Functions
+const wasm = {
+    // WebAssembly Instance
+    instance: undefined,
 
-    // Read the WebAssembly Module and instantiate
-    var bytes = request.response;
-    WebAssembly.instantiate(bytes, {
-        // JavaScript Functions exported to Zig
-        env: {
-            // Render the LVGL Canvas from Zig to HTML
-            // https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
-            render: function() {  // TODO: Add width and height
+    // Init the WebAssembly Instance
+    init: function (obj) {
+        this.instance = obj.instance;
+    },
 
-                // Get the WebAssembly Pointer to the LVGL Canvas Buffer
-                console.log("render: start");
-                const bufferOffset = wasm.instance.exports.getCanvasBuffer();
-                console.log({ bufferOffset });
+    // Fetch the Zig String from a WebAssembly Pointer
+    getString: function (ptr, len) {
+        const memory = this.instance.exports.memory;
+        return text_decoder.decode(
+            new Uint8Array(memory.buffer, ptr, len)
+        );
+    },
+};
 
-                // Load the WebAssembly Pointer into a JavaScript Image Data
-                const memory = wasm.instance.exports.memory;
-                const ptr = bufferOffset;
-                const len = (canvas.width * canvas.height) * 4;
-                const imageDataArray = new Uint8Array(memory.buffer, ptr, len)
-                imageData.data.set(imageDataArray);
+// Export JavaScript Functions to Zig
+const importObject = {
+    // JavaScript Functions exported to Zig
+    env: {
+        // Render the LVGL Canvas from Zig to HTML
+        // https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
+        render: function() {  // TODO: Add width and height
 
-                // Render the Image Data to the HTML Canvas
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.putImageData(imageData, 0, 0);
-                console.log("render: end");
-            },
+            // Get the WebAssembly Pointer to the LVGL Canvas Buffer
+            console.log("render: start");
+            const bufferOffset = wasm.instance.exports.getCanvasBuffer();
+            console.log({ bufferOffset });
 
-            // Write to JavaScript Console from Zig
-            // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
-            jsConsoleLogWrite: function(ptr, len) {
-                console_log_buffer += wasm.getString(ptr, len);
-            },
+            // Load the WebAssembly Pointer into a JavaScript Image Data
+            const memory = wasm.instance.exports.memory;
+            const ptr = bufferOffset;
+            const len = (canvas.width * canvas.height) * 4;
+            const imageDataArray = new Uint8Array(memory.buffer, ptr, len)
+            imageData.data.set(imageDataArray);
 
-            // Flush JavaScript Console from Zig
-            // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
-            jsConsoleLogFlush: function() {
-                console.log(console_log_buffer);
-                console_log_buffer = "";
-            },
-        }
-    }).then(result => {
-        // Store references to WebAssembly Functions and Memory exported by Zig
-        wasm.init(result);
+            // Render the Image Data to the HTML Canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.putImageData(imageData, 0, 0);
+            console.log("render: end");
+        },
 
-        // Start the Main Function
-        main();
-    });
+        // Write to JavaScript Console from Zig
+        // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
+        jsConsoleLogWrite: function(ptr, len) {
+            console_log_buffer += wasm.getString(ptr, len);
+        },
+
+        // Flush JavaScript Console from Zig
+        // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
+        jsConsoleLogFlush: function() {
+            console.log(console_log_buffer);
+            console_log_buffer = "";
+        },
+    }
 };
 
 // Get the HTML Canvas Context and Image Data
@@ -68,7 +74,7 @@ const imageData = context.createImageData(canvas.width, canvas.height);
 context.clearRect(0, 0, canvas.width, canvas.height);
 
 // Main Function
-const main = function() {
+function main() {
     console.log("main: start");
 
     // Render Loop
@@ -87,45 +93,22 @@ const main = function() {
     console.log("main: end");
 };
 
-// Log WebAssembly Messages from Zig to JavaScript Console
-// https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
-const text_decoder = new TextDecoder();
-let console_log_buffer = "";
+// Load the WebAssembly Module and start the Main Function
+async function bootstrap() {
 
-let wasm = {
-    // WebAssembly Instance
-    instance: undefined,
+    // Load the WebAssembly Module
+    // https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
+    const result = await WebAssembly.instantiateStreaming(
+        fetch("lvglwasm.wasm"),
+        importObject
+    );
 
-    // Init the WebAssembly Instance
-    init: function (obj) {
-        this.instance = obj.instance;
-    },
+    // Store references to WebAssembly Functions and Memory exported by Zig
+    wasm.init(result);
 
-    // Fetch the Zig String from a WebAssembly Pointer
-    getString: function (ptr, len) {
-        const memory = this.instance.exports.memory;
-        return text_decoder.decode(
-            new Uint8Array(memory.buffer, ptr, len)
-        );
-    },
-};
+    // Start the Main Function
+    main();
+}
 
-// TODO
-// async function bootstrap() {
-//     wasm.init(
-//         await WebAssembly.instantiateStreaming(
-//             fetch("./example.wasm"),
-//             importObject
-//         )
-//     );
-
-//     const step = wasm.instance.exports.step;
-
-//     const loop = (timestamp) => {
-//         step(timestamp);
-//         requestAnimationFrame(loop)
-//     };
-//     requestAnimationFrame(loop);
-// }
-
-// bootstrap();
+// Start the loading of WebAssembly Module
+bootstrap();

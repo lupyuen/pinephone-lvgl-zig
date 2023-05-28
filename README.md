@@ -959,130 +959,83 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cd
 Here's the log...
 
 ```text
-lvglwasm.js:72 main: start
-lvglwasm.js:76 loop: start
-lvglwasm.js:51 lv_demo_widgets: start
-lvglwasm.js:51 [Info]	(0.001, +1)	 lv_init: begin 	(in lv_obj.c line #102)
-
-lvglwasm.js:51 [Warn]	(0.003, +2)	 lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
-
-lvglwasm.js:51 [Trace]	(0.004, +1)	 lv_init: finished 	(in lv_obj.c line #183)
-
-lvglwasm.js:51 [Info]	(0.006, +2)	 lv_obj_create: begin 	(in lv_obj.c line #206)
-
-lvglwasm.js:51 [Trace]	(0.007, +1)	 lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
-
-lvglwasm.js:51 [Trace]	(0.008, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
-
- [Trace]	(0.009, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
-
- [Trace]	(0.010, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
-
- [Info]	(0.011, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
-
- [Trace]	(0.012, +1)	 lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
-
- [Trace]	(0.013, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
-
- [Trace]	(0.014, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
-
- [Trace]	(0.015, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
-
- [Info]	(0.016, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
-
- [Trace]	(0.017, +1)	 lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
-
- [Trace]	(0.018, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
-
- [Trace]	(0.019, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
-
- [Trace]	(0.020, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
-
- createWidgetsWrapped: start
- [Info]	(0.022, +2)	 lv_label_create: begin 	(in lv_label.c line #75)
-
- [Trace]	(0.023, +1)	 lv_obj_class_create_obj: Creating object with 0x174b0 class on 0x39dfd0 parent 	(in lv_obj_class.c line #45)
-
- [Trace]	(0.024, +1)	 lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
-
- [Trace]	(0.025, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
-
- [Trace]	(0.026, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
-
- [Trace]	(0.027, +1)	 lv_label_constructor: begin 	(in lv_label.c line #691)
-
- [Trace]	(0.028, +1)	 lv_label_constructor: finished 	(in lv_label.c line #721)
-
- createWidgetsWrapped: end
- lv_timer_handler: start
- [Trace]	(0.029, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
- [Trace]	(0.033, +4)	 lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
-
- [Info]	(0.035, +2)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-
- [Trace]	(0.036, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-
- [Info]	(0.037, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-
- [Trace]	(0.038, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-
- [Info]	(0.039, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-
- [Trace]	(0.040, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-
- [Info]	(0.041, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-
- [Trace]	(0.042, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-
- [Info]	(0.043, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-
- [Trace]	(0.044, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-
- flushDisplay: start
- render: start
-lvglwasm.js:51 get_canvas_buffer: 1782 non-empty pixels
-lvglwasm.js:51 canvas_buffer: 0x17e70
-lvglwasm.js:27 {bufferOffset: 97904}
-lvglwasm.js:39 render: end
-lvglwasm.js:51 flushDisplay: end
-lvglwasm.js:51 [Trace]	(0.046, +2)	 lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
-
-lvglwasm.js:51 [Trace]	(0.050, +4)	 lv_timer_handler: finished (15 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:51 lv_timer_handler: end
-lvglwasm.js:51 lv_timer_handler: start
-lvglwasm.js:51 [Trace]	(0.051, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:51 [Trace]	(0.057, +6)	 lv_timer_handler: finished (8 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:51 lv_timer_handler: end
-lvglwasm.js:51 lv_timer_handler: start
-lvglwasm.js:51 [Trace]	(0.058, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:51 [Trace]	(0.064, +6)	 lv_timer_handler: finished (1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:51 lv_timer_handler: end
-lvglwasm.js:51 lv_timer_handler: start
-lvglwasm.js:51 [Trace]	(0.065, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:51 [Trace]	(0.069, +4)	 lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
-
-lvglwasm.js:51 [Trace]	(0.071, +2)	 lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
-
-lvglwasm.js:51 [Trace]	(0.074, +3)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:51 lv_timer_handler: end
-lvglwasm.js:51 lv_timer_handler: start
-lvglwasm.js:51 [Trace]	(0.075, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:51 [Trace]	(0.079, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:51 lv_timer_handler: end
-lvglwasm.js:51 lv_demo_widgets: end
-lvglwasm.js:84 loop: end
-lvglwasm.js:87 main: end
+main: start
+loop: start
+lv_demo_widgets: start
+[Info]	lv_init: begin 	(in lv_obj.c line #102)
+[Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
+[Trace]	lv_init: finished 	(in lv_obj.c line #183)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+createWidgetsWrapped: start
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x174b0 class on 0x39dfd0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+createWidgetsWrapped: end
+lv_timer_handler: start
+[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+flushDisplay: start
+render: start
+get_canvas_buffer: 1782 non-empty pixels
+canvas_buffer: 0x17e70
+{bufferOffset: 97904}
+render: end
+flushDisplay: end
+[Trace]	lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
+[Trace]	lv_timer_handler: finished (15 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	lv_timer_handler: finished (8 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	lv_timer_handler: finished (1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
+[Trace]	lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
+[Trace]	lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_timer_handler: start
+[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
+[Trace]	lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lv_timer_handler: end
+lv_demo_widgets: end
+loop: end
+main: end
 ```
+
+# TODO
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
