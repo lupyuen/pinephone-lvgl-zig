@@ -231,7 +231,7 @@ export fn free(mem: [*c]u8) void {
 var memory_allocator: std.heap.FixedBufferAllocator = undefined;
 
 /// Memory Buffer for malloc
-var memory_buffer: [1024 * 1024]u8 = undefined;
+var memory_buffer = std.mem.zeroes([1024 * 1024]u8);
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Logging
