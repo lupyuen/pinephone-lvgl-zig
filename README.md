@@ -474,6 +474,15 @@ Let's use the Zig Compiler to compile `lv_label.c` from C to WebAssembly....
 
 - Add `-DLV_MEM_CUSTOM=1` (because we're using `malloc` instead of LVGL's TLSF Allocator)
 
+- Set the Default Font to Montserrat 20...
+
+  ```text
+  -DLV_FONT_MONTSERRAT_14=1 \
+  -DLV_FONT_MONTSERRAT_20=1 \
+  -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
+  -DLV_USE_FONT_PLACEHOLDER=1 \
+  ```
+
 - Add `-DLV_USE_LOG=1` (to enable logging)
 
 - Add `-DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE` (for detailed logging)
@@ -513,6 +522,10 @@ zig cc \
   -lc \
   -DFAR= \
   -DLV_MEM_CUSTOM=1 \
+  -DLV_FONT_MONTSERRAT_14=1 \
+  -DLV_FONT_MONTSERRAT_20=1 \
+  -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
+  -DLV_USE_FONT_PLACEHOLDER=1 \
   -DLV_USE_LOG=1 \
   -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
   -DLV_LOG_TRACE_OBJ_CREATE=1 \
@@ -575,6 +588,10 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
     -lc \
     -DFAR= \
     -DLV_MEM_CUSTOM=1 \
+    -DLV_FONT_MONTSERRAT_14=1 \
+    -DLV_FONT_MONTSERRAT_20=1 \
+    -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
+    -DLV_USE_FONT_PLACEHOLDER=1 \
     -DLV_USE_LOG=1 \
     -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
     -DLV_LOG_TRACE_OBJ_CREATE=1 \
