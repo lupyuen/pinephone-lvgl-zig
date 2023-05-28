@@ -817,7 +817,7 @@ And we get this LVGL Display Interface for Zig: [display.c](display.c)
 
 Finally this is how we initialise the LVGL Display in Zig WebAssembly...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L38C1-L84
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L38-L84
 
 We're ready to render the LVGL Display!
 
@@ -930,7 +930,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 # Handle LVGL Events
 
-TODO: Call `lv_tick_inc` and `lv_timer_handler`
+TODO: To handle LVGL Events, call `lv_tick_inc` and `lv_timer_handler`
 
 1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
 
@@ -938,7 +938,9 @@ TODO: Call `lv_tick_inc` and `lv_timer_handler`
 
 [(Source)](https://docs.lvgl.io/8.3/porting/project.html#initialization)
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L38C1-L84
+Like this...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L65-L83
 
 Here's the log...
 
