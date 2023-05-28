@@ -1,16 +1,18 @@
-// From https://github.com/sleibrock/zigtoys/blob/main/toys/mandelbrot/mandelbrot.zig
+//! Compute Mandelbrot Set in Zig. Based on...
+//! https://github.com/sleibrock/zigtoys/blob/main/toys/mandelbrot/mandelbrot.zig
 const std = @import("std");
 const io = std.io;
 const math = std.math;
 
-// extern functions refer to the exterior JS namespace
-// when importing wasm code, the `print` func must be provided
+/// Import `print` Function from JavaScript
 extern fn print(i32) void;
 
+/// Width and Height should match HTML Canvas Size
 const MAX_ITER: u8 = 255;
 const WIDTH: f32 = 640.0;
 const HEIGHT: f32 = 480.0;
 
+/// Compute the Pixel Color at (px,py) for Mandelbrot Set
 export fn get_pixel_color(px: i32, py: i32) u8 {
     var iterations: u8 = 0;
 
@@ -34,7 +36,9 @@ export fn get_pixel_color(px: i32, py: i32) u8 {
 
     // Test printing to JavaScript Console.
     // Warning: This is slow!
-    if (iterations == 1) { print(iterations); }
+    if (iterations == 1) {
+        print(iterations);
+    }
 
     // smoothed valued
     //     return n + 1 - log(log2(abs(z)))
