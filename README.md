@@ -877,7 +877,7 @@ lvglwasm.js:30 [Trace]	(0.004, +1)	 lv_init: finished 	(in lv_obj.c line #183)
 
 lvglwasm.js:30 [Info]	(0.006, +2)	 lv_obj_create: begin 	(in lv_obj.c line #206)
 
-lvglwasm.js:30 [Trace]	(0.007, +1)	 lv_obj_class_create_obj: Creating object with 0x11e2c class on 0 parent 	(in lv_obj_class.c line #45)
+lvglwasm.js:30 [Trace]	(0.007, +1)	 lv_obj_class_create_obj: Creating object with 0x11ed8 class on 0 parent 	(in lv_obj_class.c line #45)
 
 lvglwasm.js:30 [Trace]	(0.008, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 
@@ -887,7 +887,7 @@ lvglwasm.js:30 [Trace]	(0.010, +1)	 lv_obj_constructor: finished 	(in lv_obj.c l
 
 lvglwasm.js:30 [Info]	(0.011, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
 
-lvglwasm.js:30 [Trace]	(0.012, +1)	 lv_obj_class_create_obj: Creating object with 0x11e2c class on 0 parent 	(in lv_obj_class.c line #45)
+lvglwasm.js:30 [Trace]	(0.012, +1)	 lv_obj_class_create_obj: Creating object with 0x11ed8 class on 0 parent 	(in lv_obj_class.c line #45)
 
 lvglwasm.js:30 [Trace]	(0.013, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 
@@ -897,7 +897,7 @@ lvglwasm.js:30 [Trace]	(0.015, +1)	 lv_obj_constructor: finished 	(in lv_obj.c l
 
 lvglwasm.js:30 [Info]	(0.016, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
 
-lvglwasm.js:30 [Trace]	(0.017, +1)	 lv_obj_class_create_obj: Creating object with 0x11e2c class on 0 parent 	(in lv_obj_class.c line #45)
+lvglwasm.js:30 [Trace]	(0.017, +1)	 lv_obj_class_create_obj: Creating object with 0x11ed8 class on 0 parent 	(in lv_obj_class.c line #45)
 
 lvglwasm.js:30 [Trace]	(0.018, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 
@@ -908,7 +908,7 @@ lvglwasm.js:30 [Trace]	(0.020, +1)	 lv_obj_constructor: finished 	(in lv_obj.c l
 lvglwasm.js:30 createWidgetsWrapped: start
 lvglwasm.js:30 [Info]	(0.022, +2)	 lv_label_create: begin 	(in lv_label.c line #75)
 
-lvglwasm.js:30 [Trace]	(0.023, +1)	 lv_obj_class_create_obj: Creating object with 0x10000 class on 0x1b9b0 parent 	(in lv_obj_class.c line #45)
+lvglwasm.js:30 [Trace]	(0.023, +1)	 lv_obj_class_create_obj: Creating object with 0x11ebc class on 0x3989e0 parent 	(in lv_obj_class.c line #45)
 
 lvglwasm.js:30 [Trace]	(0.024, +1)	 lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
 
@@ -944,260 +944,6 @@ lvglwasm.js:30 [Trace]	(0.042, +1)	 lv_obj_update_layout: Layout update end 	(in
 
 lvglwasm.js:30 flushDisplay: start
 lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
 lvglwasm.js:30 [Trace]	(0.044, +2)	 lv_timer_exec: timer callback 0x17 finished 	(in lv_timer.c line #314)
 
 lvglwasm.js:30 [Trace]	(0.048, +4)	 lv_timer_handler: finished (17 ms until the next timer call) 	(in lv_timer.c line #144)
@@ -1229,36 +975,6 @@ lvglwasm.js:30 lv_timer_handler: start
 lvglwasm.js:30 [Trace]	(0.073, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
 
 lvglwasm.js:30 [Trace]	(0.077, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.078, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:30 [Trace]	(0.082, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.083, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:30 [Trace]	(0.087, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.088, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:30 [Trace]	(0.092, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.093, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:30 [Trace]	(0.097, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.098, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
-
-lvglwasm.js:30 [Trace]	(0.102, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
 
 lvglwasm.js:30 lv_timer_handler: end
 lvglwasm.js:30 lv_demo_widgets: end

@@ -7,8 +7,9 @@
 #include "display.h"
 
 // Display Buffer
-#define HOR_RES     720  // Horizontal Resolution
-#define BUFFER_ROWS 100  // Number of rows to buffer
+#define HOR_RES     720      // Horizontal Resolution
+#define VER_RES     1280     // Vertical Resolution
+#define BUFFER_ROWS VER_RES  // Number of rows to buffer
 #define BUFFER_SIZE (HOR_RES * BUFFER_ROWS)
 static lv_color_t buffer[BUFFER_SIZE];
 
@@ -61,6 +62,7 @@ void init_disp_drv(
   LV_ASSERT(disp_buf != NULL);
   LV_ASSERT(flush_cb != NULL);
   LV_ASSERT(hor_res <= HOR_RES);
+  LV_ASSERT(ver_res <= VER_RES);
 
   // Init the Display Driver Struct
   lv_disp_drv_init(disp_drv);
