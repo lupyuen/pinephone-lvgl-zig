@@ -880,6 +880,24 @@ https://github.com/daneelsan/Dodgeballz/tree/master/src
 
 https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
 
+TODO: Font
+
+```bash
+  ## Compile LVGL Library from C to WebAssembly with Zig Compiler
+  compile_lvgl font/lv_font_montserrat_14.c lv_font_montserrat_14
+  compile_lvgl font/lv_font_montserrat_20.c lv_font_montserrat_20
+
+  ## Compile the Zig LVGL App for WebAssembly 
+  zig build-lib \
+    -DLV_FONT_MONTSERRAT_14=1 \
+    -DLV_FONT_MONTSERRAT_20=1 \
+    -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
+    -DLV_USE_FONT_PLACEHOLDER=1 \
+    ...
+    lv_font_montserrat_14.o \
+    lv_font_montserrat_20.o \
+```
+
 # TODO
 
 TODO: Call `lv_tick_inc` and `lv_timer_handler`

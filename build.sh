@@ -19,6 +19,8 @@ function build_zig {
   compile_lvgl ../../../../../pinephone-lvgl-zig/display.c display.o
 
   ## Compile LVGL Library from C to WebAssembly with Zig Compiler
+  compile_lvgl font/lv_font_montserrat_14.c lv_font_montserrat_14.o
+  compile_lvgl font/lv_font_montserrat_20.c lv_font_montserrat_20.o
   compile_lvgl widgets/lv_label.c lv_label.o
   compile_lvgl core/lv_obj.c lv_obj.o
   compile_lvgl misc/lv_mem.c lv_mem.o
@@ -80,10 +82,10 @@ function build_zig {
   compile_lvgl draw/lv_draw_layer.c lv_draw_layer.o
   compile_lvgl misc/lv_style_gen.c lv_style_gen.o
   compile_lvgl misc/lv_gc.c lv_gc.o
+  compile_lvgl misc/lv_utils.c lv_utils.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
-  ## TODO: Try `zig build-exe` to fix `strlen` missing
   zig build-lib \
     --verbose-cimport \
     -target wasm32-freestanding \
@@ -123,6 +125,8 @@ function build_zig {
     \
     lvglwasm.zig \
     display.o \
+    lv_font_montserrat_14.o \
+    lv_font_montserrat_20.o \
     lv_label.o \
     lv_mem.o \
     lv_obj.o \
@@ -184,6 +188,7 @@ function build_zig {
     lv_draw_layer.o \
     lv_style_gen.o \
     lv_gc.o \
+    lv_utils.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
