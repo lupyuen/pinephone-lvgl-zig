@@ -872,17 +872,25 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 Let's render the LVGL Display in the Web Browser!
 
+(Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas))
 
+LVGL calls `flushDisplay` when the LVGL Display Canvas is ready to be rendered...
 
-TODO: Render LVGL Display
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L49-L63
 
-Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas)
+`flushDisplay` in Zig calls `render` in JavaScript to render the LVGL Display Canvas...
 
-TODO: Use Zig to connect the JavaScript UI (canvas rendering + input events) to LVGL WebAssembly [(Like this)](https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7)
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L86-L98
 
-https://github.com/daneelsan/Dodgeballz/tree/master/src
+`render` draws the LVGL Display to our HTML Canvas in our JavaScript...
 
-https://github.com/daneelsan/zig-wefx/blob/master/wefx/WEFX.zig
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/2b7b76b08e97dfafb3250b7a874c42c2db7681fa/lvglwasm.js#L12-L40
+
+Which calls `get_canvas_buffer` to fetch the LVGL Canvas Buffer from our WebAssembly C module...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L9-L29
+
+# LVGL Fonts
 
 TODO: Font
 
