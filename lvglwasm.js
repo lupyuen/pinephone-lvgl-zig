@@ -21,14 +21,20 @@ request.onload = function() {
         env: {
             // Render the LVGL Canvas from Zig to HTML
             // https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
-            render: function() {
+            render: function() {  // TODO: Add ptr, width, height
                 console.log("render: start");
                 const bufferOffset = wasm.instance.exports.getCanvasBuffer();
                 console.log({ bufferOffset });
-                const imageDataArray = wasmMemoryArray.slice(
-                    bufferOffset,
-                    bufferOffset + (canvas.width * canvas.height) * 4
-                );
+
+                // const imageDataArray = wasmMemoryArray.slice(
+                //     bufferOffset,
+                //     bufferOffset + (canvas.width * canvas.height) * 4
+                // );
+
+                const memory = wasm.instance.exports.memory;
+                const ptr = bufferOffset;
+                const len = (canvas.width * canvas.height) * 4;
+                const imageDataArray = new Uint8Array(memory.buffer, ptr, len)
                 imageData.data.set(imageDataArray);
         
                 context.clearRect(0, 0, canvas.width, canvas.height);

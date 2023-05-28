@@ -18,11 +18,12 @@ lv_color_t *get_canvas_buffer(void)
   int count = 0;
   for (int i = 0; i < BUFFER_SIZE; i++) {
     if (canvas_buffer[i].full != 0xfff5f5f5) {  // TODO
-      lv_log("get_canvas_buffer: 0x%x", canvas_buffer[i].full);
+      // lv_log("get_canvas_buffer: 0x%x", canvas_buffer[i].full);
       count++; 
     }
   }
-  lv_log("get_canvas_buffer: %d", count);
+  lv_log("get_canvas_buffer: %d non-empty pixels", count);
+  lv_log("canvas_buffer: %p", canvas_buffer);
   return canvas_buffer;
 }
 
