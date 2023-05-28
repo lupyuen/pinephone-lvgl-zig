@@ -687,7 +687,11 @@ Be careful! We might miss out some symbols. Zig Compiler happily assumes that th
 
 - ["LVGL Screen Not Found"](https://github.com/lupyuen/pinephone-lvgl-zig#lvgl-screen-not-found)
 
-TODO: Disassemble the Compiled WebAssembly and look for other variables at WebAssembly Address 0
+And remember to compile the LVGL Fonts!
+
+- ["LVGL Fonts"](https://github.com/lupyuen/pinephone-lvgl-zig#lvgl-fonts)
+
+TODO: Disassemble the Compiled WebAssembly and look for other Undefined Variables at WebAssembly Address 0
 
 # C Standard Library is Missing
 
@@ -1066,7 +1070,7 @@ And we forgot to compile [_lv_gc_clear_roots](https://github.com/lvgl/lvgl/blob/
 
 After compiling [_lv_gc_clear_roots](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_gc.c#L42) and [lv_gc.c](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_gc.c#L42), the "no screen found" error below no longer appears.
 
-TODO: Disassemble the Compiled WebAssembly and look for other variables at WebAssembly Address 0
+TODO: Disassemble the Compiled WebAssembly and look for other Undefined Variables at WebAssembly Address 0
 
 ```text
 [Info]	lv_init: begin 	(in lv_obj.c line #102)
