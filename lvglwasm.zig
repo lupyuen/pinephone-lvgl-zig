@@ -94,6 +94,11 @@ export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t,
     c.lv_disp_flush_ready(disp_drv);
 }
 
+// Return a WebAssembly Pointer to the Display Buffer
+// export fn getCheckerboardBufferPointer() [*]u8 {
+//     return @ptrCast([*]u8, &checkerboard_buffer);
+// }
+
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
 

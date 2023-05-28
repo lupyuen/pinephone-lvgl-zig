@@ -11,13 +11,13 @@
 #define VER_RES     1280     // Vertical Resolution
 #define BUFFER_ROWS VER_RES  // Number of rows to buffer
 #define BUFFER_SIZE (HOR_RES * BUFFER_ROWS)
-static lv_color_t buffer[BUFFER_SIZE];
+static lv_color_t display_buffer[BUFFER_SIZE];
 
 /****************************************************************************
  * Name: get_disp_drv
  *
  * Description:
- *   Return the static instance of Display Driver, because Zig can't
+ *   Return the static instance of LVGL Display Driver, because Zig can't
  *   allocate structs wth bitfields inside.
  *
  ****************************************************************************/
@@ -32,7 +32,7 @@ lv_disp_drv_t *get_disp_drv(void)
  * Name: get_disp_buf
  *
  * Description:
- *   Return the static instance of Display Buffer, because Zig can't
+ *   Return the static instance of LVGL Display Buffer, because Zig can't
  *   allocate structs wth bitfields inside.
  *
  ****************************************************************************/
@@ -47,7 +47,7 @@ lv_disp_draw_buf_t *get_disp_buf(void)
  * Name: init_disp_drv
  *
  * Description:
- *   Initialise the Display Driver, because Zig can't access its fields.
+ *   Initialise the LVGL Display Driver, because Zig can't access its fields.
  *
  ****************************************************************************/
 
@@ -82,12 +82,12 @@ void init_disp_drv(
  * Name: init_disp_buf
  *
  * Description:
- *   Initialise the Display Buffer, because Zig can't access the fields.
+ *   Initialise the LVGL Display Buffer, because Zig can't access the fields.
  *
  ****************************************************************************/
 
 void init_disp_buf(lv_disp_draw_buf_t *disp_buf)
 {
   LV_ASSERT(disp_buf != NULL);
-  lv_disp_draw_buf_init(disp_buf, buffer, NULL, BUFFER_SIZE);
+  lv_disp_draw_buf_init(disp_buf, display_buffer, NULL, BUFFER_SIZE);
 }
