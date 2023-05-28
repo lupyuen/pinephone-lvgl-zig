@@ -870,6 +870,10 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 # Render LVGL Display in Web Browser
 
+Let's render the LVGL Display in the Web Browser!
+
+
+
 TODO: Render LVGL Display
 
 Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas)

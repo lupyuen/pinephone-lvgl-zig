@@ -2,9 +2,6 @@
 // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
 // https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
 
-// References to Exported Zig Functions
-var Game;
-
 // Load the WebAssembly Module
 const request = new XMLHttpRequest();
 request.open('GET', 'lvglwasm.wasm');
@@ -13,30 +10,29 @@ request.send();
 
 // On Loading the WebAssembly Module...
 request.onload = function() {
-    const wasmMemoryArray = new Uint8Array(wasmMemory.buffer);
 
+    // Read the WebAssembly Module and instantiate
     var bytes = request.response;
     WebAssembly.instantiate(bytes, {
-        // JavaScript Environment exported to Zig
+        // JavaScript Functions exported to Zig
         env: {
             // Render the LVGL Canvas from Zig to HTML
             // https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
-            render: function() {  // TODO: Add ptr, width, height
+            render: function() {  // TODO: Add width and height
+
+                // Get the WebAssembly Pointer to the LVGL Canvas Buffer
                 console.log("render: start");
                 const bufferOffset = wasm.instance.exports.getCanvasBuffer();
                 console.log({ bufferOffset });
 
-                // const imageDataArray = wasmMemoryArray.slice(
-                //     bufferOffset,
-                //     bufferOffset + (canvas.width * canvas.height) * 4
-                // );
-
+                // Load the WebAssembly Pointer into a JavaScript Image Data
                 const memory = wasm.instance.exports.memory;
                 const ptr = bufferOffset;
                 const len = (canvas.width * canvas.height) * 4;
                 const imageDataArray = new Uint8Array(memory.buffer, ptr, len)
                 imageData.data.set(imageDataArray);
-        
+
+                // Render the Image Data to the HTML Canvas
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.putImageData(imageData, 0, 0);
                 console.log("render: end");
@@ -55,10 +51,9 @@ request.onload = function() {
         }
     }).then(result => {
         // Store references to WebAssembly Functions and Memory exported by Zig
-        Game = result.instance.exports;
         wasm.init(result);
 
-        // Start the Main Loop
+        // Start the Main Function
         main();
     });
 };
@@ -69,25 +64,23 @@ var wasmMemory = new WebAssembly.Memory({
     maximum: 2 /* pages */,
 });
 
-// Get the HTML Canvas Context
-const canvas = window.document.getElementById("game_canvas");
+// Get the HTML Canvas Context and Image Data
+const canvas = window.document.getElementById("lvgl_canvas");
 const context = canvas.getContext("2d");
 const imageData = context.createImageData(canvas.width, canvas.height);
 context.clearRect(0, 0, canvas.width, canvas.height);
 
-// Main Loop
+// Main Function
 const main = function() {
     console.log("main: start");
 
+    // Render Loop
     const loop = function() {
         console.log("loop: start");
-        // TODO: Init LVGL
 
-        // Render the LVGL Widgets
-        Game.lv_demo_widgets();
+        // Render the LVGL Widgets in Zig
+        wasm.instance.exports.lv_demo_widgets();
         console.log("lv_demo_widgets: done");
-
-        // TODO: Render the LVGL Display
 
         // loop to next frame. Disabled for now because it slows down the browser.
         // TODO: window.requestAnimationFrame(loop);
