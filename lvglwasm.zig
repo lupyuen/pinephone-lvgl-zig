@@ -73,10 +73,10 @@ pub export fn lv_demo_widgets() void {
         return;
     };
 
-    // TODO: Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
-    // TODO: Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
+    // Handle LVGL Events
+    // TODO: Call this from Web Browser JavaScript, so that Web Browser won't block
     var i: usize = 0;
-    while (i < 10) : (i += 1) {
+    while (i < 5) : (i += 1) {
         debug("lv_timer_handler: start", .{});
         _ = c.lv_timer_handler();
         debug("lv_timer_handler: end", .{});

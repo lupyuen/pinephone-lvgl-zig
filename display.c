@@ -4,10 +4,11 @@
 
 #include <nuttx/config.h>
 #include <lvgl/lvgl.h>
+#include "display.h"
 
 // Display Buffer
 #define HOR_RES     720  // Horizontal Resolution
-#define BUFFER_ROWS 10   // Number of rows to buffer
+#define BUFFER_ROWS 100  // Number of rows to buffer
 #define BUFFER_SIZE (HOR_RES * BUFFER_ROWS)
 static lv_color_t buffer[BUFFER_SIZE];
 
@@ -56,10 +57,10 @@ void init_disp_drv(
   lv_coord_t hor_res,  // Horizontal Resolution
   lv_coord_t ver_res   // Vertical Resolution
 ) {
-  assert(disp_drv != NULL);
-  assert(disp_buf != NULL);
-  assert(flush_cb != NULL);
-  assert(hor_res <= HOR_RES);
+  LV_ASSERT(disp_drv != NULL);
+  LV_ASSERT(disp_buf != NULL);
+  LV_ASSERT(flush_cb != NULL);
+  LV_ASSERT(hor_res <= HOR_RES);
 
   // Init the Display Driver Struct
   lv_disp_drv_init(disp_drv);
@@ -85,6 +86,6 @@ void init_disp_drv(
 
 void init_disp_buf(lv_disp_draw_buf_t *disp_buf)
 {
-  assert(disp_buf != NULL);
+  LV_ASSERT(disp_buf != NULL);
   lv_disp_draw_buf_init(disp_buf, buffer, NULL, BUFFER_SIZE);
 }
