@@ -1,62 +1,74 @@
-// From https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
+// Render Zig Program in WebAssembly. Based on...
+// https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
+// https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
 
 // References to Exported Zig Functions
-var Game;
+let Game;
+
+// Export JavaScript Functions to Zig
+let importObject = {
+    // JavaScript Environment exported to Zig
+    env: {
+        // JavaScript Print Function exported to Zig
+        print: function(x) { console.log(x); }
+    }
+};
 
 // Load the WebAssembly Module
-const request = new XMLHttpRequest();
-request.open('GET', 'madelbrot.wasm');
-request.responseType = 'arraybuffer';
-request.send();
+// https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
+async function bootstrap() {
+    // Store references to WebAssembly Functions and Memory exported by Zig
+    Game = await WebAssembly.instantiateStreaming(
+        fetch("mandelbrot.wasm"),
+        importObject
+    );
 
-// On Loading the WebAssembly Module...
-request.onload = function() {
-    var bytes = request.response;
-    WebAssembly.instantiate(bytes, {
-        // JavaScript Environment exported to Zig
-        env: {
-            // JavaScript Print Function exported to Zig
-            print: function(x) { console.log(x); }
-        }
-    }).then(result => {
-        // Store references to Zig functions
-        Game = result.instance.exports;
-
-        // Start the Main Loop
-        main();
-    });
-};
+    // Start the Main Loop
+    main();
+}
+bootstrap();
 
 // Get the HTML Canvas Context
 const canvas = window.document.getElementById("game_canvas");
-const ctx = canvas.getContext('2d');
+const context = canvas.getContext("2d");
 
-// Main Loop
+// Main Function
 const main = function() {
-    console.log("Main function started");
+    console.log("main: start");
 
+    // Render Loop
     const loop = function() {
-        ctx.fillStyle = "white"; // clear the canvas
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        for (var x = 0; x < canvas.width; x++) {
-            for (var y = 0; y < canvas.height; y++) {
-                // Get the Pixel Color
-                var cell = Game.get_pixel_color(x, y);
+        console.log("loop: start");
 
-                // Render the Pixel
-                if (cell < 10) {
-                    ctx.fillStyle = "red";
-                } else if (cell < 128) {
-                    ctx.fillStyle = "grey";
+        // Clear the HTML Canvas
+        context.fillStyle = "white";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // For every Pixel in HTML Canvas...
+        for (let x = 0; x < canvas.width; x++) {
+            for (let y = 0; y < canvas.height; y++) {
+
+                // Get the Pixel Color from Zig
+                const color = Game.instance.exports
+                    .get_pixel_color(x, y);
+
+                // Render the Pixel in HTML Canvas
+                if (color < 10) {
+                    context.fillStyle = "red";
+                } else if (color < 128) {
+                    context.fillStyle = "grey";
                 } else {
-                    ctx.fillStyle = "white";
+                    context.fillStyle = "white";
                 }
-                ctx.fillRect(x, y, x + 1, y + 1);
+                context.fillRect(x, y, x + 1, y + 1);
             }
         }
 
-        // loop to next frame. Disabled for now because it slows down the browser.
+        // Loop to next frame. Disabled for now because it slows down the browser.
         // TODO: window.requestAnimationFrame(loop);
+
+        console.log("loop: end");
     };
     loop();
+    console.log("main: end");
 };

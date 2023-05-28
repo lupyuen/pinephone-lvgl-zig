@@ -198,7 +198,7 @@ We can run __Zig (WebAssembly) + JavaScript__ in a Web Browser like so...
 
 Let's run a simple demo...
 
-- [demo/madelbrot.zig](demo/madelbrot.zig): Zig Program that compiles to WebAssembly
+- [demo/mandelbrot.zig](demo/mandelbrot.zig): Zig Program that compiles to WebAssembly
 
 - [demo/game.js](demo/game.js): JavaScript that loads the Zig WebAssembly
 
@@ -211,7 +211,7 @@ git clone --recursive https://github.com/lupyuen/pinephone-lvgl-zig
 cd pinephone-lvgl-zig
 cd demo
 zig build-lib \
-  madelbrot.zig \
+  mandelbrot.zig \
   -target wasm32-freestanding \
   -dynamic \
   -rdynamic
@@ -235,7 +235,7 @@ This is documented here...
 
 - [WebAssembly on Zig](https://ziglang.org/documentation/master/#WebAssembly)
 
-In our Zig Program, this is how we import and call a JavaScript Function: [demo/madelbrot.zig](demo/madelbrot.zig)
+In our Zig Program, this is how we import and call a JavaScript Function: [demo/mandelbrot.zig](demo/mandelbrot.zig)
 
 ```zig
 // extern functions refer to the exterior JS namespace

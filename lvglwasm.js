@@ -1,4 +1,4 @@
-// Based on
+// Render LVGL in WebAssembly, compiled with Zig Compiler. Based on...
 // https://github.com/daneelsan/minimal-zig-wasm-canvas/blob/master/script.js
 // https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js
 // https://dev.to/sleibrock/webassembly-with-zig-pt-ii-ei7
