@@ -872,27 +872,10 @@ RuntimeError: memory access out of bounds
 
 Why the invalid Style Pointer `0xaaaaaaaa`?
 
-Our Workaround...
+Because we forgot to copy the old memory in `realloc`. Duh!
 
-```c
-static lv_style_res_t get_prop_core(const lv_obj_t * obj, lv_part_t part, lv_style_prop_t prop, lv_style_value_t * v) {
-    ...
-    for(; i < obj->style_cnt; i++) {
-        if (obj->styles[i].style == (void*)0xaaaaaaaa) continue;////
-```
 
-After Workaround...
 
-```text
-Uncaught (in promise) RuntimeError: memory access out of bounds
-    at lv_style_reset (004a21c6:0xfc8f)
-    at lv_obj_remove_style (004a21c6:0x504e)
-    at lv_disp_drv_register (004a21c6:0xce04)
-    at lv_demo_widgets (004a21c6:0x29ab3)
-    at loop (lvglwasm.js:57:14)
-    at main (lvglwasm.js:67:5)
-    at lvglwasm.js:40:9
-```
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
