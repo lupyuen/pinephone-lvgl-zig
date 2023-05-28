@@ -768,11 +768,11 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/f9dc7e1afba2f876c8397d753a79a
 
 `jsConsoleLogWrite` and `jsConsoleLogFlush` are defined in our JavaScript...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L14-L42
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1ed4940d505e263727a36c362da54388be4cbca0/lvglwasm.js#L55-L66
 
 `wasm.getString` also comes from our JavaScript...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/1b4e367095ec4ed4d8077758aa266f25f03564c9/lvglwasm.js#L67-L87
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1ed4940d505e263727a36c362da54388be4cbca0/lvglwasm.js#L10-L27
 
 Now we can see the LVGL Log Messages in the JavaScript Console yay! (Pic below)
 
@@ -855,7 +855,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cd
 
 `render` (in JavaScript) draws the LVGL Display to our HTML Canvas...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/2b7b76b08e97dfafb3250b7a874c42c2db7681fa/lvglwasm.js#L12-L40
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/1ed4940d505e263727a36c362da54388be4cbca0/lvglwasm.js#L29-L53
 
 Which calls [`getCanvasBuffer`](https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L100-L104) (in Zig) and `get_canvas_buffer` (in C) to fetch the LVGL Canvas Buffer `canvas_buffer`...
 
