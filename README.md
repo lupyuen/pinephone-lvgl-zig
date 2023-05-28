@@ -874,6 +874,10 @@ Let's render the LVGL Display in the Web Browser!
 
 (Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas))
 
+LVGL renders the display pixels to `canvas_buffer`...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L95-L107
+
 LVGL calls `flushDisplay` when the LVGL Display Canvas is ready to be rendered...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L49-L63
@@ -886,9 +890,11 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cd
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/2b7b76b08e97dfafb3250b7a874c42c2db7681fa/lvglwasm.js#L12-L40
 
-Which calls `get_canvas_buffer` to fetch the LVGL Canvas Buffer from our WebAssembly C module...
+Which calls [`getCanvasBuffer`](https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L100-L104) (in Zig) and `get_canvas_buffer` (in C) to fetch the LVGL Canvas Buffer `canvas_buffer`...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L9-L29
+
+And the LVGL Display renders OK in our HTML Canvas yay!
 
 # LVGL Fonts
 
