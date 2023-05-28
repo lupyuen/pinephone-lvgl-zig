@@ -238,8 +238,7 @@ This is documented here...
 In our Zig Program, this is how we import and call a JavaScript Function: [demo/mandelbrot.zig](demo/mandelbrot.zig)
 
 ```zig
-// extern functions refer to the exterior JS namespace
-// when importing wasm code, the `print` func must be provided
+/// Import `print` Function from JavaScript
 extern fn print(i32) void;
 ...
 // Test printing to JavaScript Console.
@@ -250,33 +249,38 @@ if (iterations == 1) { print(iterations); }
 We define the JavaScript Function `print` when loading the WebAssembly Module in our JavaScript: [demo/game.js](demo/game.js)
 
 ```javascript
-// On Loading the WebAssembly Module...
-request.onload = function() {
-  var bytes = request.response;
-  WebAssembly.instantiate(bytes, {
+// Export JavaScript Functions to Zig
+let importObject = {
     // JavaScript Environment exported to Zig
     env: {
-      // JavaScript Print Function exported to Zig
-      print: function(x) { console.log(x); }
+        // JavaScript Print Function exported to Zig
+        print: function(x) { console.log(x); }
     }
-  }).then(result => {
-    // Store references to Zig functions
-    Game = result.instance.exports;
-
-    // Start the Main Loop
-    main();
-  });
 };
+
+// Load the WebAssembly Module
+// https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/instantiateStreaming
+async function bootstrap() {
+
+    // Store references to WebAssembly Functions and Memory exported by Zig
+    Game = await WebAssembly.instantiateStreaming(
+        fetch("mandelbrot.wasm"),
+        importObject
+    );
+
+    // Start the Main Function
+    main();
+}
+
+// Start the loading of WebAssembly Module
+bootstrap();
 ```
 
 _Will this work for passing Strings and Buffers as parameters?_
 
 Nope, the parameter will be passed as a number. (Probably a WebAssembly Data Address)
 
-To pass Strings and Buffers between JavaScript and Zig, see [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger)
- and [mitchellh/zig-js](https://github.com/mitchellh/zig-js)
-
-TODO: Change `request.onload` to `fetch` [(Like this)](https://github.com/daneelsan/zig-wasm-logger/blob/master/script.js)
+To pass Strings and Buffers between JavaScript and Zig, see [daneelsan/zig-wasm-logger](https://github.com/daneelsan/zig-wasm-logger).
 
 # Compile Zig LVGL App to WebAssembly
 
