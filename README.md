@@ -664,6 +664,14 @@ function import requires a callable
 
 Let's fix `strlen`...
 
+_Is it really OK to compile only the necessary LVGL Source Files? Instead of compiling ALL the LVGL Source Files?_
+
+Be careful! We might miss out some symbols. Zig Compiler happily assumes that they are at WebAssembly Address 0...
+
+- ["LVGL Screen Not Found"](https://github.com/lupyuen/pinephone-lvgl-zig#lvgl-screen-not-found)
+
+TODO: Disassemble the Compiled WebAssembly and look for other variables at WebAssembly Address 0
+
 # C Standard Library is Missing
 
 _But strlen should come from the C Standard Library! (musl)_
@@ -1382,9 +1390,11 @@ That's because the Display Linked List `_lv_disp_ll` is allocated by `LV_ITERATE
 
 And we forgot to compile [_lv_gc_clear_roots](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_gc.c#L42) in [lv_gc.c](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_gc.c#L42). Duh!
 
+(Zig Compiler assumes that missing variables are at WebAssembly Address 0)
+
 After compiling [_lv_gc_clear_roots](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_gc.c#L42) and [lv_gc.c](https://github.com/lvgl/lvgl/blob/v8.3.3/src/misc/lv_gc.c#L42), the "no screen found" error below no longer appears.
 
-TODO: Disassemble the Compiled WebAssembly and look for other variables at address 0
+TODO: Disassemble the Compiled WebAssembly and look for other variables at WebAssembly Address 0
 
 ```text
 [Info]	lv_init: begin 	(in lv_obj.c line #102)
