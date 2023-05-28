@@ -85,12 +85,13 @@ pub export fn lv_demo_widgets() void {
 
 /// LVGL Callback Function to Flush Display
 export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t, color_p: [*c]c.lv_color_t) void {
-    _ = disp_drv;
     _ = area;
     _ = color_p;
     debug("flushDisplay: start", .{});
     defer debug("flushDisplay: end", .{});
-    // TODO: lv_disp_flush_ready(&disp_drv)
+
+    // Notify LVGL that the display is flushed
+    c.lv_disp_flush_ready(disp_drv);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -853,8 +853,6 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 # TODO
 
-TODO: Why does Web Browser reload hang?
-
 TODO: Call `lv_tick_inc` and `lv_timer_handler`
 
 1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
@@ -865,54 +863,408 @@ TODO: Call `lv_tick_inc` and `lv_timer_handler`
 
 TODO: Implement `flushDisplay`
 
+(Remember to call `lv_disp_flush_ready` or Web Browser will hang on reload)
+
 ```text
-main: start
-loop: start
-lv_demo_widgets: start
-before lv_init
-[Info]	lv_init: begin 	(in lv_obj.c line #102)
-[Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
-[Trace]	lv_init: finished 	(in lv_obj.c line #183)
-after lv_init
-before lv_disp_drv_register
-[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x11e64 class on 0 parent 	(in lv_obj_class.c line #45)
-[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
-[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
-[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
-[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x11e64 class on 0 parent 	(in lv_obj_class.c line #45)
-[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
-[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
-[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
-[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x11e64 class on 0 parent 	(in lv_obj_class.c line #45)
-[Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
-[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
-[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
-after lv_disp_drv_register
-createWidgetsWrapped: start
-[Info]	lv_label_create: begin 	(in lv_label.c line #75)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x10000 class on 0x1ba70 parent 	(in lv_obj_class.c line #45)
-[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
-[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
-[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
-[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
-[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
-createWidgetsWrapped: end
-lv_timer_handler: start
-[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
-[Trace]	lv_timer_exec: calling timer callback: 0x17 	(in lv_timer.c line #312)
-[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
-[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-flushDisplay: start
-flushDisplay: end
+lvglwasm.js:50 main: start
+lvglwasm.js:53 loop: start
+lvglwasm.js:30 lv_demo_widgets: start
+lvglwasm.js:30 [Info]	(0.001, +1)	 lv_init: begin 	(in lv_obj.c line #102)
+
+lvglwasm.js:30 [Warn]	(0.003, +2)	 lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
+
+lvglwasm.js:30 [Trace]	(0.004, +1)	 lv_init: finished 	(in lv_obj.c line #183)
+
+lvglwasm.js:30 [Info]	(0.006, +2)	 lv_obj_create: begin 	(in lv_obj.c line #206)
+
+lvglwasm.js:30 [Trace]	(0.007, +1)	 lv_obj_class_create_obj: Creating object with 0x11e2c class on 0 parent 	(in lv_obj_class.c line #45)
+
+lvglwasm.js:30 [Trace]	(0.008, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+
+lvglwasm.js:30 [Trace]	(0.009, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+
+lvglwasm.js:30 [Trace]	(0.010, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+
+lvglwasm.js:30 [Info]	(0.011, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
+
+lvglwasm.js:30 [Trace]	(0.012, +1)	 lv_obj_class_create_obj: Creating object with 0x11e2c class on 0 parent 	(in lv_obj_class.c line #45)
+
+lvglwasm.js:30 [Trace]	(0.013, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+
+lvglwasm.js:30 [Trace]	(0.014, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+
+lvglwasm.js:30 [Trace]	(0.015, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+
+lvglwasm.js:30 [Info]	(0.016, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
+
+lvglwasm.js:30 [Trace]	(0.017, +1)	 lv_obj_class_create_obj: Creating object with 0x11e2c class on 0 parent 	(in lv_obj_class.c line #45)
+
+lvglwasm.js:30 [Trace]	(0.018, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+
+lvglwasm.js:30 [Trace]	(0.019, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+
+lvglwasm.js:30 [Trace]	(0.020, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+
+lvglwasm.js:30 createWidgetsWrapped: start
+lvglwasm.js:30 [Info]	(0.022, +2)	 lv_label_create: begin 	(in lv_label.c line #75)
+
+lvglwasm.js:30 [Trace]	(0.023, +1)	 lv_obj_class_create_obj: Creating object with 0x10000 class on 0x1b9b0 parent 	(in lv_obj_class.c line #45)
+
+lvglwasm.js:30 [Trace]	(0.024, +1)	 lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+
+lvglwasm.js:30 [Trace]	(0.025, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+
+lvglwasm.js:30 [Trace]	(0.026, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+
+lvglwasm.js:30 [Trace]	(0.027, +1)	 lv_label_constructor: begin 	(in lv_label.c line #691)
+
+lvglwasm.js:30 [Trace]	(0.028, +1)	 lv_label_constructor: finished 	(in lv_label.c line #721)
+
+lvglwasm.js:30 createWidgetsWrapped: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.029, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.033, +4)	 lv_timer_exec: calling timer callback: 0x17 	(in lv_timer.c line #312)
+
+lvglwasm.js:30 [Info]	(0.035, +2)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+
+lvglwasm.js:30 [Trace]	(0.036, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+
+lvglwasm.js:30 [Info]	(0.037, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+
+lvglwasm.js:30 [Trace]	(0.038, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+
+lvglwasm.js:30 [Info]	(0.039, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+
+lvglwasm.js:30 [Trace]	(0.040, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+
+lvglwasm.js:30 [Info]	(0.041, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+
+lvglwasm.js:30 [Trace]	(0.042, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 flushDisplay: start
+lvglwasm.js:30 flushDisplay: end
+lvglwasm.js:30 [Trace]	(0.044, +2)	 lv_timer_exec: timer callback 0x17 finished 	(in lv_timer.c line #314)
+
+lvglwasm.js:30 [Trace]	(0.048, +4)	 lv_timer_handler: finished (17 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.049, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.055, +6)	 lv_timer_handler: finished (10 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.056, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.062, +6)	 lv_timer_handler: finished (3 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.063, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.067, +4)	 lv_timer_exec: calling timer callback: 0x17 	(in lv_timer.c line #312)
+
+lvglwasm.js:30 [Trace]	(0.069, +2)	 lv_timer_exec: timer callback 0x17 finished 	(in lv_timer.c line #314)
+
+lvglwasm.js:30 [Trace]	(0.072, +3)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.073, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.077, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.078, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.082, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.083, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.087, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.088, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.092, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.093, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.097, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_timer_handler: start
+lvglwasm.js:30 [Trace]	(0.098, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:30 [Trace]	(0.102, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:30 lv_timer_handler: end
+lvglwasm.js:30 lv_demo_widgets: end
+lvglwasm.js:58 lv_demo_widgets: done
+lvglwasm.js:65 loop: end
+lvglwasm.js:68 main: end
 ```
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
