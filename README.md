@@ -870,7 +870,14 @@ obj->styles[i].style=0xaaaaaaaa
 RuntimeError: memory access out of bounds
 ```
 
-Why the invalid Style Pointer `0xaaaaaaaa`?
+Why the invalid Style Pointer `0xaaaaaaaa`? Workaround:
+
+```c
+static lv_style_res_t get_prop_core(const lv_obj_t * obj, lv_part_t part, lv_style_prop_t prop, lv_style_value_t * v) {
+    ...
+    for(; i < obj->style_cnt; i++) {
+        if (obj->styles[i].style == (void*)0xaaaaaaaa) continue;////
+```
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
