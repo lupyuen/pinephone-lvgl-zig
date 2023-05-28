@@ -206,10 +206,6 @@ export fn malloc(size: usize) ?*anyopaque {
 
 /// Zig replacement for realloc
 export fn realloc(old_mem: [*c]u8, size: usize) ?*anyopaque {
-    if (old_mem != null) {
-        // TODO: How to free without the slice length?
-        // memory_allocator.allocator().free(old_mem[0..???]);
-    }
     // TODO: Call realloc instead
     // const mem = memory_allocator.allocator().realloc(old_mem[0..???], size) catch {
     //     @panic("*** realloc error: out of memory");
@@ -217,6 +213,11 @@ export fn realloc(old_mem: [*c]u8, size: usize) ?*anyopaque {
     const mem = memory_allocator.allocator().alloc(u8, size) catch {
         @panic("*** realloc error: out of memory");
     };
+    _ = memcpy(mem.ptr, old_mem, size);
+    if (old_mem != null) {
+        // TODO: How to free without the slice length?
+        // memory_allocator.allocator().free(old_mem[0..???]);
+    }
     return mem.ptr;
 }
 
