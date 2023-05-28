@@ -900,7 +900,7 @@ And the LVGL Display renders OK in our HTML Canvas yay!
 
 # LVGL Fonts
 
-TODO: Font
+Remember to compile the LVGL Fonts! Or nothing will be rendered
 
 ```bash
   ## Compile LVGL Library from C to WebAssembly with Zig Compiler
@@ -917,6 +917,8 @@ TODO: Font
     lv_font_montserrat_14.o \
     lv_font_montserrat_20.o \
 ```
+
+[(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L21-L191)
 
 # TODO
 
