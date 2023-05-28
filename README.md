@@ -817,7 +817,63 @@ And we get this LVGL Display Interface for Zig: [display.c](display.c)
 
 Finally this is how we initialise the LVGL Display in Zig WebAssembly...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/1c7a3feb4500bb1103bdadc2907dd722d8e940cc/lvglwasm.zig#L39-L71
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L38C1-L84
+
+We're ready to render the LVGL Display!
+
+# Render LVGL Display in Web Browser
+
+Let's render the LVGL Display in the Web Browser!
+
+(Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas))
+
+LVGL renders the display pixels to `canvas_buffer`...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L95-L107
+
+LVGL calls `flushDisplay` (in Zig) when the LVGL Display Canvas is ready to be rendered...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L49-L63
+
+`flushDisplay` (in Zig) calls `render` (in JavaScript) to render the LVGL Display Canvas...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L86-L98
+
+(Remember to call `lv_disp_flush_ready` or Web Browser will hang on reload)
+
+`render` (in JavaScript) draws the LVGL Display to our HTML Canvas...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/2b7b76b08e97dfafb3250b7a874c42c2db7681fa/lvglwasm.js#L12-L40
+
+Which calls [`getCanvasBuffer`](https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L100-L104) (in Zig) and `get_canvas_buffer` (in C) to fetch the LVGL Canvas Buffer `canvas_buffer`...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L9-L29
+
+And the LVGL Display renders OK in our HTML Canvas yay!
+
+![Render LVGL Display in Web Browser](https://lupyuen.github.io/images/zig-wasm3.png)
+
+# LVGL Fonts
+
+Remember to compile the LVGL Fonts! Or nothing will be rendered...
+
+```bash
+  ## Compile LVGL Library from C to WebAssembly with Zig Compiler
+  compile_lvgl font/lv_font_montserrat_14.c lv_font_montserrat_14
+  compile_lvgl font/lv_font_montserrat_20.c lv_font_montserrat_20
+
+  ## Compile the Zig LVGL App for WebAssembly 
+  zig build-lib \
+    -DLV_FONT_MONTSERRAT_14=1 \
+    -DLV_FONT_MONTSERRAT_20=1 \
+    -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
+    -DLV_USE_FONT_PLACEHOLDER=1 \
+    ...
+    lv_font_montserrat_14.o \
+    lv_font_montserrat_20.o \
+```
+
+[(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L21-L191)
 
 # LVGL Memory Allocation
 
@@ -872,59 +928,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 [(If we ever remove `-DLV_MEM_CUSTOM=1`, remember to set `-DLV_MEM_SIZE=1000000`)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/aa080fb2ce55f9959cce2b6fff7e5fd5c9907cd6/README.md#lvgl-memory-allocation)
 
-# Render LVGL Display in Web Browser
-
-Let's render the LVGL Display in the Web Browser!
-
-(Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas))
-
-LVGL renders the display pixels to `canvas_buffer`...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L95-L107
-
-LVGL calls `flushDisplay` (in Zig) when the LVGL Display Canvas is ready to be rendered...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L49-L63
-
-`flushDisplay` (in Zig) calls `render` (in JavaScript) to render the LVGL Display Canvas...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L86-L98
-
-`render` (in JavaScript) draws the LVGL Display to our HTML Canvas...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/2b7b76b08e97dfafb3250b7a874c42c2db7681fa/lvglwasm.js#L12-L40
-
-Which calls [`getCanvasBuffer`](https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L100-L104) (in Zig) and `get_canvas_buffer` (in C) to fetch the LVGL Canvas Buffer `canvas_buffer`...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/5e4d661a7a9a962260d1f63c3b79a688037ed642/display.c#L9-L29
-
-And the LVGL Display renders OK in our HTML Canvas yay!
-
-![Render LVGL Display in Web Browser](https://lupyuen.github.io/images/zig-wasm3.png)
-
-# LVGL Fonts
-
-Remember to compile the LVGL Fonts! Or nothing will be rendered
-
-```bash
-  ## Compile LVGL Library from C to WebAssembly with Zig Compiler
-  compile_lvgl font/lv_font_montserrat_14.c lv_font_montserrat_14
-  compile_lvgl font/lv_font_montserrat_20.c lv_font_montserrat_20
-
-  ## Compile the Zig LVGL App for WebAssembly 
-  zig build-lib \
-    -DLV_FONT_MONTSERRAT_14=1 \
-    -DLV_FONT_MONTSERRAT_20=1 \
-    -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
-    -DLV_USE_FONT_PLACEHOLDER=1 \
-    ...
-    lv_font_montserrat_14.o \
-    lv_font_montserrat_20.o \
-```
-
-[(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L21-L191)
-
-# TODO
+# Handle LVGL Events
 
 TODO: Call `lv_tick_inc` and `lv_timer_handler`
 
@@ -934,126 +938,134 @@ TODO: Call `lv_tick_inc` and `lv_timer_handler`
 
 [(Source)](https://docs.lvgl.io/8.3/porting/project.html#initialization)
 
-TODO: Implement `flushDisplay`
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L38C1-L84
 
-(Remember to call `lv_disp_flush_ready` or Web Browser will hang on reload)
+Here's the log...
 
 ```text
-lvglwasm.js:50 main: start
-lvglwasm.js:53 loop: start
-lvglwasm.js:30 lv_demo_widgets: start
-lvglwasm.js:30 [Info]	(0.001, +1)	 lv_init: begin 	(in lv_obj.c line #102)
+lvglwasm.js:72 main: start
+lvglwasm.js:76 loop: start
+lvglwasm.js:51 lv_demo_widgets: start
+lvglwasm.js:51 [Info]	(0.001, +1)	 lv_init: begin 	(in lv_obj.c line #102)
 
-lvglwasm.js:30 [Warn]	(0.003, +2)	 lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
+lvglwasm.js:51 [Warn]	(0.003, +2)	 lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
 
-lvglwasm.js:30 [Trace]	(0.004, +1)	 lv_init: finished 	(in lv_obj.c line #183)
+lvglwasm.js:51 [Trace]	(0.004, +1)	 lv_init: finished 	(in lv_obj.c line #183)
 
-lvglwasm.js:30 [Info]	(0.006, +2)	 lv_obj_create: begin 	(in lv_obj.c line #206)
+lvglwasm.js:51 [Info]	(0.006, +2)	 lv_obj_create: begin 	(in lv_obj.c line #206)
 
-lvglwasm.js:30 [Trace]	(0.007, +1)	 lv_obj_class_create_obj: Creating object with 0x11ed8 class on 0 parent 	(in lv_obj_class.c line #45)
+lvglwasm.js:51 [Trace]	(0.007, +1)	 lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
 
-lvglwasm.js:30 [Trace]	(0.008, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+lvglwasm.js:51 [Trace]	(0.008, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 
-lvglwasm.js:30 [Trace]	(0.009, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+ [Trace]	(0.009, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
 
-lvglwasm.js:30 [Trace]	(0.010, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+ [Trace]	(0.010, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
 
-lvglwasm.js:30 [Info]	(0.011, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
+ [Info]	(0.011, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
 
-lvglwasm.js:30 [Trace]	(0.012, +1)	 lv_obj_class_create_obj: Creating object with 0x11ed8 class on 0 parent 	(in lv_obj_class.c line #45)
+ [Trace]	(0.012, +1)	 lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
 
-lvglwasm.js:30 [Trace]	(0.013, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+ [Trace]	(0.013, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 
-lvglwasm.js:30 [Trace]	(0.014, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+ [Trace]	(0.014, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
 
-lvglwasm.js:30 [Trace]	(0.015, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+ [Trace]	(0.015, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
 
-lvglwasm.js:30 [Info]	(0.016, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
+ [Info]	(0.016, +1)	 lv_obj_create: begin 	(in lv_obj.c line #206)
 
-lvglwasm.js:30 [Trace]	(0.017, +1)	 lv_obj_class_create_obj: Creating object with 0x11ed8 class on 0 parent 	(in lv_obj_class.c line #45)
+ [Trace]	(0.017, +1)	 lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
 
-lvglwasm.js:30 [Trace]	(0.018, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
+ [Trace]	(0.018, +1)	 lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 
-lvglwasm.js:30 [Trace]	(0.019, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+ [Trace]	(0.019, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
 
-lvglwasm.js:30 [Trace]	(0.020, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+ [Trace]	(0.020, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
 
-lvglwasm.js:30 createWidgetsWrapped: start
-lvglwasm.js:30 [Info]	(0.022, +2)	 lv_label_create: begin 	(in lv_label.c line #75)
+ createWidgetsWrapped: start
+ [Info]	(0.022, +2)	 lv_label_create: begin 	(in lv_label.c line #75)
 
-lvglwasm.js:30 [Trace]	(0.023, +1)	 lv_obj_class_create_obj: Creating object with 0x11ebc class on 0x3989e0 parent 	(in lv_obj_class.c line #45)
+ [Trace]	(0.023, +1)	 lv_obj_class_create_obj: Creating object with 0x174b0 class on 0x39dfd0 parent 	(in lv_obj_class.c line #45)
 
-lvglwasm.js:30 [Trace]	(0.024, +1)	 lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+ [Trace]	(0.024, +1)	 lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
 
-lvglwasm.js:30 [Trace]	(0.025, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
+ [Trace]	(0.025, +1)	 lv_obj_constructor: begin 	(in lv_obj.c line #403)
 
-lvglwasm.js:30 [Trace]	(0.026, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
+ [Trace]	(0.026, +1)	 lv_obj_constructor: finished 	(in lv_obj.c line #428)
 
-lvglwasm.js:30 [Trace]	(0.027, +1)	 lv_label_constructor: begin 	(in lv_label.c line #691)
+ [Trace]	(0.027, +1)	 lv_label_constructor: begin 	(in lv_label.c line #691)
 
-lvglwasm.js:30 [Trace]	(0.028, +1)	 lv_label_constructor: finished 	(in lv_label.c line #721)
+ [Trace]	(0.028, +1)	 lv_label_constructor: finished 	(in lv_label.c line #721)
 
-lvglwasm.js:30 createWidgetsWrapped: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.029, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+ createWidgetsWrapped: end
+ lv_timer_handler: start
+ [Trace]	(0.029, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
 
-lvglwasm.js:30 [Trace]	(0.033, +4)	 lv_timer_exec: calling timer callback: 0x17 	(in lv_timer.c line #312)
+ [Trace]	(0.033, +4)	 lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
 
-lvglwasm.js:30 [Info]	(0.035, +2)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+ [Info]	(0.035, +2)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.036, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+ [Trace]	(0.036, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 
-lvglwasm.js:30 [Info]	(0.037, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+ [Info]	(0.037, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.038, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+ [Trace]	(0.038, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 
-lvglwasm.js:30 [Info]	(0.039, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+ [Info]	(0.039, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.040, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+ [Trace]	(0.040, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 
-lvglwasm.js:30 [Info]	(0.041, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+ [Info]	(0.041, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.042, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+ [Trace]	(0.042, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 
-lvglwasm.js:30 flushDisplay: start
-lvglwasm.js:30 flushDisplay: end
-lvglwasm.js:30 [Trace]	(0.044, +2)	 lv_timer_exec: timer callback 0x17 finished 	(in lv_timer.c line #314)
+ [Info]	(0.043, +1)	 lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.048, +4)	 lv_timer_handler: finished (17 ms until the next timer call) 	(in lv_timer.c line #144)
+ [Trace]	(0.044, +1)	 lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.049, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+ flushDisplay: start
+ render: start
+lvglwasm.js:51 get_canvas_buffer: 1782 non-empty pixels
+lvglwasm.js:51 canvas_buffer: 0x17e70
+lvglwasm.js:27 {bufferOffset: 97904}
+lvglwasm.js:39 render: end
+lvglwasm.js:51 flushDisplay: end
+lvglwasm.js:51 [Trace]	(0.046, +2)	 lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.055, +6)	 lv_timer_handler: finished (10 ms until the next timer call) 	(in lv_timer.c line #144)
+lvglwasm.js:51 [Trace]	(0.050, +4)	 lv_timer_handler: finished (15 ms until the next timer call) 	(in lv_timer.c line #144)
 
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.056, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+lvglwasm.js:51 lv_timer_handler: end
+lvglwasm.js:51 lv_timer_handler: start
+lvglwasm.js:51 [Trace]	(0.051, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
 
-lvglwasm.js:30 [Trace]	(0.062, +6)	 lv_timer_handler: finished (3 ms until the next timer call) 	(in lv_timer.c line #144)
+lvglwasm.js:51 [Trace]	(0.057, +6)	 lv_timer_handler: finished (8 ms until the next timer call) 	(in lv_timer.c line #144)
 
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.063, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+lvglwasm.js:51 lv_timer_handler: end
+lvglwasm.js:51 lv_timer_handler: start
+lvglwasm.js:51 [Trace]	(0.058, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
 
-lvglwasm.js:30 [Trace]	(0.067, +4)	 lv_timer_exec: calling timer callback: 0x17 	(in lv_timer.c line #312)
+lvglwasm.js:51 [Trace]	(0.064, +6)	 lv_timer_handler: finished (1 ms until the next timer call) 	(in lv_timer.c line #144)
 
-lvglwasm.js:30 [Trace]	(0.069, +2)	 lv_timer_exec: timer callback 0x17 finished 	(in lv_timer.c line #314)
+lvglwasm.js:51 lv_timer_handler: end
+lvglwasm.js:51 lv_timer_handler: start
+lvglwasm.js:51 [Trace]	(0.065, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
 
-lvglwasm.js:30 [Trace]	(0.072, +3)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lvglwasm.js:51 [Trace]	(0.069, +4)	 lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
 
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_timer_handler: start
-lvglwasm.js:30 [Trace]	(0.073, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+lvglwasm.js:51 [Trace]	(0.071, +2)	 lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
 
-lvglwasm.js:30 [Trace]	(0.077, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+lvglwasm.js:51 [Trace]	(0.074, +3)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
 
-lvglwasm.js:30 lv_timer_handler: end
-lvglwasm.js:30 lv_demo_widgets: end
-lvglwasm.js:58 lv_demo_widgets: done
-lvglwasm.js:65 loop: end
-lvglwasm.js:68 main: end
+lvglwasm.js:51 lv_timer_handler: end
+lvglwasm.js:51 lv_timer_handler: start
+lvglwasm.js:51 [Trace]	(0.075, +1)	 lv_timer_handler: begin 	(in lv_timer.c line #69)
+
+lvglwasm.js:51 [Trace]	(0.079, +4)	 lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
+
+lvglwasm.js:51 lv_timer_handler: end
+lvglwasm.js:51 lv_demo_widgets: end
+lvglwasm.js:84 loop: end
+lvglwasm.js:87 main: end
 ```
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
