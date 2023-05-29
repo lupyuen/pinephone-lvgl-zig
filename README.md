@@ -949,9 +949,9 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 [(If we ever remove `-DLV_MEM_CUSTOM=1`, remember to set `-DLV_MEM_SIZE=1000000`)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/aa080fb2ce55f9959cce2b6fff7e5fd5c9907cd6/README.md#lvgl-memory-allocation)
 
-# Handle LVGL Events
+# Handle LVGL Tasks
 
-TODO: To handle LVGL Events, call `lv_tick_inc` and `lv_timer_handler`
+TODO: To handle LVGL Tasks, call `lv_tick_inc` and `lv_timer_handler`
 
 1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
 
