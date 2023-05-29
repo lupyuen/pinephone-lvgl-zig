@@ -73,7 +73,7 @@ pub export fn lv_demo_widgets() void {
         return;
     };
 
-    // Handle LVGL Events
+    // Handle LVGL Tasks
     // TODO: Call this from Web Browser JavaScript, so that Web Browser won't block
     var i: usize = 0;
     while (i < 5) : (i += 1) {
