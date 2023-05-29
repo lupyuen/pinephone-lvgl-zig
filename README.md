@@ -4,6 +4,8 @@
 
 Read the articles...
 
+-   ["(Possibly) LVGL in WebAssembly with Zig Compiler"](https://lupyuen.github.io/articles/lvgl3)
+
 -   ["NuttX RTOS for PinePhone: Boot to LVGL"](https://lupyuen.github.io/articles/lvgl2)
 
 -   ["Build an LVGL Touchscreen App with Zig"](https://lupyuen.github.io/articles/lvgl)
@@ -163,6 +165,10 @@ And our LVGL Zig App runs OK on PinePhone!
 ![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
 
 # Simulate PinePhone UI with Zig, LVGL and WebAssembly
+
+Read the article...
+
+-   ["(Possibly) LVGL in WebAssembly with Zig Compiler"](https://lupyuen.github.io/articles/lvgl3)
 
 We're now building a __Feature Phone UI__ for NuttX on PinePhone...
 
