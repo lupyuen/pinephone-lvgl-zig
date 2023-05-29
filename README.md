@@ -838,7 +838,53 @@ Finally this is how we initialise the LVGL Display in Zig WebAssembly...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L38-L84
 
-We're ready to render the LVGL Display!
+Now we handle LVGL Tasks...
+
+# Handle LVGL Tasks
+
+Earlier we talked about __handling LVGL Tasks__...
+
+1.  Call __lv_tick_inc(x)__ every __x__ milliseconds (in an Interrupt) to report the __Elapsed Time__ to LVGL
+
+    [(Not required, because LVGL calls __millis__ to fetch the Elapsed Time)](https://lupyuen.github.io/articles/lvgl3#lvgl-porting-layer-for-webassembly)
+
+1.  Call __lv_timer_handler__ every few milliseconds to handle __LVGL Tasks__
+
+[(From the __LVGL Docs__)](https://docs.lvgl.io/8.3/porting/project.html#initialization)
+
+This is how we call __lv_timer_handler__ in Zig: [lvglwasm.zig](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/lvglwasm.zig#L69-L85)
+
+```zig
+/// Main Function for our Zig LVGL App
+pub export fn lv_demo_widgets() void {
+
+  // Omitted: Init LVGL Display
+
+  // Create the widgets for display
+  createWidgetsWrapped() catch |e| {
+    // In case of error, quit
+    std.log.err("createWidgetsWrapped failed: {}", .{e});
+    return;
+  };
+
+  // Handle LVGL Tasks
+  // TODO: Call this from Web Browser JavaScript,
+  // so that Web Browser won't block
+  var i: usize = 0;
+  while (i < 5) : (i += 1) {
+    _ = c.lv_timer_handler();
+  }
+```
+
+We're ready to render the LVGL Display in our HTML Page!
+
+_Something doesn't look right..._
+
+Yeah we should have called __lv_timer_handler__ from our JavaScript.
+
+(Triggered by a JavaScript Timer or __requestAnimationFrame__)
+
+But for our quick demo, this will do. For now!
 
 # Render LVGL Display in Web Browser
 
@@ -949,23 +995,9 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 
 [(If we ever remove `-DLV_MEM_CUSTOM=1`, remember to set `-DLV_MEM_SIZE=1000000`)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/aa080fb2ce55f9959cce2b6fff7e5fd5c9907cd6/README.md#lvgl-memory-allocation)
 
-# Handle LVGL Tasks
+# TODO
 
-TODO: To handle LVGL Tasks, call `lv_tick_inc` and `lv_timer_handler`
-
-1.  Call `lv_tick_inc(x)` every x milliseconds in an interrupt to report the elapsed time to LVGL
-
-    (Not required, because LVGL calls `millis` to fetch the elapsed time)
-
-1.  Call `lv_timer_handler()` every few milliseconds to handle LVGL related tasks
-
-[(Source)](https://docs.lvgl.io/8.3/porting/project.html#initialization)
-
-Like this...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/d584f43c6354f12bdc15bdb8632cdd3f6f5dc7ff/lvglwasm.zig#L65-L83
-
-Here's the log...
+TODO: Here's the log...
 
 ```text
 main: start
@@ -1043,8 +1075,6 @@ lv_demo_widgets: end
 loop: end
 main: end
 ```
-
-# TODO
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
 
