@@ -90,7 +90,7 @@ export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t,
     debug("flushDisplay: start", .{});
     defer debug("flushDisplay: end", .{});
 
-    // Call the Web Browser JavaScript o render the LVGL Canvas Buffer
+    // Call the Web Browser JavaScript to render the LVGL Canvas Buffer
     render();
 
     // Notify LVGL that the display is flushed
