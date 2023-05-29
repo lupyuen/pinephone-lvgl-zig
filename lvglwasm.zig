@@ -1,4 +1,4 @@
-//! LVGL Test App that renders an LVGL Screen and handles Touch Input
+//! LVGL Test App (for WebAssembly) that renders an LVGL Screen
 
 /// Import the Zig Standard Library
 const std = @import("std");
