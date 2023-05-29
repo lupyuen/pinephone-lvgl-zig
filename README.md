@@ -345,6 +345,7 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
     --verbose-cimport \
     -target wasm32-freestanding \
     -dynamic \
+    -rdynamic \
     -isystem "../nuttx/include" \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
