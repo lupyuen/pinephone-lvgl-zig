@@ -886,9 +886,11 @@ Yeah we should have called __lv_timer_handler__ from our JavaScript.
 
 But for our quick demo, this will do. For now!
 
+![Render LVGL Display in WebAssembly](https://lupyuen.github.io/images/lvgl3-render.jpg)
+
 # Render LVGL Display in Web Browser
 
-Let's render the LVGL Display in the Web Browser!
+Let's render the LVGL Display in the Web Browser! (Pic above)
 
 (Based on [daneelsan/minimal-zig-wasm-canvas](https://github.com/daneelsan/minimal-zig-wasm-canvas))
 
