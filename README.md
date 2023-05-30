@@ -160,6 +160,8 @@ make -j
 
 [(Updated Build Script)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L192-L223)
 
+[(NuttX Build Files)](https://github.com/lupyuen/pinephone-lvgl-zig/releases/tag/nuttx-build-files)
+
 And our LVGL Zig App runs OK on PinePhone!
 
 ![LVGL for PinePhone with Zig and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl2-zig.jpg)
@@ -334,6 +336,8 @@ Like this...
 
 [(According to this)](https://ziglang.org/documentation/master/#Freestanding)
 
+[(NuttX Build Files)](https://github.com/lupyuen/pinephone-lvgl-zig/releases/tag/nuttx-build-files)
+
 OK no errors, this produces the Compiled WebAssembly `lvgltest.wasm`.
 
 Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglwasm.zig`](lvglwasm.zig)...
@@ -367,6 +371,8 @@ Now we tweak [`lvgltest.zig`](lvgltest.zig) for WebAssembly, and call it [`lvglw
 ```
 
 [(According to this)](https://ziglang.org/documentation/master/#Freestanding)
+
+[(NuttX Build Files)](https://github.com/lupyuen/pinephone-lvgl-zig/releases/tag/nuttx-build-files)
 
 (We removed our Custom Panic Handler, the default one works fine for WebAssembly)
 
@@ -582,6 +588,8 @@ zig cc \
   -o ../../../pinephone-lvgl-zig/lv_label.o
 ```
 
+[(NuttX Build Files)](https://github.com/lupyuen/pinephone-lvgl-zig/releases/tag/nuttx-build-files)
+
 This produces the Compiled WebAssembly `lv_label.o`.
 
 _Will Zig Compiler let us link `lv_label.o` with our Zig LVGL App?_
@@ -632,6 +640,8 @@ Let's ask Zig Compiler to link `lv_label.o` with our Zig LVGL App [`lvglwasm.zig
 ```
 
 [(Source)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/2e1c97e49e51b1cbbe0964a9512eba141d0dd09f/build.sh#L87-L191)
+
+[(NuttX Build Files)](https://github.com/lupyuen/pinephone-lvgl-zig/releases/tag/nuttx-build-files)
 
 Now we see this error in the Web Browser...
 
