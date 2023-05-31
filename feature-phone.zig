@@ -80,14 +80,7 @@ pub export fn lv_demo_widgets() void {
         return;
     };
 
-    // Handle LVGL Tasks
-    // TODO: Call this from Web Browser JavaScript, so that Web Browser won't block
-    var i: usize = 0;
-    while (i < 5) : (i += 1) {
-        debug("lv_timer_handler: start", .{});
-        _ = c.lv_timer_handler();
-        debug("lv_timer_handler: end", .{});
-    }
+    // JavaScript should call handleTimer periodically to handle LVGL Tasks
 }
 
 /// LVGL Callback Function to Flush Display
@@ -214,6 +207,16 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
 
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Input
+
+/// Called by JavaScript to execute LVGL Tasks periodically, passing the Elapsed Milliseconds
+export fn handleTimer(ms: i32) void {
+    // Set the Elapsed Milliseconds, don't allow time rewind
+    if (ms > elapsed_ms) {
+        elapsed_ms = @intCast(u32, ms);
+    }
+    // Handle LVGL Tasks
+    _ = c.lv_timer_handler();
+}
 
 /// Called by JavaScript to notify Mouse Down and Mouse Up
 export fn notifyInput(pressed: i32, x: i32, y: i32) void {
