@@ -36,7 +36,8 @@ const importObject = {
 
             // Get the WebAssembly Pointer to the LVGL Canvas Buffer
             console.log("render: start");
-            const bufferOffset = wasm.instance.exports.getCanvasBuffer();
+            const bufferOffset = wasm.instance.exports
+                .getCanvasBuffer();
             console.log({ bufferOffset });
 
             // Load the WebAssembly Pointer into a JavaScript Image Data
@@ -73,13 +74,34 @@ const context = canvas.getContext("2d");
 const imageData = context.createImageData(canvas.width, canvas.height);
 context.clearRect(0, 0, canvas.width, canvas.height);
 
+// Handle Mouse Down on HTML Canvas
+canvas.addEventListener("mousedown", (e) => {
+    // Notify Zig of Mouse Down
+    const x = e.offsetX;
+    const y = e.offsetY;
+    console.log({mousedown: {x, y}});
+    wasm.instance.exports
+        .notifyInput(1, x, y);
+});
+
+// Handle Mouse Up on HTML Canvas
+canvas.addEventListener("mouseup", (e) => {
+    // Notify Zig of Mouse Up
+    x = e.offsetX;
+    y = e.offsetY;
+    console.log({mouseup: {x, y}});
+    wasm.instance.exports
+        .notifyInput(0, x, y);
+});
+
 // Main Function
 function main() {
     console.log("main: start");
     const start_ms = Date.now();
 
     // Render the LVGL Widgets in Zig
-    wasm.instance.exports.lv_demo_widgets();
+    wasm.instance.exports
+        .lv_demo_widgets();
 
     // Render Loop
     const loop = function() {
@@ -88,11 +110,12 @@ function main() {
         const elapsed_ms = Date.now() - start_ms;
 
         // Handle LVGL Tasks to update the display
-        wasm.instance.exports.handleTimer(elapsed_ms);
+        wasm.instance.exports
+            .handleTimer(elapsed_ms);
 
         // Loop to next frame
-        // TODO: window.requestAnimationFrame(loop);
-        window.setTimeout(loop, 1000);
+        window.requestAnimationFrame(loop);
+        // Previously: window.setTimeout(loop, 100);
     };
 
     // Start the Render Loop

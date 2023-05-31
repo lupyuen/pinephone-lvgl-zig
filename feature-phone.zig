@@ -198,6 +198,7 @@ fn createButton() void {
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 export fn eventHandler(e: ?*c.lv_event_t) void {
     const code = c.lv_event_get_code(e);
+    // debug("eventHandler: code={}", .{code});
     if (code == c.LV_EVENT_CLICKED) {
         debug("eventHandler: clicked", .{});
     } else if (code == c.LV_EVENT_VALUE_CHANGED) {
@@ -238,6 +239,7 @@ export fn readInput(drv: [*c]c.lv_indev_drv_t, data: [*c]c.lv_indev_data_t) void
     if (input_updated) {
         input_updated = false;
         c.set_input_data(data, input_state, input_x, input_y);
+        debug("readInput: state={}, x={}, y={}", .{ input_state, input_x, input_y });
     }
 }
 
