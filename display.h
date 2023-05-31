@@ -1,5 +1,14 @@
 lv_color_t *get_canvas_buffer(void);
 
+void *register_input(lv_indev_drv_t *indev_drv);
+
+void set_input_data(
+  lv_indev_data_t *data,
+  lv_indev_state_t state,
+  lv_coord_t x,
+  lv_coord_t y
+);
+
 /****************************************************************************
  * Name: get_disp_drv
  *

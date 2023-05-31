@@ -71,7 +71,7 @@ pub export fn lv_demo_widgets() void {
     c.lv_indev_drv_init(&indev_drv);
     indev_drv.type = c.LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = readInput;
-    _ = c.lv_indev_drv_register(&indev_drv);
+    _ = c.register_input(&indev_drv);
 
     // Create the widgets for display (with Zig Wrapper)
     createWidgetsWrapped() catch |e| {
@@ -213,19 +213,16 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//  LVGL Input Device
+//  LVGL Input
 
 /// Callback Function to read Input Device
 export fn readInput(drv: [*c]c.lv_indev_drv_t, data: [*c]c.lv_indev_data_t) void {
     _ = drv;
-    _ = data;
-    // if (true) {
-    //     // data.point.x = 0;
-    //     // data.point.y = 0;
-    //     data.state = c.LV_INDEV_STATE_PRESSED;
-    // } else {
-    //     data.state = c.LV_INDEV_STATE_RELEASED;
-    // }
+    if (true) {
+        c.set_input_data(data, c.LV_INDEV_STATE_PRESSED, 0, 0);
+    } else {
+        c.set_input_data(data, c.LV_INDEV_STATE_RELEASED, 0, 0);
+    }
 }
 
 /// LVGL Input Device Driver

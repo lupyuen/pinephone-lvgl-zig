@@ -105,3 +105,24 @@ void init_disp_buf(lv_disp_draw_buf_t *disp_buf)
   LV_ASSERT(disp_buf != NULL);
   lv_disp_draw_buf_init(disp_buf, canvas_buffer, NULL, BUFFER_SIZE);
 }
+
+// Register the LVGL Input Device Driver and return the LVGL Input Device
+void *register_input(lv_indev_drv_t *indev_drv)
+{
+  lv_indev_t *indev = lv_indev_drv_register(indev_drv);
+  LV_ASSERT(indev != NULL);
+  return indev;
+}
+
+// Set the LVGL Input Device Data
+void set_input_data(
+  lv_indev_data_t *data,
+  lv_indev_state_t state,
+  lv_coord_t x,
+  lv_coord_t y
+) {
+  LV_ASSERT(data != NULL);
+  data->state = state;
+  data->point.x = x;
+  data->point.y = y;
+}
