@@ -109,19 +109,13 @@ export fn getCanvasBuffer() [*]u8 {
 /// Create an LVGL Button
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createButton() void {
-    const btn1 = c.lv_btn_create(c.lv_scr_act());
-    _ = c.lv_obj_add_event_cb(btn1, eventHandler, c.LV_EVENT_ALL, null);
-    c.lv_obj_align(btn1, c.LV_ALIGN_CENTER, 0, -40);
+    const btn = c.lv_btn_create(c.lv_scr_act());
+    _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
+    c.lv_obj_align(btn, c.LV_ALIGN_CENTER, 0, 40);
 
-    const label = c.lv_label_create(btn1);
+    const label = c.lv_label_create(btn);
     c.lv_label_set_text(label, "Button");
     c.lv_obj_center(label);
-
-    const btn2 = c.lv_btn_create(c.lv_scr_act());
-    _ = c.lv_obj_add_event_cb(btn2, eventHandler, c.LV_EVENT_ALL, null);
-    c.lv_obj_align(btn2, c.LV_ALIGN_CENTER, 0, 40);
-    c.lv_obj_add_flag(btn2, c.LV_OBJ_FLAG_CHECKABLE);
-    c.lv_obj_set_height(btn2, c.LV_SIZE_CONTENT);
 }
 
 /// Handle LVGL Button Event
