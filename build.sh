@@ -287,5 +287,117 @@ function compile_lvgl {
   popd
 }
 
+## Build the Feature Phone Zig LVGL App for WebAssembly 
+## TODO: Change ".." to your NuttX Project Directory
+function build_feature_phone {
+  zig build-lib \
+    --verbose-cimport \
+    -target wasm32-freestanding \
+    -dynamic \
+    -rdynamic \
+    -lc \
+    -DFAR= \
+    -DLV_MEM_CUSTOM=1 \
+    -DLV_FONT_MONTSERRAT_14=1 \
+    -DLV_FONT_MONTSERRAT_20=1 \
+    -DLV_FONT_DEFAULT_MONTSERRAT_20=1 \
+    -DLV_USE_FONT_PLACEHOLDER=1 \
+    -DLV_USE_LOG=1 \
+    -DLV_LOG_LEVEL=LV_LOG_LEVEL_TRACE \
+    -DLV_LOG_TRACE_OBJ_CREATE=1 \
+    -DLV_LOG_TRACE_TIMER=1 \
+    "-DLV_ASSERT_HANDLER={void lv_assert_handler(void); lv_assert_handler();}" \
+    -I . \
+    \
+    -isystem "../nuttx/include" \
+    -I "../apps/include" \
+    -I "../apps/graphics/lvgl" \
+    -I "../apps/graphics/lvgl/lvgl/src/core" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/arm2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/pxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/vglite" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sdl" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/stm32_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/swm341_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/font" \
+    -I "../apps/graphics/lvgl/lvgl/src/hal" \
+    -I "../apps/graphics/lvgl/lvgl/src/misc" \
+    -I "../apps/graphics/lvgl/lvgl/src/widgets" \
+    \
+    feature-phone.zig \
+    display.o \
+    lv_font_montserrat_14.o \
+    lv_font_montserrat_20.o \
+    lv_label.o \
+    lv_mem.o \
+    lv_obj.o \
+    lv_event.o \
+    lv_obj_style.o \
+    lv_obj_pos.o \
+    lv_txt.o \
+    lv_draw_label.o \
+    lv_obj_draw.o \
+    lv_area.o \
+    lv_obj_scroll.o \
+    lv_font.o \
+    lv_obj_class.o \
+    lv_obj_tree.o \
+    lv_hal_disp.o \
+    lv_anim.o \
+    lv_tlsf.o \
+    lv_group.o \
+    lv_indev.o \
+    lv_draw_rect.o \
+    lv_draw_mask.o \
+    lv_style.o \
+    lv_ll.o \
+    lv_obj_style_gen.o \
+    lv_timer.o \
+    lv_disp.o \
+    lv_refr.o \
+    lv_color.o \
+    lv_draw_line.o \
+    lv_draw_img.o \
+    lv_math.o \
+    lv_hal_indev.o \
+    lv_theme.o \
+    lv_hal_tick.o \
+    lv_log.o \
+    lv_printf.o \
+    lv_fs.o \
+    lv_draw.o \
+    lv_img_decoder.o \
+    lv_extra.o \
+    lv_flex.o \
+    lv_grid.o \
+    lv_draw_sw.o \
+    lv_draw_sw_rect.o \
+    lv_img_cache.o \
+    lv_img_buf.o \
+    lv_draw_sw_arc.o \
+    lv_draw_sw_letter.o \
+    lv_draw_sw_blend.o \
+    lv_draw_sw_layer.o \
+    lv_draw_sw_transform.o \
+    lv_draw_sw_polygon.o \
+    lv_draw_sw_line.o \
+    lv_draw_sw_img.o \
+    lv_draw_sw_gradient.o \
+    lv_draw_transform.o \
+    lv_theme_default.o \
+    lv_font_fmt_txt.o \
+    lv_draw_layer.o \
+    lv_style_gen.o \
+    lv_gc.o \
+    lv_utils.o \
+
+}
+
 ## Build the LVGL App (in Zig) and LVGL Library (in C) for PinePhone and WebAssembly
 build_zig
+
+## Compile the Feature Phone Zig LVGL App for WebAssembly 
+build_feature_phone
