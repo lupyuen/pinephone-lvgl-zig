@@ -106,6 +106,35 @@ export fn getCanvasBuffer() [*]u8 {
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
 
+/// Create an LVGL Button
+/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
+fn createButton() void {
+    const btn1 = c.lv_btn_create(c.lv_scr_act());
+    _ = c.lv_obj_add_event_cb(btn1, eventHandler, c.LV_EVENT_ALL, null);
+    c.lv_obj_align(btn1, c.LV_ALIGN_CENTER, 0, -40);
+
+    const label = c.lv_label_create(btn1);
+    c.lv_label_set_text(label, "Button");
+    c.lv_obj_center(label);
+
+    const btn2 = c.lv_btn_create(c.lv_scr_act());
+    _ = c.lv_obj_add_event_cb(btn2, eventHandler, c.LV_EVENT_ALL, null);
+    c.lv_obj_align(btn2, c.LV_ALIGN_CENTER, 0, 40);
+    c.lv_obj_add_flag(btn2, c.LV_OBJ_FLAG_CHECKABLE);
+    c.lv_obj_set_height(btn2, c.LV_SIZE_CONTENT);
+}
+
+/// Handle LVGL Button Event
+/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
+export fn eventHandler(e: ?*c.lv_event_t) void {
+    const code = c.lv_event_get_code(e);
+    if (code == c.LV_EVENT_CLICKED) {
+        debug("Clicked", .{});
+    } else if (code == c.LV_EVENT_VALUE_CHANGED) {
+        debug("Toggled", .{});
+    }
+}
+
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
 /// LVGL API that has been wrapped in Zig. Based on
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
@@ -139,6 +168,9 @@ fn createWidgetsWrapped() !void {
 
     // Align the label to the center of the screen, shift 30 pixels up
     label.alignObject(c.LV_ALIGN_CENTER, 0, -30);
+
+    // Create a Button Widget
+    createButton();
 }
 
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
