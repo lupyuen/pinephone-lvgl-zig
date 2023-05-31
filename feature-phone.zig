@@ -66,6 +66,13 @@ pub export fn lv_demo_widgets() void {
     const disp = c.lv_disp_drv_register(disp_drv);
     _ = disp;
 
+    // Register the Input Device
+    // https://docs.lvgl.io/8.3/porting/indev.html
+    c.lv_indev_drv_init(&indev_drv);
+    indev_drv.type = c.LV_INDEV_TYPE_POINTER;
+    indev_drv.read_cb = readInput;
+    _ = c.lv_indev_drv_register(&indev_drv);
+
     // Create the widgets for display (with Zig Wrapper)
     createWidgetsWrapped() catch |e| {
         // In case of error, quit
@@ -105,29 +112,6 @@ export fn getCanvasBuffer() [*]u8 {
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
-
-/// Create an LVGL Button
-/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
-fn createButton() void {
-    const btn = c.lv_btn_create(c.lv_scr_act());
-    _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
-    c.lv_obj_align(btn, c.LV_ALIGN_CENTER, 0, 40);
-
-    const label = c.lv_label_create(btn);
-    c.lv_label_set_text(label, "Button");
-    c.lv_obj_center(label);
-}
-
-/// Handle LVGL Button Event
-/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
-export fn eventHandler(e: ?*c.lv_event_t) void {
-    const code = c.lv_event_get_code(e);
-    if (code == c.LV_EVENT_CLICKED) {
-        debug("Clicked", .{});
-    } else if (code == c.LV_EVENT_VALUE_CHANGED) {
-        debug("Toggled", .{});
-    }
-}
 
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
 /// LVGL API that has been wrapped in Zig. Based on
@@ -200,7 +184,66 @@ fn createWidgetsUnwrapped() !void {
 
     // Align the label to the center of the screen, shift 30 pixels up
     c.lv_obj_align(label, c.LV_ALIGN_CENTER, 0, -30);
+
+    // Create a Button Widget
+    createButton();
 }
+
+/// Create an LVGL Button
+/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
+fn createButton() void {
+    const btn = c.lv_btn_create(c.lv_scr_act());
+    _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
+    c.lv_obj_align(btn, c.LV_ALIGN_CENTER, 0, 40);
+
+    const label = c.lv_label_create(btn);
+    c.lv_label_set_text(label, "Button");
+    c.lv_obj_center(label);
+}
+
+/// Handle LVGL Button Event
+/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
+export fn eventHandler(e: ?*c.lv_event_t) void {
+    const code = c.lv_event_get_code(e);
+    if (code == c.LV_EVENT_CLICKED) {
+        debug("Clicked", .{});
+    } else if (code == c.LV_EVENT_VALUE_CHANGED) {
+        debug("Toggled", .{});
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//  LVGL Input Device
+
+/// Callback Function to read Input Device
+export fn readInput(drv: [*c]c.lv_indev_drv_t, data: [*c]c.lv_indev_data_t) void {
+    _ = drv;
+    _ = data;
+    // if (true) {
+    //     // data.point.x = 0;
+    //     // data.point.y = 0;
+    //     data.state = c.LV_INDEV_STATE_PRESSED;
+    // } else {
+    //     data.state = c.LV_INDEV_STATE_RELEASED;
+    // }
+}
+
+/// LVGL Input Device Driver
+/// TODO: std.mem.zeroes crashes the compiler
+var indev_drv = c.lv_indev_drv_t{
+    .type = 0,
+    .read_cb = null,
+    .feedback_cb = null,
+    .user_data = null,
+    .disp = null,
+    .read_timer = null,
+    .scroll_limit = 0,
+    .scroll_throw = 0,
+    .gesture_min_velocity = 0,
+    .gesture_limit = 0,
+    .long_press_time = 0,
+    .long_press_repeat_time = 0,
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Porting Layer for WebAssembly
