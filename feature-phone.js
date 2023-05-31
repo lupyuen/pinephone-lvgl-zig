@@ -76,19 +76,26 @@ context.clearRect(0, 0, canvas.width, canvas.height);
 // Main Function
 function main() {
     console.log("main: start");
+    const start_ms = Date.now();
+
+    // Render the LVGL Widgets in Zig
+    wasm.instance.exports.lv_demo_widgets();
 
     // Render Loop
     const loop = function() {
-        console.log("loop: start");
 
-        // Render the LVGL Widgets in Zig
-        wasm.instance.exports.lv_demo_widgets();
+        // Compute the Elapsed Milliseconds
+        const elapsed_ms = Date.now() - start_ms;
 
-        // loop to next frame. Disabled for now because it slows down the browser.
+        // Handle LVGL Tasks to update the display
+        wasm.instance.exports.handleTimer(elapsed_ms);
+
+        // Loop to next frame
         // TODO: window.requestAnimationFrame(loop);
-
-        console.log("loop: end");
+        window.setTimeout(loop, 1000);
     };
+
+    // Start the Render Loop
     loop();
     console.log("main: end");
 };
