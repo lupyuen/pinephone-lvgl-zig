@@ -215,15 +215,34 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Input
 
-/// Callback Function to read Input Device
+/// Called by JavaScript to notify Mouse Down and Mouse Up
+export fn notifyInput(pressed: i32, x: i32, y: i32) void {
+    if (pressed == 0) {
+        input_state = c.LV_INDEV_STATE_RELEASED;
+    } else {
+        input_state = c.LV_INDEV_STATE_PRESSED;
+    }
+    input_x = @intCast(c.lv_coord_t, x);
+    input_y = @intCast(c.lv_coord_t, y);
+    input_updated = true;
+}
+
+/// LVGL Callback Function to read Input Device
 export fn readInput(drv: [*c]c.lv_indev_drv_t, data: [*c]c.lv_indev_data_t) void {
     _ = drv;
-    if (true) {
-        c.set_input_data(data, c.LV_INDEV_STATE_PRESSED, 0, 0);
-    } else {
-        c.set_input_data(data, c.LV_INDEV_STATE_RELEASED, 0, 0);
+    if (input_updated) {
+        input_updated = false;
+        c.set_input_data(data, input_state, input_x, input_y);
     }
 }
+
+/// True if LVGL Input State has been updated
+var input_updated: bool = false;
+
+/// LVGL Input State and Coordinates
+var input_state: c.lv_indev_state_t = 0;
+var input_x: c.lv_coord_t = 0;
+var input_y: c.lv_coord_t = 0;
 
 /// LVGL Input Device Driver
 /// TODO: std.mem.zeroes crashes the compiler
