@@ -206,9 +206,9 @@ fn createButton() void {
 export fn eventHandler(e: ?*c.lv_event_t) void {
     const code = c.lv_event_get_code(e);
     if (code == c.LV_EVENT_CLICKED) {
-        debug("Clicked", .{});
+        debug("eventHandler: clicked", .{});
     } else if (code == c.LV_EVENT_VALUE_CHANGED) {
-        debug("Toggled", .{});
+        debug("eventHandler: toggled", .{});
     }
 }
 

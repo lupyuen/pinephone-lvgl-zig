@@ -84,6 +84,7 @@ function build_zig {
   compile_lvgl misc/lv_gc.c lv_gc.o
   compile_lvgl misc/lv_utils.c lv_utils.o
   compile_lvgl widgets/lv_btn.c lv_btn.o
+  compile_lvgl core/lv_indev_scroll.c lv_indev_scroll.o
 
   ## Compile the Zig LVGL App for WebAssembly 
   ## TODO: Change ".." to your NuttX Project Directory
@@ -191,6 +192,7 @@ function build_zig {
     lv_gc.o \
     lv_utils.o \
     lv_btn.o \
+    lv_indev_scroll.o \
 
   ## Compile the Zig LVGL App for PinePhone 
   ## (armv8-a with cortex-a53)
@@ -396,6 +398,7 @@ function build_feature_phone {
     lv_gc.o \
     lv_utils.o \
     lv_btn.o \
+    lv_indev_scroll.o \
 
 }
 
