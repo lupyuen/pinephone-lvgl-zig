@@ -209,17 +209,18 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
 //  LVGL Input
 
 /// Called by JavaScript to execute LVGL Tasks periodically, passing the Elapsed Milliseconds
-export fn handleTimer(ms: i32) void {
+export fn handleTimer(ms: i32) i32 {
     // Set the Elapsed Milliseconds, don't allow time rewind
     if (ms > elapsed_ms) {
         elapsed_ms = @intCast(u32, ms);
     }
     // Handle LVGL Tasks
     _ = c.lv_timer_handler();
+    return 0;
 }
 
 /// Called by JavaScript to notify Mouse Down and Mouse Up
-export fn notifyInput(pressed: i32, x: i32, y: i32) void {
+export fn notifyInput(pressed: i32, x: i32, y: i32) i32 {
     if (pressed == 0) {
         input_state = c.LV_INDEV_STATE_RELEASED;
     } else {
@@ -228,6 +229,7 @@ export fn notifyInput(pressed: i32, x: i32, y: i32) void {
     input_x = @intCast(c.lv_coord_t, x);
     input_y = @intCast(c.lv_coord_t, y);
     input_updated = true;
+    return 0;
 }
 
 /// LVGL Callback Function to read Input Device
