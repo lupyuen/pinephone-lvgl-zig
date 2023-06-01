@@ -90,6 +90,9 @@ void init_disp_drv(
   // Set the Horizontal and Vertical Resolution
   disp_drv->hor_res = hor_res;
   disp_drv->ver_res = ver_res;
+
+  // Use screen-sized buffers and draw to absolute coordinates
+  disp_drv->direct_mode = 1;
 }
 
 /****************************************************************************

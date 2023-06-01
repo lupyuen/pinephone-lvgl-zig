@@ -188,6 +188,7 @@ fn createButton() void {
     const btn = c.lv_btn_create(c.lv_scr_act());
     _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
     c.lv_obj_align(btn, c.LV_ALIGN_CENTER, 0, 40);
+    c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
 
     const label = c.lv_label_create(btn);
     c.lv_label_set_text(label, "Button");
