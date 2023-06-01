@@ -988,7 +988,7 @@ And the LVGL Button will respond correctly to Mouse and Touch Input in the Web B
 
 [Here's the log](https://github.com/lupyuen/pinephone-lvgl-zig/blob/e70b2df50fa562bec7e02f24191dbbb1e5a7553a/README.md#todo)
 
-![Handle LVGL Input](https://lupyuen.github.io/images/zig-wasm4.png)
+![Handle LVGL Input](https://lupyuen.github.io/images/lvgl3-wasm4.png)
 
 # LVGL Fonts
 
