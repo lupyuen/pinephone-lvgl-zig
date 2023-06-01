@@ -35,10 +35,8 @@ const importObject = {
         render: function() {  // TODO: Add width and height
 
             // Get the WebAssembly Pointer to the LVGL Canvas Buffer
-            console.log("render: start");
             const bufferOffset = wasm.instance.exports
                 .getCanvasBuffer();
-            console.log({ bufferOffset });
 
             // Load the WebAssembly Pointer into a JavaScript Image Data
             const memory = wasm.instance.exports.memory;
@@ -50,7 +48,6 @@ const importObject = {
             // Render the Image Data to the HTML Canvas
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.putImageData(imageData, 0, 0);
-            console.log("render: end");
         },
 
         // Write to JavaScript Console from Zig

@@ -87,9 +87,6 @@ pub export fn lv_demo_widgets() void {
 export fn flushDisplay(disp_drv: ?*c.lv_disp_drv_t, area: [*c]const c.lv_area_t, color_p: [*c]c.lv_color_t) void {
     _ = area;
     _ = color_p;
-    debug("flushDisplay: start", .{});
-    defer debug("flushDisplay: end", .{});
-
     // Call the Web Browser JavaScript to render the LVGL Canvas Buffer
     render();
 
