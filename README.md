@@ -956,7 +956,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa
 
 Handle Timer in JavaScript
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/35cc0b7100e313453b451295a33dd2f689758792/feature-phone.js#L106-L122
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/435435e01a4ffada2c93ecc3ec1af73a6220e7a0/feature-phone.js#L134-L150
 
 Handle Timer in Zig
 
@@ -964,7 +964,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa
 
 Handle Mouse in JavaScript
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/35cc0b7100e313453b451295a33dd2f689758792/feature-phone.js#L77-L95
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/435435e01a4ffada2c93ecc3ec1af73a6220e7a0/feature-phone.js#L77-L123
 
 Handle Mouse in Zig
 
