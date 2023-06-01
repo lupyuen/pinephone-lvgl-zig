@@ -986,7 +986,11 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa
 
 And the LVGL Button will respond correctly to Mouse and Touch Input in the Web Browser! (Pic below)
 
-[Here's the log](https://github.com/lupyuen/pinephone-lvgl-zig/blob/e70b2df50fa562bec7e02f24191dbbb1e5a7553a/README.md#todo)
+[(Try the LVGL Button Demo)](https://lupyuen.github.io/pinephone-lvgl-zig/feature-phone.html)
+
+[(Watch the demo on YouTube)](https://youtube.com/shorts/J6ugzVyKC4U?feature=share)
+
+[(See the log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/e70b2df50fa562bec7e02f24191dbbb1e5a7553a/README.md#todo)
 
 ![Handle LVGL Input](https://lupyuen.github.io/images/lvgl3-wasm4.png)
 
