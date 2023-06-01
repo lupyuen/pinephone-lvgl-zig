@@ -932,6 +932,50 @@ And the LVGL Display renders OK in our HTML Canvas yay!
 
 ![Render LVGL Display in Web Browser](https://lupyuen.github.io/images/zig-wasm3.png)
 
+# Handle LVGL Input
+
+TODO
+
+Create LVGL Button...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L185-L196
+
+Handle Button Events...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L198-L208
+
+Register the LVGL Input Device
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L69-L74
+
+Define LVGL Input Device Driver (std.mem.zeroes doesn't work)
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L255-L270
+
+Handle Timer in JavaScript
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/35cc0b7100e313453b451295a33dd2f689758792/feature-phone.js#L106-L122
+
+Handle Timer in Zig
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L213-L222
+
+Handle Mouse in JavaScript
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/35cc0b7100e313453b451295a33dd2f689758792/feature-phone.js#L77-L95
+
+Handle Mouse in Zig
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L224-L235
+
+Read Input Device in Zig
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L237-L253
+
+Remember to set Direct Mode!
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/display.c#L94-L95
+
 # LVGL Fonts
 
 Remember to compile the LVGL Fonts! Or nothing will be rendered...
@@ -1013,38 +1057,49 @@ TODO: Here's the log...
 
 ```text
 main: start
-loop: start
 lv_demo_widgets: start
 [Info]	lv_init: begin 	(in lv_obj.c line #102)
 [Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
 [Trace]	lv_init: finished 	(in lv_obj.c line #183)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1774c class on 0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1774c class on 0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x174cc class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1774c class on 0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 createWidgetsWrapped: start
 [Info]	lv_label_create: begin 	(in lv_label.c line #75)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x174b0 class on 0x39dfd0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17730 class on 0x39e2e0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d5c class on 0x39e2e0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17730 class on 0x39e606 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
 [Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
 createWidgetsWrapped: end
-lv_timer_handler: start
-[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
-[Trace]	lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
+lv_demo_widgets: end
 [Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 [Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 [Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
@@ -1057,35 +1112,69 @@ lv_timer_handler: start
 [Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 flushDisplay: start
 render: start
-get_canvas_buffer: 1782 non-empty pixels
-canvas_buffer: 0x17e70
-{bufferOffset: 97904}
+get_canvas_buffer: 13600 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
 render: end
 flushDisplay: end
-[Trace]	lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
-[Trace]	lv_timer_handler: finished (15 ms until the next timer call) 	(in lv_timer.c line #144)
-lv_timer_handler: end
-lv_timer_handler: start
-[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
-[Trace]	lv_timer_handler: finished (8 ms until the next timer call) 	(in lv_timer.c line #144)
-lv_timer_handler: end
-lv_timer_handler: start
-[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
-[Trace]	lv_timer_handler: finished (1 ms until the next timer call) 	(in lv_timer.c line #144)
-lv_timer_handler: end
-lv_timer_handler: start
-[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
-[Trace]	lv_timer_exec: calling timer callback: 0x19 	(in lv_timer.c line #312)
-[Trace]	lv_timer_exec: timer callback 0x19 finished 	(in lv_timer.c line #314)
-[Trace]	lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-lv_timer_handler: end
-lv_timer_handler: start
-[Trace]	lv_timer_handler: begin 	(in lv_timer.c line #69)
-[Trace]	lv_timer_handler: finished (-1 ms until the next timer call) 	(in lv_timer.c line #144)
-lv_timer_handler: end
-lv_demo_widgets: end
-loop: end
-main: end
+ main: end
+{mousedown: {…}}
+readInput: state=1, x=390, y=695
+[Info]	(2.820, +2762)	 indev_proc_press: pressed at x:390 y:695 	(in lv_indev.c line #819)
+flushDisplay: start
+render: start
+get_canvas_buffer: 13600 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
+[Info]	(2.854, +34)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+flushDisplay: start
+render: start
+get_canvas_buffer: 13600 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
+{mouseup: {…}}
+readInput: state=0, x=390, y=695
+flushDisplay: start
+render: start
+get_canvas_buffer: 14556 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
+flushDisplay: start
+render: start
+get_canvas_buffer: 14074 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
+flushDisplay: start
+render: start
+get_canvas_buffer: 14074 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
+flushDisplay: start
+render: start
+get_canvas_buffer: 13600 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
+flushDisplay: start
+render: start
+get_canvas_buffer: 13600 non-empty pixels
+canvas_buffer: 0x18180
+{bufferOffset: 98688}
+render: end
+flushDisplay: end
 ```
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
