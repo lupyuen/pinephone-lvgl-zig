@@ -218,8 +218,15 @@ export fn handleTimer(ms: i32) i32 {
     return 0;
 }
 
-/// Called by JavaScript to notify Mouse Down and Mouse Up
+/// Called by JavaScript to notify Mouse Down and Mouse Up.
+/// Return 1 if we're still waiting for LVGL to process the last input.
 export fn notifyInput(pressed: i32, x: i32, y: i32) i32 {
+    // If LVGL hasn't processed the last input, try again later
+    if (input_updated) {
+        return 1;
+    }
+
+    // Save the Input State and Input Coordinates
     if (pressed == 0) {
         input_state = c.LV_INDEV_STATE_RELEASED;
     } else {

@@ -78,7 +78,7 @@ canvas.addEventListener("mousedown", (e) => {
     const y = e.offsetY;
     console.log({mousedown: {x, y}});
     wasm.instance.exports
-        .notifyInput(1, x, y);
+        .notifyInput(1, x, y);  // TODO: Handle LVGL not ready
 });
 
 // Handle Mouse Up on HTML Canvas
@@ -88,7 +88,7 @@ canvas.addEventListener("mouseup", (e) => {
     y = e.offsetY;
     console.log({mouseup: {x, y}});
     wasm.instance.exports
-        .notifyInput(0, x, y);
+        .notifyInput(0, x, y);  // TODO: Handle LVGL not ready
 });
 
 // Handle Touch Start on HTML Canvas
@@ -98,11 +98,12 @@ canvas.addEventListener("touchstart", (e) => {
     const touches = e.changedTouches;
     if (touches.length == 0) { return; }
 
+    // Assume that HTML Canvas is at (0,0)
     const x = touches[0].pageX;
     const y = touches[0].pageY;
     console.log({touchstart: {x, y}});
     wasm.instance.exports
-        .notifyInput(1, x, y);
+        .notifyInput(1, x, y);  // TODO: Handle LVGL not ready
 });
 
 // Handle Touch End on HTML Canvas
@@ -112,11 +113,12 @@ canvas.addEventListener("touchend", (e) => {
     const touches = e.changedTouches;
     if (touches.length == 0) { return; }
 
+    // Assume that HTML Canvas is at (0,0)
     const x = touches[0].pageX;
     const y = touches[0].pageY;
     console.log({touchend: {x, y}});
     wasm.instance.exports
-        .notifyInput(0, x, y);
+        .notifyInput(0, x, y);  // TODO: Handle LVGL not ready
 });
 
 // Main Function
