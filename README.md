@@ -976,6 +976,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa
 
 [(`set_input_data` is defined here)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/display.c)
 
+[Here's the log](https://github.com/lupyuen/pinephone-lvgl-zig/blob/e70b2df50fa562bec7e02f24191dbbb1e5a7553a/README.md#todo)
+
 Remember to set Direct Mode!
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/display.c#L94-L95
