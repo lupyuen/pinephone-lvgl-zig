@@ -94,6 +94,34 @@ canvas.addEventListener("mouseup", (e) => {
         .notifyInput(0, x, y);
 });
 
+// Handle Touch Start on HTML Canvas
+canvas.addEventListener("touchstart", (e) => {
+    // Notify Zig of Touch Start
+    e.preventDefault();
+    const touches = e.changedTouches;
+    if (touches.length == 0) { return; }
+
+    const x = touches[0].pageX;
+    const y = touches[0].pageY;
+    console.log({touchstart: {x, y}});
+    wasm.instance.exports
+        .notifyInput(1, x, y);
+});
+
+// Handle Touch End on HTML Canvas
+canvas.addEventListener("touchend", (e) => {
+    // Notify Zig of Touch End
+    e.preventDefault();
+    const touches = e.changedTouches;
+    if (touches.length == 0) { return; }
+
+    const x = touches[0].pageX;
+    const y = touches[0].pageY;
+    console.log({touchend: {x, y}});
+    wasm.instance.exports
+        .notifyInput(0, x, y);
+});
+
 // Main Function
 function main() {
     console.log("main: start");
