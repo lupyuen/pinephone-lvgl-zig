@@ -948,6 +948,8 @@ Register the LVGL Input Device
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L69-L74
 
+[(`register_input` is defined here)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/display.c)
+
 Define LVGL Input Device Driver (std.mem.zeroes doesn't work)
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L255-L270
@@ -971,6 +973,8 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa
 Read Input Device in Zig
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L237-L253
+
+[(`set_input_data` is defined here)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/display.c)
 
 Remember to set Direct Mode!
 
