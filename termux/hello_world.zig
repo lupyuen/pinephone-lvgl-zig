@@ -21,5 +21,5 @@ pub fn main() !void {
 
     // Destroy the connection, although that's not needed when you exit after that,
     // the plugin cleans up after exited programs itself.
-    c.tgui_connection_destroy(c);
+    c.tgui_connection_destroy(conn);
 }
