@@ -17,7 +17,7 @@ pub fn main() !void {
     }
 
     // Display a hello world message
-    c.tgui_toast(conn, "Hello World!", false);
+    _ = c.tgui_toast(conn, "Hello World!", false);
 
     // Destroy the connection, although that's not needed when you exit after that,
     // the plugin cleans up after exited programs itself.
