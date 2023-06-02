@@ -10,7 +10,7 @@ pub fn main() !void {
     // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
     std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
 
-    std.debug.print("c.tgui_connection_create={}", c.tgui_connection_create); ////
+    std.debug.print("c.tgui_connection_create={}", &c.tgui_connection_create); ////
 
     // Create a connection to the plugin
     var conn: c.tgui_connection = null;
