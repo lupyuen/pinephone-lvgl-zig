@@ -960,7 +960,7 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa
 
 When our app starts, we register the LVGL Input Device...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L69-L74
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7eb99b6c4deca82310e42d30808944f25bb6255c/feature-phone.zig#L69-L75
 
 [(We define `register_input` in C because `lv_indev_t` is an Opaque Type in Zig)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/main/display.c)
 
@@ -968,7 +968,7 @@ This tells LVGL to call `readInput` periodically to poll for input. (More about 
 
 `indev_drv` is our LVGL Input Device Driver...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/86700c3453d91bc7d2fe0a46192fa41b7a24b6df/feature-phone.zig#L255-L270
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7eb99b6c4deca82310e42d30808944f25bb6255c/feature-phone.zig#L287-L288
 
 Now we handle Mouse and Touch Events in our JavaScript...
 
