@@ -11,7 +11,7 @@ pub fn main() !void {
     std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
 
     // Create a connection to the plugin
-    var conn: [*c]c.tgui_connection = null;
+    var conn: c.tgui_connection = undefined;
     if (c.tgui_connection_create(&conn) != 0) {
         @panic("Failed to create Termux GUI Connection");
     }
