@@ -13,13 +13,20 @@ pub fn main() !void {
     // Create a connection to the plugin
     var conn: c.tgui_connection = undefined;
     if (c.tgui_connection_create(&conn) != 0) {
+        std.debug.print("a", .{}); ////
         @panic("Failed to create Termux GUI Connection");
     }
+
+    std.debug.print("b", .{}); ////
 
     // Display a hello world message
     _ = c.tgui_toast(conn, "Hello World!", false);
 
+    std.debug.print("c", .{}); ////
+
     // Destroy the connection, although that's not needed when you exit after that,
     // the plugin cleans up after exited programs itself.
     c.tgui_connection_destroy(conn);
+
+    std.debug.print("d", .{}); ////
 }
