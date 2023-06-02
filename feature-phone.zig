@@ -68,6 +68,7 @@ pub export fn lv_demo_widgets() void {
 
     // Register the Input Device
     // https://docs.lvgl.io/8.3/porting/indev.html
+    indev_drv = std.mem.zeroes(c.lv_indev_drv_t);
     c.lv_indev_drv_init(&indev_drv);
     indev_drv.type = c.LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = readInput;
@@ -138,7 +139,7 @@ fn createWidgetsWrapped() !void {
     label.alignObject(c.LV_ALIGN_CENTER, 0, -30);
 
     // Create a Button Widget
-    createButton();
+    createButtons();
 }
 
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
@@ -176,15 +177,39 @@ fn createWidgetsUnwrapped() !void {
     c.lv_obj_align(label, c.LV_ALIGN_CENTER, 0, -30);
 
     // Create a Button Widget
-    createButton();
+    createButtons();
 }
 
 /// Create an LVGL Button
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
-fn createButton() void {
+fn createButtons() void {
+    style = std.mem.zeroes(c.lv_style_t);
+    c.lv_style_init(&style);
+    c.lv_style_set_flex_flow(&style, c.LV_FLEX_FLOW_ROW_WRAP);
+    c.lv_style_set_flex_main_place(&style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
+    c.lv_style_set_layout(&style, c.LV_LAYOUT_FLEX);
+
+    const cont = c.lv_obj_create(c.lv_scr_act());
+    c.lv_obj_set_size(cont, 700, 1000);
+    c.lv_obj_center(cont);
+    c.lv_obj_add_style(cont, &style, 0);
+
+    var i: usize = 0;
+    while (i < 12) : (i += 1) {
+        const obj = c.lv_obj_create(cont);
+        c.lv_obj_set_size(obj, 150, c.LV_SIZE_CONTENT);
+        c.lv_obj_add_flag(obj, c.LV_OBJ_FLAG_CHECKABLE);
+        _ = c.lv_obj_add_event_cb(obj, eventHandler, c.LV_EVENT_ALL, null);
+
+        const label = c.lv_label_create(obj);
+        //c.lv_label_set_text_fmt(label, "%"LV_PRIu32, i);
+        c.lv_label_set_text(label, "0");
+        c.lv_obj_center(label);
+    }
+
     const btn = c.lv_btn_create(c.lv_scr_act());
     _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
-    c.lv_obj_align(btn, c.LV_ALIGN_CENTER, 0, 40);
+    c.lv_obj_align(btn, c.LV_ALIGN_TOP_MID, 0, 40);
     c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
 
     const label = c.lv_label_create(btn);
@@ -203,6 +228,9 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         debug("eventHandler: toggled", .{});
     }
 }
+
+/// LVGL Button Style (std.mem.zeroes crashes the compiler)
+var style: c.lv_style_t = undefined;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Input
@@ -256,22 +284,8 @@ var input_state: c.lv_indev_state_t = 0;
 var input_x: c.lv_coord_t = 0;
 var input_y: c.lv_coord_t = 0;
 
-/// LVGL Input Device Driver
-/// TODO: std.mem.zeroes crashes the compiler
-var indev_drv = c.lv_indev_drv_t{
-    .type = 0,
-    .read_cb = null,
-    .feedback_cb = null,
-    .user_data = null,
-    .disp = null,
-    .read_timer = null,
-    .scroll_limit = 0,
-    .scroll_throw = 0,
-    .gesture_min_velocity = 0,
-    .gesture_limit = 0,
-    .long_press_time = 0,
-    .long_press_repeat_time = 0,
-};
+/// LVGL Input Device Driver (std.mem.zeroes crashes the compiler)
+var indev_drv: c.lv_indev_drv_t = undefined;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Porting Layer for WebAssembly
