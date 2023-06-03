@@ -1016,6 +1016,8 @@ Here's how it looks...
 
 [(Try the LVGL Button Demo)](https://lupyuen.github.io/pinephone-lvgl-zig/feature-phone.html)
 
+[(Watch the demo on YouTube)](https://www.youtube.com/shorts/iKa0bcSa22U)
+
 [(See the log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/1feb919e17018222dd3ebf79b206de97eb4cfbeb/README.md#output-log)
 
 # TODO
