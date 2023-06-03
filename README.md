@@ -994,6 +994,12 @@ And the LVGL Button will respond correctly to Mouse and Touch Input in the Web B
 
 ![Handle LVGL Input](https://lupyuen.github.io/images/lvgl3-wasm4.png)
 
+# Feature Phone UI
+
+Let's create a Feature Phone UI for PinePhone on Apache NuttX RTOS!
+
+TODO
+
 # LVGL Fonts
 
 Remember to compile the LVGL Fonts! Or nothing will be rendered...
