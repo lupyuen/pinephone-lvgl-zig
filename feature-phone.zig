@@ -137,7 +137,7 @@ fn createWidgets() !void {
     c.lv_obj_add_style(display_cont, &display_style, 0);
 
     const call_cont = c.lv_obj_create(c.lv_scr_act()).?;
-    c.lv_obj_set_size(call_cont, 700, 170);
+    c.lv_obj_set_size(call_cont, 700, 200);
     c.lv_obj_align_to(call_cont, display_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     c.lv_obj_add_style(call_cont, &call_style, 0);
 
@@ -190,15 +190,16 @@ fn createDisplayLabel(cont: *c.lv_obj_t) !void {
 /// Create the Call and Cancel Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createCallButtons(cont: *c.lv_obj_t) !void {
+    const labels = [_][]const u8{ "Call", "Cancel" };
     var i: usize = 0;
-    while (i < 2) : (i += 1) {
+    while (i < labels.len) : (i += 1) {
         const btn = c.lv_btn_create(cont);
-        c.lv_obj_set_size(btn, 150, c.LV_SIZE_CONTENT);
+        c.lv_obj_set_size(btn, 250, 100);
         c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
         _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
 
         const label = c.lv_label_create(btn);
-        c.lv_label_set_text(label, "Button");
+        c.lv_label_set_text(label, labels[i].ptr);
         c.lv_obj_center(label);
     }
 }
@@ -206,16 +207,16 @@ fn createCallButtons(cont: *c.lv_obj_t) !void {
 /// Create the Digit Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createDigitButtons(cont: *c.lv_obj_t) !void {
+    const labels = [_][]const u8{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#" };
     var i: usize = 0;
-    while (i < 12) : (i += 1) {
+    while (i < labels.len) : (i += 1) {
         const btn = c.lv_btn_create(cont);
-        c.lv_obj_set_size(btn, 150, c.LV_SIZE_CONTENT);
+        c.lv_obj_set_size(btn, 150, 120);
         c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
         _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
 
         const label = c.lv_label_create(btn);
-        //c.lv_label_set_text_fmt(label, "%"LV_PRIu32, i);
-        c.lv_label_set_text(label, "0");
+        c.lv_label_set_text(label, labels[i].ptr);
         c.lv_obj_center(label);
     }
 }
