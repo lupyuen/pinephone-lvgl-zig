@@ -998,6 +998,20 @@ And the LVGL Button will respond correctly to Mouse and Touch Input in the Web B
 
 Let's create a Feature Phone UI for PinePhone on Apache NuttX RTOS!
 
+We create 3 LVGL Containers for the Display Label, Call / Cancel Buttons and Digit Buttons...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3c00889b930a/feature-phone.zig#L133-L147
+
+Then we create the Call and Cancel Buttons inside the Second Container...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3c00889b930a/feature-phone.zig#L192-L207
+
+And we create the Digit Buttons inside the Third Container...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3c00889b930a/feature-phone.zig#L209-L224
+
+Here's how it looks...
+
 TODO
 
 # LVGL Fonts
