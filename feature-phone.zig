@@ -74,10 +74,10 @@ pub export fn lv_demo_widgets() void {
     indev_drv.read_cb = readInput;
     _ = c.register_input(&indev_drv);
 
-    // Create the widgets for display (with Zig Wrapper)
-    createWidgetsWrapped() catch |e| {
+    // Create the widgets for display
+    createWidgets() catch |e| {
         // In case of error, quit
-        std.log.err("createWidgetsWrapped failed: {}", .{e});
+        std.log.err("createWidgets failed: {}", .{e});
         return;
     };
 
@@ -107,10 +107,22 @@ export fn getCanvasBuffer() [*]u8 {
 /// Create the LVGL Widgets that will be rendered on the display. Calls the
 /// LVGL API that has been wrapped in Zig. Based on
 /// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
-fn createWidgetsWrapped() !void {
-    debug("createWidgetsWrapped: start", .{});
-    defer debug("createWidgetsWrapped: end", .{});
+fn createWidgets() !void {
+    debug("createWidgets: start", .{});
+    defer debug("createWidgets: end", .{});
 
+    // Create a Label
+    try createLabel();
+
+    // Create the Call and Cancel Buttons
+    try createCallButtons();
+
+    // Create the Digit Buttons
+    try createDigitButtons();
+}
+
+/// Create a Label
+fn createLabel() !void {
     // Get the Active Screen
     var screen = try lvgl.getActiveScreen();
 
@@ -135,54 +147,19 @@ fn createWidgetsWrapped() !void {
     // Set the label width
     label.setWidth(200);
 
-    // Align the label to the center of the screen, shift 30 pixels up
-    label.alignObject(c.LV_ALIGN_CENTER, 0, -30);
-
-    // Create a Button Widget
-    createButtons();
+    // Align the label to the top middle of the screen
+    label.alignObject(c.LV_ALIGN_TOP_MID, 0, 0);
 }
 
-/// Create the LVGL Widgets that will be rendered on the display. Calls the
-/// LVGL API directly, without wrapping in Zig. Based on
-/// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
-fn createWidgetsUnwrapped() !void {
-    debug("createWidgetsUnwrapped: start", .{});
-    defer debug("createWidgetsUnwrapped: end", .{});
-
-    // Get the Active Screen
-    const screen = c.lv_scr_act().?;
-
-    // Create a Label Widget
-    const label = c.lv_label_create(screen).?;
-
-    // Wrap long lines in the label text
-    c.lv_label_set_long_mode(label, c.LV_LABEL_LONG_WRAP);
-
-    // Interpret color codes in the label text
-    c.lv_label_set_recolor(label, true);
-
-    // Center align the label text
-    c.lv_obj_set_style_text_align(label, c.LV_TEXT_ALIGN_CENTER, 0);
-
-    // Set the label text and colors
-    c.lv_label_set_text(label, "#ff0000 HELLO# " ++ // Red Text
-        "#00aa00 LVGL ON# " ++ // Green Text
-        "#0000ff PINEPHONE!# " // Blue Text
-    );
-
-    // Set the label width
-    c.lv_obj_set_width(label, 200);
-
-    // Align the label to the center of the screen, shift 30 pixels up
-    c.lv_obj_align(label, c.LV_ALIGN_CENTER, 0, -30);
-
-    // Create a Button Widget
-    createButtons();
-}
-
-/// Create an LVGL Button
+/// Create the Call and Cancel Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
-fn createButtons() void {
+fn createCallButtons() !void {
+    // TODO
+}
+
+/// Create the Digit Buttons
+/// https://docs.lvgl.io/8.3/examples.html#simple-buttons
+fn createDigitButtons() !void {
     style = std.mem.zeroes(c.lv_style_t);
     c.lv_style_init(&style);
     c.lv_style_set_flex_flow(&style, c.LV_FLEX_FLOW_ROW_WRAP);
@@ -209,7 +186,7 @@ fn createButtons() void {
 
     const btn = c.lv_btn_create(c.lv_scr_act());
     _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
-    c.lv_obj_align(btn, c.LV_ALIGN_TOP_MID, 0, 40);
+    c.lv_obj_align(btn, c.LV_ALIGN_TOP_MID, 0, 50);
     c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
 
     const label = c.lv_label_create(btn);
