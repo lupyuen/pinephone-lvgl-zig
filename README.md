@@ -1012,6 +1012,12 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3
 
 Here's how it looks...
 
+![Feature Phone UI](https://lupyuen.github.io/images/lvgl3-wasm5.png)
+
+[(Try the LVGL Button Demo)](https://lupyuen.github.io/pinephone-lvgl-zig/feature-phone.html)
+
+# TODO
+
 TODO
 
 # LVGL Fonts
@@ -1094,51 +1100,256 @@ https://github.com/lupyuen/pinephone-lvgl-zig/blob/43fa982d38a7ae8f931c171a80b00
 TODO: Here's the log...
 
 ```text
-main: start
+ main: start
 lv_demo_widgets: start
 [Info]	lv_init: begin 	(in lv_obj.c line #102)
 [Warn]	lv_init: Log level is set to 'Trace' which makes LVGL much slower 	(in lv_obj.c line #176)
 [Trace]	lv_init: finished 	(in lv_obj.c line #183)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x1774c class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1771c class on 0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x1774c class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1771c class on 0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x1774c class on 0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1771c class on 0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating a screen 	(in lv_obj_class.c line #55)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
-createWidgetsWrapped: start
+createWidgets: start
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1771c class on 0x39e2b0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1771c class on 0x39e2b0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
+[Info]	lv_obj_create: begin 	(in lv_obj.c line #206)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x1771c class on 0x39e2b0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 [Info]	lv_label_create: begin 	(in lv_label.c line #75)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x17730 class on 0x39e2e0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39e2b0 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
 [Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
 [Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x17d5c class on 0x39e2e0 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e622 parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
 [Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
 [Info]	lv_label_create: begin 	(in lv_label.c line #75)
-[Trace]	lv_obj_class_create_obj: Creating object with 0x17730 class on 0x39e606 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39e93c parent 	(in lv_obj_class.c line #45)
 [Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
 [Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
 [Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
 [Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
 [Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
-createWidgetsWrapped: end
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e622 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39ec18 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39eede parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39f1b7 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39f478 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39f73d parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39fa06 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39fcd3 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x39ffa4 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x3a0279 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x3a0552 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x3a082f parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x3a0b10 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+[Info]	lv_btn_create: begin 	(in lv_btn.c line #51)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17d2c class on 0x39e722 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_btn_constructor: begin 	(in lv_btn.c line #64)
+[Trace]	lv_btn_constructor: finished 	(in lv_btn.c line #69)
+[Info]	lv_label_create: begin 	(in lv_label.c line #75)
+[Trace]	lv_obj_class_create_obj: Creating object with 0x17700 class on 0x3a0df5 parent 	(in lv_obj_class.c line #45)
+[Trace]	lv_obj_class_create_obj: creating normal object 	(in lv_obj_class.c line #82)
+[Trace]	lv_obj_constructor: begin 	(in lv_obj.c line #403)
+[Trace]	lv_obj_constructor: finished 	(in lv_obj.c line #428)
+[Trace]	lv_label_constructor: begin 	(in lv_label.c line #691)
+[Trace]	lv_label_constructor: finished 	(in lv_label.c line #721)
+createWidgets: end
 lv_demo_widgets: end
 [Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
+[Info]	flex_update: update 0x39e622 container 	(in lv_flex.c line #211)
+[Info]	flex_update: update 0x39e722 container 	(in lv_flex.c line #211)
 [Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 [Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 [Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
@@ -1148,71 +1359,195 @@ lv_demo_widgets: end
 [Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
 [Info]	lv_obj_update_layout: Layout update begin 	(in lv_obj_pos.c line #314)
 [Trace]	lv_obj_update_layout: Layout update end 	(in lv_obj_pos.c line #317)
-flushDisplay: start
-render: start
-get_canvas_buffer: 13600 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
+get_canvas_buffer: 803944 non-empty pixels
  main: end
 {mousedown: {…}}
-readInput: state=1, x=390, y=695
-[Info]	(2.820, +2762)	 indev_proc_press: pressed at x:390 y:695 	(in lv_indev.c line #819)
-flushDisplay: start
-render: start
-get_canvas_buffer: 13600 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
-[Info]	(2.854, +34)	 indev_proc_release: released 	(in lv_indev.c line #969)
+readInput: state=1, x=254, y=276
+[Info]	(1.701, +1437)	 indev_proc_press: pressed at x:254 y:276 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(1.733, +32)	 indev_proc_release: released 	(in lv_indev.c line #969)
 eventHandler: toggled
 eventHandler: clicked
-flushDisplay: start
-render: start
-get_canvas_buffer: 13600 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
 {mouseup: {…}}
-readInput: state=0, x=390, y=695
-flushDisplay: start
-render: start
-get_canvas_buffer: 14556 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
-flushDisplay: start
-render: start
-get_canvas_buffer: 14074 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
-flushDisplay: start
-render: start
-get_canvas_buffer: 14074 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
-flushDisplay: start
-render: start
-get_canvas_buffer: 13600 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
-flushDisplay: start
-render: start
-get_canvas_buffer: 13600 non-empty pixels
-canvas_buffer: 0x18180
-{bufferOffset: 98688}
-render: end
-flushDisplay: end
+get_canvas_buffer: 803944 non-empty pixels
+readInput: state=0, x=254, y=276
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=488, y=282
+[Info]	(2.319, +586)	 indev_proc_press: pressed at x:488 y:282 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(2.350, +31)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=488, y=282
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=191, y=511
+[Info]	(3.152, +802)	 indev_proc_press: pressed at x:191 y:511 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(3.184, +32)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=191, y=511
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+get_canvas_buffer: 803940 non-empty pixels
+get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=375, y=529
+[Info]	(3.618, +434)	 indev_proc_press: pressed at x:375 y:529 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(3.652, +34)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=375, y=529
+get_canvas_buffer: 803698 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+2get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=561, y=511
+[Info]	(4.102, +450)	 indev_proc_press: pressed at x:561 y:511 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(4.136, +34)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=562, y=511
+get_canvas_buffer: 803952 non-empty pixels
+get_canvas_buffer: 803698 non-empty pixels
+get_canvas_buffer: 803956 non-empty pixels
+2get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=160, y=666
+[Info]	(4.705, +569)	 indev_proc_press: pressed at x:160 y:666 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(4.736, +31)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=160, y=666
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=387, y=663
+[Info]	(5.120, +384)	 indev_proc_press: pressed at x:387 y:663 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(5.152, +32)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=387, y=663
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=572, y=672
+[Info]	(5.572, +420)	 indev_proc_press: pressed at x:572 y:672 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(5.602, +30)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=572, y=672
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=187, y=794
+[Info]	(6.104, +502)	 indev_proc_press: pressed at x:187 y:794 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(6.136, +32)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=187, y=794
+get_canvas_buffer: 803956 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=365, y=792
+[Info]	(6.521, +385)	 indev_proc_press: pressed at x:365 y:792 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(6.553, +32)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+get_canvas_buffer: 803956 non-empty pixels
+readInput: state=0, x=365, y=792
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=588, y=790
+[Info]	(6.957, +404)	 indev_proc_press: pressed at x:588 y:790 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(6.987, +30)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+{mouseup: {…}}
+get_canvas_buffer: 803952 non-empty pixels
+readInput: state=0, x=588, y=790
+get_canvas_buffer: 803952 non-empty pixels
+3get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=166, y=933
+[Info]	(7.655, +668)	 indev_proc_press: pressed at x:166 y:933 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(7.689, +34)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=166, y=933
+get_canvas_buffer: 803698 non-empty pixels
+get_canvas_buffer: 803956 non-empty pixels
+2get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=356, y=916
+[Info]	(8.105, +416)	 indev_proc_press: pressed at x:356 y:916 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(8.139, +34)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+get_canvas_buffer: 803952 non-empty pixels
+{mouseup: {…}}
+readInput: state=0, x=356, y=915
+get_canvas_buffer: 803698 non-empty pixels
+get_canvas_buffer: 803956 non-empty pixels
+2get_canvas_buffer: 803944 non-empty pixels
+{mousedown: {…}}
+readInput: state=1, x=521, y=912
+[Info]	(8.572, +433)	 indev_proc_press: pressed at x:521 y:912 	(in lv_indev.c line #819)
+get_canvas_buffer: 803944 non-empty pixels
+[Info]	(8.605, +33)	 indev_proc_release: released 	(in lv_indev.c line #969)
+eventHandler: toggled
+eventHandler: clicked
+get_canvas_buffer: 803944 non-empty pixels
+get_canvas_buffer: 803956 non-empty pixels
+{mouseup: {…}}
+get_canvas_buffer: 803952 non-empty pixels
+readInput: state=0, x=521, y=912
+3get_canvas_buffer: 803944 non-empty pixels
 ```
 
 TODO: How to disassemble Compiled WebAssembly with cross-reference to Source Code? Like `objdump --source`? See [wabt](https://github.com/WebAssembly/wabt) and [binaryen](https://github.com/WebAssembly/binaryen)
