@@ -154,7 +154,14 @@ fn createLabel() !void {
 /// Create the Call and Cancel Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createCallButtons() !void {
-    // TODO
+    const btn = c.lv_btn_create(c.lv_scr_act());
+    _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
+    c.lv_obj_align(btn, c.LV_ALIGN_TOP_MID, 0, 50);
+    c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
+
+    const label = c.lv_label_create(btn);
+    c.lv_label_set_text(label, "Button");
+    c.lv_obj_center(label);
 }
 
 /// Create the Digit Buttons
@@ -183,15 +190,6 @@ fn createDigitButtons() !void {
         c.lv_label_set_text(label, "0");
         c.lv_obj_center(label);
     }
-
-    const btn = c.lv_btn_create(c.lv_scr_act());
-    _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
-    c.lv_obj_align(btn, c.LV_ALIGN_TOP_MID, 0, 50);
-    c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
-
-    const label = c.lv_label_create(btn);
-    c.lv_label_set_text(label, "Button");
-    c.lv_obj_center(label);
 }
 
 /// Handle LVGL Button Event
