@@ -111,18 +111,54 @@ fn createWidgets() !void {
     debug("createWidgets: start", .{});
     defer debug("createWidgets: end", .{});
 
-    // Create a Label
-    try createLabel();
+    // Create the Styles for Display, Call / Cancel Buttons, Digit Buttons
+    display_style = std.mem.zeroes(c.lv_style_t);
+    c.lv_style_init(&display_style);
+    c.lv_style_set_flex_flow(&display_style, c.LV_FLEX_FLOW_ROW_WRAP);
+    c.lv_style_set_flex_main_place(&display_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
+    c.lv_style_set_layout(&display_style, c.LV_LAYOUT_FLEX);
+
+    call_style = std.mem.zeroes(c.lv_style_t);
+    c.lv_style_init(&call_style);
+    c.lv_style_set_flex_flow(&call_style, c.LV_FLEX_FLOW_ROW_WRAP);
+    c.lv_style_set_flex_main_place(&call_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
+    c.lv_style_set_layout(&call_style, c.LV_LAYOUT_FLEX);
+
+    digit_style = std.mem.zeroes(c.lv_style_t);
+    c.lv_style_init(&digit_style);
+    c.lv_style_set_flex_flow(&digit_style, c.LV_FLEX_FLOW_ROW_WRAP);
+    c.lv_style_set_flex_main_place(&digit_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
+    c.lv_style_set_layout(&digit_style, c.LV_LAYOUT_FLEX);
+
+    // Create the Containers for Display, Call / Cancel Buttons, Digit Buttons
+    const display_cont = c.lv_obj_create(c.lv_scr_act()).?;
+    c.lv_obj_set_size(display_cont, 700, 1000);
+    c.lv_obj_center(display_cont);
+    c.lv_obj_add_style(display_cont, &display_style, 0);
+
+    const call_cont = c.lv_obj_create(c.lv_scr_act()).?;
+    c.lv_obj_set_size(call_cont, 700, 1000);
+    c.lv_obj_center(call_cont);
+    c.lv_obj_add_style(call_cont, &call_style, 0);
+
+    const digit_cont = c.lv_obj_create(c.lv_scr_act()).?;
+    c.lv_obj_set_size(digit_cont, 700, 1000);
+    c.lv_obj_center(digit_cont);
+    c.lv_obj_add_style(digit_cont, &digit_style, 0);
+
+    // Create the Display Label
+    try createDisplayLabel(display_cont);
 
     // Create the Call and Cancel Buttons
-    try createCallButtons();
+    try createCallButtons(call_cont);
 
     // Create the Digit Buttons
-    try createDigitButtons();
+    try createDigitButtons(digit_cont);
 }
 
-/// Create a Label
-fn createLabel() !void {
+/// Create the Display Label
+fn createDisplayLabel(cont: *c.lv_obj_t) !void {
+    _ = cont;
     // Get the Active Screen
     var screen = try lvgl.getActiveScreen();
 
@@ -153,7 +189,8 @@ fn createLabel() !void {
 
 /// Create the Call and Cancel Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
-fn createCallButtons() !void {
+fn createCallButtons(cont: *c.lv_obj_t) !void {
+    _ = cont;
     const btn = c.lv_btn_create(c.lv_scr_act());
     _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
     c.lv_obj_align(btn, c.LV_ALIGN_TOP_MID, 0, 50);
@@ -166,18 +203,7 @@ fn createCallButtons() !void {
 
 /// Create the Digit Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
-fn createDigitButtons() !void {
-    style = std.mem.zeroes(c.lv_style_t);
-    c.lv_style_init(&style);
-    c.lv_style_set_flex_flow(&style, c.LV_FLEX_FLOW_ROW_WRAP);
-    c.lv_style_set_flex_main_place(&style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
-    c.lv_style_set_layout(&style, c.LV_LAYOUT_FLEX);
-
-    const cont = c.lv_obj_create(c.lv_scr_act());
-    c.lv_obj_set_size(cont, 700, 1000);
-    c.lv_obj_center(cont);
-    c.lv_obj_add_style(cont, &style, 0);
-
+fn createDigitButtons(cont: *c.lv_obj_t) !void {
     var i: usize = 0;
     while (i < 12) : (i += 1) {
         const obj = c.lv_obj_create(cont);
@@ -204,8 +230,10 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
     }
 }
 
-/// LVGL Button Style (std.mem.zeroes crashes the compiler)
-var style: c.lv_style_t = undefined;
+/// LVGL Styles for Containers (std.mem.zeroes crashes the compiler)
+var display_style: c.lv_style_t = undefined;
+var call_style: c.lv_style_t = undefined;
+var digit_style: c.lv_style_t = undefined;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Input
