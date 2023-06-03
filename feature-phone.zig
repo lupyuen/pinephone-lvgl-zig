@@ -132,18 +132,18 @@ fn createWidgets() !void {
 
     // Create the Containers for Display, Call / Cancel Buttons, Digit Buttons
     const display_cont = c.lv_obj_create(c.lv_scr_act()).?;
-    c.lv_obj_set_size(display_cont, 700, 200);
-    c.lv_obj_center(display_cont);
+    c.lv_obj_set_size(display_cont, 700, 150);
+    c.lv_obj_align(display_cont, c.LV_ALIGN_TOP_MID, 0, 5);
     c.lv_obj_add_style(display_cont, &display_style, 0);
 
     const call_cont = c.lv_obj_create(c.lv_scr_act()).?;
-    c.lv_obj_set_size(call_cont, 700, 200);
-    c.lv_obj_align(call_cont, c.LV_ALIGN_TOP_MID, 0, 5);
+    c.lv_obj_set_size(call_cont, 700, 170);
+    c.lv_obj_align_to(call_cont, display_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     c.lv_obj_add_style(call_cont, &call_style, 0);
 
     const digit_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(digit_cont, 700, 800);
-    c.lv_obj_center(digit_cont);
+    c.lv_obj_align_to(digit_cont, call_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     c.lv_obj_add_style(digit_cont, &digit_style, 0);
 
     // Create the Display Label
@@ -184,7 +184,7 @@ fn createDisplayLabel(cont: *c.lv_obj_t) !void {
     label.setWidth(200);
 
     // Align the label to the top middle of the screen
-    label.alignObject(c.LV_ALIGN_TOP_MID, 0, 0);
+    label.alignObject(c.LV_ALIGN_TOP_MID, 0, 20);
 }
 
 /// Create the Call and Cancel Buttons
