@@ -1062,6 +1062,8 @@ Let's run the Feature Phone UI on PinePhone and Apache NuttX RTOS!
 
 [(Watch the demo on YouTube)](https://youtu.be/vBKhk5Q6rnE)
 
+[(See the log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/665847f513a44648b0d4ae602d6fcf7cc364a342/README.md#output-log)
+
 # TODO
 
 TODO
