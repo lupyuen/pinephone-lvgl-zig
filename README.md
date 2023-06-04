@@ -1000,17 +1000,21 @@ Let's create a Feature Phone UI for PinePhone on Apache NuttX RTOS!
 
 We create 3 LVGL Containers for the Display Label, Call / Cancel Buttons and Digit Buttons...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3c00889b930a/feature-phone.zig#L133-L147
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/b8b12209dc99a7c477aaeaa475362e795f9b05fc/feature-phone.zig#L113-L136
+
+We create the Display Label...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/b8b12209dc99a7c477aaeaa475362e795f9b05fc/feature-phone.zig#L139-L167
 
 Then we create the Call and Cancel Buttons inside the Second Container...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3c00889b930a/feature-phone.zig#L192-L207
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/b8b12209dc99a7c477aaeaa475362e795f9b05fc/feature-phone.zig#L169-L184
 
-And we create the Digit Buttons inside the Third Container...
+Finally we create the Digit Buttons inside the Third Container...
 
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/7b2fddb620be2a59e324ed8fadfc3c00889b930a/feature-phone.zig#L209-L224
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/b8b12209dc99a7c477aaeaa475362e795f9b05fc/feature-phone.zig#L186-L201
 
-Here's how it looks...
+When we test our Zig LVGL App in WebAssembly, we see this...
 
 ![Feature Phone UI](https://lupyuen.github.io/images/lvgl3-wasm5.png)
 
