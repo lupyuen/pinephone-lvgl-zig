@@ -1014,6 +1014,8 @@ Finally we create the Digit Buttons inside the Third Container...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/b8b12209dc99a7c477aaeaa475362e795f9b05fc/feature-phone.zig#L186-L201
 
+[(Or use an LVGL Button Matrix)](https://docs.lvgl.io/8.3/widgets/core/btnmatrix.html)
+
 When we test our Zig LVGL App in WebAssembly, we see this...
 
 ![Feature Phone UI](https://lupyuen.github.io/images/lvgl3-wasm5.png)
