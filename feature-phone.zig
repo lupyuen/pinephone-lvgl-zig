@@ -225,7 +225,9 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
             debug("Call {s}", .{call_number});
 
             if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
-                debug("webasm", .{});
+                debug("Running in WebAssembly, simulate the Phone Call", .{});
+            } else {
+                debug("Running on PinePhone, make an actual Phone Call", {});
             }
         } else if (std.mem.eql(u8, span, "Cancel")) {
             // If Cancel is clicked, erase the last digit
