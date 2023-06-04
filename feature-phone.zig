@@ -91,6 +91,9 @@ fn createWidgets() !void {
     debug("createWidgets: start", .{});
     defer debug("createWidgets: end", .{});
 
+    // Init the Display Text to `+`
+    display_text[0] = '+';
+
     // Create the Styles for Display, Call / Cancel Buttons, Digit Buttons
     display_style = std.mem.zeroes(c.lv_style_t);
     c.lv_style_init(&display_style);
@@ -205,12 +208,25 @@ fn createDigitButtons(cont: *c.lv_obj_t) !void {
 export fn eventHandler(e: ?*c.lv_event_t) void {
     const code = c.lv_event_get_code(e);
     // debug("eventHandler: code={}", .{code});
+
     if (code == c.LV_EVENT_CLICKED) {
+        // Handle Button Clicked
         debug("eventHandler: clicked", .{});
+
+        // Append the digit clicked to the text
+        const param = c.lv_event_get_param(e);
+        debug("param={}", .{param});
+        const len = std.mem.indexOfSentinel(u8, 0, &display_text);
+        display_text[len] = '0';
+        c.lv_label_set_text(display_label.obj, display_text[0.. :0]);
     } else if (code == c.LV_EVENT_VALUE_CHANGED) {
+        // Handle Button Toggled
         debug("eventHandler: toggled", .{});
     }
 }
+
+/// LVGL Display Text (Null-Terminated)
+var display_text = std.mem.zeroes([64:0]u8);
 
 /// LVGL Display Label
 var display_label: lvgl.Label = undefined;
