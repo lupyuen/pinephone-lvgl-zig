@@ -2,6 +2,7 @@
 
 /// Import the Zig Standard Library
 const std = @import("std");
+const builtin = @import("builtin");
 
 /// Import the WebAssembly Logger
 const wasmlog = @import("wasmlog.zig");
@@ -207,7 +208,6 @@ fn createDigitButtons(cont: *c.lv_obj_t) !void {
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 export fn eventHandler(e: ?*c.lv_event_t) void {
     const code = c.lv_event_get_code(e);
-    // debug("eventHandler: code={}", .{code});
 
     if (code == c.LV_EVENT_CLICKED) {
         // Handle Button Clicked
@@ -225,6 +225,10 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
             // If Call is clicked, call the number
             const call_number = display_text[0..len :0];
             debug("Call {s}", .{call_number});
+
+            if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
+                debug("webasm", .{});
+            }
         } else if (std.mem.eql(u8, span, "Cancel")) {
             // If Cancel is clicked, erase the last digit
             if (len >= 2) {
