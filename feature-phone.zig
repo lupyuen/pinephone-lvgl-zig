@@ -223,7 +223,7 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
 
         if (std.mem.eql(u8, span, "Call")) {
             // If Call is clicked, call the number
-            const call_number = display_text[0.. :0];
+            const call_number = display_text[0..len :0];
             debug("Call {s}", .{call_number});
         } else if (std.mem.eql(u8, span, "Cancel")) {
             // If Cancel is clicked, erase the last digit
