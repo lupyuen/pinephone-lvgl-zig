@@ -1026,13 +1026,43 @@ When we test our Zig LVGL App in WebAssembly, we see this...
 
 [(See the log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/1feb919e17018222dd3ebf79b206de97eb4cfbeb/README.md#output-log)
 
-# TODO
+# Handle Buttons in Feature Phone UI
 
-TODO
+Now that we have rendered the Feature Phone UI in Zig and LVGL, let's wire up the Buttons.
+
+Clicking any Button will call our Button Event Handler...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/9650c4bc2ef8065410ca4e643cde6ab6ae2d2f7d/feature-phone.zig#L189-L197
+
+In our Button Event Handler, we identify the Button Clicked...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/9650c4bc2ef8065410ca4e643cde6ab6ae2d2f7d/feature-phone.zig#L205-L220
+
+If it's a Digit Button, we append the Digit to the Phone Number...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/9650c4bc2ef8065410ca4e643cde6ab6ae2d2f7d/feature-phone.zig#L238-L242
+
+If it's the Cancel Button, we erase the last digit of the Phone Number...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/9650c4bc2ef8065410ca4e643cde6ab6ae2d2f7d/feature-phone.zig#L232-L238
+
+If it's the Call Button, we call PinePhone's LTE Modem to dial the Phone Number...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/9650c4bc2ef8065410ca4e643cde6ab6ae2d2f7d/feature-phone.zig#L222-L231
+
+(Simulated for WebAssembly)
+
+The buttons work OK on WebAssembly. (Pic below)
+
+Let's run the Feature Phone UI on PinePhone and Apache NuttX RTOS!
 
 ![Feature Phone UI](https://lupyuen.github.io/images/lvgl3-wasm6.png)
 
 [(Try the LVGL Button Demo)](https://lupyuen.github.io/pinephone-lvgl-zig/feature-phone.html)
+
+# TODO
+
+TODO
 
 # LVGL Fonts
 
