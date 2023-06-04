@@ -172,16 +172,16 @@ fn createDisplayLabel(cont: *c.lv_obj_t) !void {
 /// Create the Call and Cancel Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createCallButtons(cont: *c.lv_obj_t) !void {
-    const labels = [_][]const u8{ "Call", "Cancel" };
     var i: usize = 0;
-    while (i < labels.len) : (i += 1) {
+    while (i < call_labels.len) : (i += 1) {
+        const text = call_labels[i].ptr;
         const btn = c.lv_btn_create(cont);
         c.lv_obj_set_size(btn, 250, 100);
         c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
-        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
+        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text)));
 
         const label = c.lv_label_create(btn);
-        c.lv_label_set_text(label, labels[i].ptr);
+        c.lv_label_set_text(label, text);
         c.lv_obj_center(label);
     }
 }
@@ -189,16 +189,16 @@ fn createCallButtons(cont: *c.lv_obj_t) !void {
 /// Create the Digit Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createDigitButtons(cont: *c.lv_obj_t) !void {
-    const labels = [_][]const u8{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#" };
     var i: usize = 0;
-    while (i < labels.len) : (i += 1) {
+    while (i < digit_labels.len) : (i += 1) {
+        const text = digit_labels[i].ptr;
         const btn = c.lv_btn_create(cont);
         c.lv_obj_set_size(btn, 150, 120);
         c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
-        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, null);
+        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text)));
 
         const label = c.lv_label_create(btn);
-        c.lv_label_set_text(label, labels[i].ptr);
+        c.lv_label_set_text(label, text);
         c.lv_obj_center(label);
     }
 }
@@ -213,17 +213,26 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         // Handle Button Clicked
         debug("eventHandler: clicked", .{});
 
+        // Get the Button Text
+        const data = c.lv_event_get_user_data(e);
+        const text = @ptrCast([*:0]u8, data);
+
         // Append the digit clicked to the text
-        const param = c.lv_event_get_param(e);
-        debug("param={}", .{param});
+        debug("data={s}", .{text});
         const len = std.mem.indexOfSentinel(u8, 0, &display_text);
-        display_text[len] = '0';
+        display_text[len] = text[0];
         c.lv_label_set_text(display_label.obj, display_text[0.. :0]);
     } else if (code == c.LV_EVENT_VALUE_CHANGED) {
         // Handle Button Toggled
         debug("eventHandler: toggled", .{});
     }
 }
+
+/// Labels for Call and Cancel Buttons
+const call_labels = [_][]const u8{ "Call", "Cancel" };
+
+/// Labels for Digit Buttons
+const digit_labels = [_][]const u8{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#" };
 
 /// LVGL Display Text (Null-Terminated)
 var display_text = std.mem.zeroes([64:0]u8);
