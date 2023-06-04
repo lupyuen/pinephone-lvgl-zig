@@ -202,6 +202,7 @@ function build_zig {
     -mcpu cortex_a53 \
     \
     -isystem "../nuttx/include" \
+    -I . \
     -I "../apps/include" \
     -I "../apps/graphics/lvgl" \
     -I "../apps/graphics/lvgl/lvgl/src/core" \

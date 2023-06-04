@@ -4,17 +4,26 @@
 const std = @import("std");
 
 /// Import the LVGL Library from C
-const c = @cImport({
+pub const c = @cImport({
     // NuttX Defines
-    @cDefine("__NuttX__",  "");
-    @cDefine("NDEBUG",     "");
+    @cDefine("__NuttX__", "");
+    @cDefine("NDEBUG", "");
 
     // NuttX Header Files
     @cInclude("arch/types.h");
     @cInclude("../../nuttx/include/limits.h");
+    @cInclude("stdio.h");
+    @cInclude("nuttx/config.h");
+    @cInclude("sys/boardctl.h");
+    @cInclude("unistd.h");
+    @cInclude("stddef.h");
+    @cInclude("stdlib.h");
 
     // LVGL Header Files
     @cInclude("lvgl/lvgl.h");
+
+    // LVGL Display Interface for Zig
+    @cInclude("display.h");
 });
 
 /// Return the Active Screen
@@ -106,4 +115,4 @@ pub const Label = struct {
 };
 
 /// LVGL Errors
-pub const LvglError = error{ UnknownError };
+pub const LvglError = error{UnknownError};

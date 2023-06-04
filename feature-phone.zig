@@ -3,34 +3,14 @@
 /// Import the Zig Standard Library
 const std = @import("std");
 
-/// Import the LVGL Module
-const lvgl = @import("lvgl.zig");
-
 /// Import the WebAssembly Logger
 const wasmlog = @import("wasmlog.zig");
 
+/// Import the LVGL Module
+const lvgl = @import("lvgl.zig");
+
 /// Import the LVGL Library from C
-const c = @cImport({
-    // NuttX Defines
-    @cDefine("__NuttX__", "");
-    @cDefine("NDEBUG", "");
-
-    // NuttX Header Files
-    @cInclude("arch/types.h");
-    @cInclude("../../nuttx/include/limits.h");
-    @cInclude("stdio.h");
-    @cInclude("nuttx/config.h");
-    @cInclude("sys/boardctl.h");
-    @cInclude("unistd.h");
-    @cInclude("stddef.h");
-    @cInclude("stdlib.h");
-
-    // LVGL Header Files
-    @cInclude("lvgl/lvgl.h");
-
-    // LVGL Display Interface for Zig
-    @cInclude("display.h");
-});
+const c = lvgl.c;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Main Function
@@ -158,14 +138,11 @@ fn createWidgets() !void {
 
 /// Create the Display Label
 fn createDisplayLabel(cont: *c.lv_obj_t) !void {
-    // TODO: Create the Label inside the Container
-    _ = cont;
-
-    // Get the Active Screen
-    var screen = try lvgl.getActiveScreen();
+    // Get the Container
+    var container = lvgl.Object.init(cont);
 
     // Create a Label Widget
-    var label = try screen.createLabel();
+    var label = try container.createLabel();
 
     // Wrap long lines in the label text
     label.setLongMode(c.LV_LABEL_LONG_WRAP);
@@ -185,8 +162,8 @@ fn createDisplayLabel(cont: *c.lv_obj_t) !void {
     // Set the label width
     label.setWidth(200);
 
-    // Align the label to the top middle of the screen
-    label.alignObject(c.LV_ALIGN_TOP_MID, 0, 20);
+    // Align the label to the top middle
+    label.alignObject(c.LV_ALIGN_TOP_MID, 0, 0);
 }
 
 /// Create the Call and Cancel Buttons
