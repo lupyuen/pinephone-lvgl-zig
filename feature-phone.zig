@@ -142,28 +142,28 @@ fn createDisplayLabel(cont: *c.lv_obj_t) !void {
     var container = lvgl.Object.init(cont);
 
     // Create a Label Widget
-    var label = try container.createLabel();
+    display_label = try container.createLabel();
 
     // Wrap long lines in the label text
-    label.setLongMode(c.LV_LABEL_LONG_WRAP);
+    display_label.setLongMode(c.LV_LABEL_LONG_WRAP);
 
     // Interpret color codes in the label text
-    label.setRecolor(true);
+    display_label.setRecolor(true);
 
     // Center align the label text
-    label.setAlign(c.LV_TEXT_ALIGN_CENTER);
+    display_label.setAlign(c.LV_TEXT_ALIGN_CENTER);
 
     // Set the label text and colors
-    label.setText("#ff0000 HELLO# " ++ // Red Text
+    display_label.setText("#ff0000 HELLO# " ++ // Red Text
         "#00aa00 LVGL ON# " ++ // Green Text
         "#0000ff PINEPHONE!# " // Blue Text
     );
 
     // Set the label width
-    label.setWidth(200);
+    display_label.setWidth(200);
 
     // Align the label to the top middle
-    label.alignObject(c.LV_ALIGN_TOP_MID, 0, 0);
+    display_label.alignObject(c.LV_ALIGN_TOP_MID, 0, 0);
 }
 
 /// Create the Call and Cancel Buttons
@@ -211,6 +211,9 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         debug("eventHandler: toggled", .{});
     }
 }
+
+/// LVGL Display Label
+var display_label: lvgl.Label = undefined;
 
 /// LVGL Styles for Containers (std.mem.zeroes crashes the compiler)
 var display_style: c.lv_style_t = undefined;
