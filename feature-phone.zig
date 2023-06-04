@@ -213,15 +213,30 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         // Handle Button Clicked
         debug("eventHandler: clicked", .{});
 
+        // Get the length of Display Text
+        const len = std.mem.indexOfSentinel(u8, 0, &display_text);
+
         // Get the Button Text
         const data = c.lv_event_get_user_data(e);
         const text = @ptrCast([*:0]u8, data);
+        const span = std.mem.span(text);
+        debug("span={s}", .{span});
 
-        // Append the digit clicked to the text
-        debug("data={s}", .{text});
-        const len = std.mem.indexOfSentinel(u8, 0, &display_text);
-        display_text[len] = text[0];
-        c.lv_label_set_text(display_label.obj, display_text[0.. :0]);
+        if (std.mem.eql(u8, span, "Call")) {
+            // If Call is clicked, call the number
+            debug("Call", .{});
+        } else if (std.mem.eql(u8, span, "Cancel")) {
+            // If Cancel is clicked, erase the last digit
+            debug("Cancel", .{});
+            if (len >= 2) {
+                display_text[len - 1] = 0;
+                c.lv_label_set_text(display_label.obj, display_text[0.. :0]);
+            }
+        } else {
+            // Else append the digit clicked to the text
+            display_text[len] = text[0];
+            c.lv_label_set_text(display_label.obj, display_text[0.. :0]);
+        }
     } else if (code == c.LV_EVENT_VALUE_CHANGED) {
         // Handle Button Toggled
         debug("eventHandler: toggled", .{});
