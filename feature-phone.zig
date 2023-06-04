@@ -178,7 +178,6 @@ fn createCallButtons(cont: *c.lv_obj_t) !void {
         const text = call_labels[i].ptr;
         const btn = c.lv_btn_create(cont);
         c.lv_obj_set_size(btn, 250, 100);
-        c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
         _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text)));
 
         const label = c.lv_label_create(btn);
@@ -195,7 +194,6 @@ fn createDigitButtons(cont: *c.lv_obj_t) !void {
         const text = digit_labels[i].ptr;
         const btn = c.lv_btn_create(cont);
         c.lv_obj_set_size(btn, 150, 120);
-        c.lv_obj_add_flag(btn, c.LV_OBJ_FLAG_CHECKABLE);
         _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text)));
 
         const label = c.lv_label_create(btn);
