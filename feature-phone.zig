@@ -220,14 +220,13 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         const data = c.lv_event_get_user_data(e);
         const text = @ptrCast([*:0]u8, data);
         const span = std.mem.span(text);
-        debug("span={s}", .{span});
 
         if (std.mem.eql(u8, span, "Call")) {
             // If Call is clicked, call the number
-            debug("Call", .{});
+            const call_number = display_text[0.. :0];
+            debug("Call {s}", .{call_number});
         } else if (std.mem.eql(u8, span, "Cancel")) {
             // If Cancel is clicked, erase the last digit
-            debug("Cancel", .{});
             if (len >= 2) {
                 display_text[len - 1] = 0;
                 c.lv_label_set_text(display_label.obj, display_text[0.. :0]);
