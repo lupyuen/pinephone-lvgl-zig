@@ -1030,6 +1030,10 @@ When we test our Zig LVGL App in WebAssembly, we see this...
 
 TODO
 
+![Feature Phone UI](https://lupyuen.github.io/images/lvgl3-wasm6.png)
+
+[(Try the LVGL Button Demo)](https://lupyuen.github.io/pinephone-lvgl-zig/feature-phone.html)
+
 # LVGL Fonts
 
 Remember to compile the LVGL Fonts! Or nothing will be rendered...
