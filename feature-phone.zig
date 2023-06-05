@@ -37,9 +37,7 @@ pub export fn lv_demo_widgets() void {
 ///////////////////////////////////////////////////////////////////////////////
 //  Create Widgets
 
-/// Create the LVGL Widgets that will be rendered on the display. Calls the
-/// LVGL API that has been wrapped in Zig. Based on
-/// https://docs.lvgl.io/master/widgets/label.html?highlight=lv_label_create#line-wrap-recoloring-and-scrolling
+/// Create the LVGL Widgets that will be rendered on the display
 fn createWidgets() !void {
     debug("createWidgets: start", .{});
     defer debug("createWidgets: end", .{});
@@ -191,6 +189,7 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         const text = @ptrCast([*:0]u8, data);
         const span = std.mem.span(text);
 
+        // Handle the identified button...
         if (std.mem.eql(u8, span, "Call")) {
             // If Call is clicked, call the number
             const call_number = display_text[0..len :0];
