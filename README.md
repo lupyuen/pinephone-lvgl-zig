@@ -1066,7 +1066,7 @@ Let's run the Feature Phone UI on PinePhone and Apache NuttX RTOS!
 
 # Feature Phone UI for Apache NuttX RTOS
 
-_We've created an LVGL Feature Phone UI for WebAssembly. Will it run on PinePhone?_
+_We created an LVGL Feature Phone UI for WebAssembly. Will it run on PinePhone?_
 
 Let's refactor the LVGL Feature Phone UI, so that the same Zig Source File will run on BOTH WebAssembly and PinePhone! (With Apache NuttX RTOS)
 
