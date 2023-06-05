@@ -1078,7 +1078,7 @@ Our Zig LVGL App imports [`wasm.zig`](wasm.zig) only when compiling for WebAssem
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/0aa3a1123ae64aaa75734456ce920de23ddc6aa2/feature-phone.zig#L15-L19
 
-In our JavaScript, we call `initDisplay` to initialise the LVGL Display and LVGL Input for WebAssembly...
+In our JavaScript, we call `initDisplay` (from [`wasm.zig`](wasm.zig)) to initialise the LVGL Display and LVGL Input for WebAssembly...
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/521b7c7e06beaa53b1d6c8d88671650bddaae88e/feature-phone.js#L124-L153
 
