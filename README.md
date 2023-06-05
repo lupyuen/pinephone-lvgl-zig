@@ -1026,42 +1026,6 @@ When we test our Zig LVGL App in WebAssembly, we see this...
 
 [(See the log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/1feb919e17018222dd3ebf79b206de97eb4cfbeb/README.md#output-log)
 
-# Feature Phone UI for Apache NuttX RTOS
-
-_We've created an LVGL Feature Phone UI for WebAssembly. Will it run on PinePhone?_
-
-Let's refactor the LVGL Feature Phone UI, so that the same Zig Source File will run on BOTH WebAssembly and PinePhone! (With Apache NuttX RTOS)
-
-We moved all the WebAssembly-Specific Functions to [`wasm.zig`](wasm.zig)... 
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/a0ead2b86fda34a23afee71411915ac8315537a0/wasm.zig#L19-L288
-
-Our Zig LVGL App imports [`wasm.zig`](wasm.zig) only when compiling for WebAssembly...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/0aa3a1123ae64aaa75734456ce920de23ddc6aa2/feature-phone.zig#L15-L19
-
-In our JavaScript, we call `initDisplay` to initialise the LVGL Display and LVGL Input for WebAssembly...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/521b7c7e06beaa53b1d6c8d88671650bddaae88e/feature-phone.js#L124-L153
-
-_What about PinePhone on Apache NuttX RTOS?_
-
-When compiling for NuttX, our Zig LVGL App imports [`nuttx.zig`](nuttx.zig)...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/0aa3a1123ae64aaa75734456ce920de23ddc6aa2/feature-phone.zig#L15-L19
-
-Which defines the Custom Panic Handler and Custom Logger specific to NuttX...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/f2b768eabaa99ebb0acf5454823871ddf5675a59/nuttx.zig#L7-L70
-
-We compile our Zig LVGL App for NuttX (using the exact same Zig Source File for WebAssembly)...
-
-https://github.com/lupyuen/pinephone-lvgl-zig/blob/4650bc8eb5f4d23fae03d17e82b511682e288f3d/build.sh#L403-L437
-
-And our Feature Phone UI runs on PinePhone with NuttX yay! The exact same Zig Source File runs on both WebAssembly and PinePhone, no changes needed! This is super helpful for creating LVGL Apps.
-
-[(See the PinePhone Log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/07ec0cd87b7888ac20736a7472643ee5d4758096/README.md#pinephone-log)
-
 # Handle Buttons in Feature Phone UI
 
 Now that we have rendered the Feature Phone UI in Zig and LVGL, let's wire up the Buttons.
@@ -1100,7 +1064,41 @@ Let's run the Feature Phone UI on PinePhone and Apache NuttX RTOS!
 
 [(See the log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/665847f513a44648b0d4ae602d6fcf7cc364a342/README.md#output-log)
 
+# Feature Phone UI for Apache NuttX RTOS
 
+_We've created an LVGL Feature Phone UI for WebAssembly. Will it run on PinePhone?_
+
+Let's refactor the LVGL Feature Phone UI, so that the same Zig Source File will run on BOTH WebAssembly and PinePhone! (With Apache NuttX RTOS)
+
+We moved all the WebAssembly-Specific Functions to [`wasm.zig`](wasm.zig)... 
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/a0ead2b86fda34a23afee71411915ac8315537a0/wasm.zig#L19-L288
+
+Our Zig LVGL App imports [`wasm.zig`](wasm.zig) only when compiling for WebAssembly...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/0aa3a1123ae64aaa75734456ce920de23ddc6aa2/feature-phone.zig#L15-L19
+
+In our JavaScript, we call `initDisplay` to initialise the LVGL Display and LVGL Input for WebAssembly...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/521b7c7e06beaa53b1d6c8d88671650bddaae88e/feature-phone.js#L124-L153
+
+_What about PinePhone on Apache NuttX RTOS?_
+
+When compiling for NuttX, our Zig LVGL App imports [`nuttx.zig`](nuttx.zig)...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/0aa3a1123ae64aaa75734456ce920de23ddc6aa2/feature-phone.zig#L15-L19
+
+Which defines the Custom Panic Handler and Custom Logger specific to NuttX...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/f2b768eabaa99ebb0acf5454823871ddf5675a59/nuttx.zig#L7-L70
+
+We compile our Zig LVGL App for NuttX (using the exact same Zig Source File for WebAssembly)...
+
+https://github.com/lupyuen/pinephone-lvgl-zig/blob/4650bc8eb5f4d23fae03d17e82b511682e288f3d/build.sh#L403-L437
+
+And our Feature Phone UI runs on PinePhone with NuttX yay! The exact same Zig Source File runs on both WebAssembly and PinePhone, no changes needed! This is super helpful for creating LVGL Apps.
+
+[(See the PinePhone Log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/07ec0cd87b7888ac20736a7472643ee5d4758096/README.md#pinephone-log)
 
 # TODO
 
