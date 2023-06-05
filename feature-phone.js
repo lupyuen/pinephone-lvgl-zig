@@ -125,10 +125,13 @@ canvas.addEventListener("touchend", (e) => {
 function main() {
     console.log("main: start");
     const start_ms = Date.now();
+    const zig = wasm.instance.exports;
+
+    // Init the LVGL Display and Input
+    zig.initDisplay();
 
     // Render the LVGL Widgets in Zig
-    wasm.instance.exports
-        .lv_demo_widgets();
+    zig.lv_demo_widgets();
 
     // Render Loop
     const loop = function() {
@@ -137,8 +140,7 @@ function main() {
         const elapsed_ms = Date.now() - start_ms;
 
         // Handle LVGL Tasks to update the display
-        wasm.instance.exports
-            .handleTimer(elapsed_ms);
+        zig.handleTimer(elapsed_ms);
 
         // Loop to next frame
         window.requestAnimationFrame(loop);

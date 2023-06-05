@@ -21,6 +21,18 @@ pub export fn lv_demo_widgets() void {
     debug("lv_demo_widgets: start", .{});
     defer debug("lv_demo_widgets: end", .{});
 
+    // Create the widgets for display
+    createWidgets() catch |e| {
+        // In case of error, quit
+        std.log.err("createWidgets failed: {}", .{e});
+        return;
+    };
+
+    // JavaScript should call handleTimer periodically to handle LVGL Tasks
+}
+
+/// Init the LVGL Display and Input
+pub export fn initDisplay() void {
     // Create the Memory Allocator for malloc
     memory_allocator = std.heap.FixedBufferAllocator.init(&memory_buffer);
 
@@ -54,15 +66,6 @@ pub export fn lv_demo_widgets() void {
     indev_drv.type = c.LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = readInput;
     _ = c.register_input(&indev_drv);
-
-    // Create the widgets for display
-    createWidgets() catch |e| {
-        // In case of error, quit
-        std.log.err("createWidgets failed: {}", .{e});
-        return;
-    };
-
-    // JavaScript should call handleTimer periodically to handle LVGL Tasks
 }
 
 /// LVGL Callback Function to Flush Display

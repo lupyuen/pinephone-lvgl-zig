@@ -292,7 +292,7 @@ function compile_lvgl {
 
 ## Build the Feature Phone Zig LVGL App for WebAssembly 
 ## TODO: Change ".." to your NuttX Project Directory
-function build_feature_phone {
+function build_feature_phone_wasm {
   zig build-lib \
     --verbose-cimport \
     -target wasm32-freestanding \
@@ -400,8 +400,47 @@ function build_feature_phone {
 
 }
 
+## Compile the Feature Phone Zig LVGL App for Apache NuttX RTOS
+function build_feature_phone_nuttx {
+  ## Compile the Zig LVGL App for PinePhone 
+  ## (armv8-a with cortex-a53)
+  ## TODO: Change ".." to your NuttX Project Directory
+  zig build-obj \
+    --verbose-cimport \
+    -target aarch64-freestanding-none \
+    -mcpu cortex_a53 \
+    \
+    -isystem "../nuttx/include" \
+    -I . \
+    -I "../apps/include" \
+    -I "../apps/graphics/lvgl" \
+    -I "../apps/graphics/lvgl/lvgl/src/core" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/arm2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/pxp" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/nxp/vglite" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sdl" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/stm32_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/sw" \
+    -I "../apps/graphics/lvgl/lvgl/src/draw/swm341_dma2d" \
+    -I "../apps/graphics/lvgl/lvgl/src/font" \
+    -I "../apps/graphics/lvgl/lvgl/src/hal" \
+    -I "../apps/graphics/lvgl/lvgl/src/misc" \
+    -I "../apps/graphics/lvgl/lvgl/src/widgets" \
+    feature-phone.zig
+
+  ## Copy the compiled Zig LVGL App to NuttX and overwrite `lv_demo_widgets.*.o`
+  ## TODO: Change ".." to your NuttX Project Directory
+  cp lvgltest.o \
+    ../apps/graphics/lvgl/lvgl/demos/widgets/lv_demo_widgets.*.o
+}
+
 ## Build the LVGL App (in Zig) and LVGL Library (in C) for PinePhone and WebAssembly
 build_zig
 
 ## Compile the Feature Phone Zig LVGL App for WebAssembly 
-build_feature_phone
+build_feature_phone_wasm
+
+## Compile the Feature Phone Zig LVGL App for Apache NuttX RTOS
+build_feature_phone_nuttx
