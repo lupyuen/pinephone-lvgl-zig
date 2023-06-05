@@ -1058,7 +1058,9 @@ We compile our Zig LVGL App for NuttX (using the exact same Zig Source File for 
 
 https://github.com/lupyuen/pinephone-lvgl-zig/blob/4650bc8eb5f4d23fae03d17e82b511682e288f3d/build.sh#L403-L437
 
-And our Feature Phone UI runs on PinePhone with NuttX yay!
+And our Feature Phone UI runs on PinePhone with NuttX yay! The exact same Zig Source File runs on both PinePhone and WebAssembly, no changes needed! This is super helpful for creating LVGL Apps.
+
+[(See the PinePhone Log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/07ec0cd87b7888ac20736a7472643ee5d4758096/README.md#pinephone-log)
 
 # Handle Buttons in Feature Phone UI
 
