@@ -1102,6 +1102,8 @@ The exact same Zig Source File runs on both WebAssembly and PinePhone, no change
 
 ![Feature Phone UI on PinePhone and Apache NuttX RTOS](https://lupyuen.github.io/images/lvgl3-pinephone.jpg)
 
+[(Watch the demo on YouTube)](https://www.youtube.com/shorts/tOUnj0XEP-Q)
+
 [(See the PinePhone Log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/07ec0cd87b7888ac20736a7472643ee5d4758096/README.md#pinephone-log)
 
 # TODO
