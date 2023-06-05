@@ -432,7 +432,7 @@ function build_feature_phone_nuttx {
 
   ## Copy the compiled Zig LVGL App to NuttX and overwrite `lv_demo_widgets.*.o`
   ## TODO: Change ".." to your NuttX Project Directory
-  cp lvgltest.o \
+  cp feature-phone.o \
     ../apps/graphics/lvgl/lvgl/demos/widgets/lv_demo_widgets.*.o
 }
 
