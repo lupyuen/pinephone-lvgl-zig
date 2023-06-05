@@ -1,4 +1,6 @@
-//! LVGL Test App (for WebAssembly) that renders an LVGL Screen
+//! LVGL Feature Phone UI for PinePhone and WebAssembly.
+//! This app runs on PinePhone with Apache NuttX RTOS, and in a Web Browser with WebAssembly.
+//! https://lupyuen.github.io/articles/lvgl3
 
 /// Import the Zig Standard Library
 const std = @import("std");
