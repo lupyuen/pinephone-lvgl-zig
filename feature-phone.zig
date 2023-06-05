@@ -154,6 +154,26 @@ fn createDigitButtons(cont: *c.lv_obj_t) !void {
     }
 }
 
+/// Labels for Call and Cancel Buttons
+const call_labels = [_][]const u8{ "Call", "Cancel" };
+
+/// Labels for Digit Buttons
+const digit_labels = [_][]const u8{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#" };
+
+/// LVGL Display Text (Null-Terminated)
+var display_text = std.mem.zeroes([64:0]u8);
+
+/// LVGL Display Label
+var display_label: lvgl.Label = undefined;
+
+/// LVGL Styles for Containers (std.mem.zeroes crashes the compiler)
+var display_style: c.lv_style_t = undefined;
+var call_style: c.lv_style_t = undefined;
+var digit_style: c.lv_style_t = undefined;
+
+///////////////////////////////////////////////////////////////////////////////
+//  Handle Events
+
 /// Handle LVGL Button Event
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 export fn eventHandler(e: ?*c.lv_event_t) void {
@@ -197,23 +217,6 @@ export fn eventHandler(e: ?*c.lv_event_t) void {
         debug("eventHandler: toggled", .{});
     }
 }
-
-/// Labels for Call and Cancel Buttons
-const call_labels = [_][]const u8{ "Call", "Cancel" };
-
-/// Labels for Digit Buttons
-const digit_labels = [_][]const u8{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#" };
-
-/// LVGL Display Text (Null-Terminated)
-var display_text = std.mem.zeroes([64:0]u8);
-
-/// LVGL Display Label
-var display_label: lvgl.Label = undefined;
-
-/// LVGL Styles for Containers (std.mem.zeroes crashes the compiler)
-var display_style: c.lv_style_t = undefined;
-var call_style: c.lv_style_t = undefined;
-var digit_style: c.lv_style_t = undefined;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Imported Functions and Variables
