@@ -53,6 +53,7 @@ fn createWidgets() !void {
     c.lv_style_set_layout(&cont_style, c.LV_LAYOUT_FLEX);
 
     // Create the Container for Display (700 x 150 pixels)
+    // https://docs.lvgl.io/8.3/layouts/flex.html#arrange-items-in-rows-with-wrap-and-even-spacing
     const display_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(display_cont, 700, 150);
     c.lv_obj_align(display_cont, c.LV_ALIGN_TOP_MID, 0, 5);
