@@ -52,17 +52,19 @@ fn createWidgets() !void {
     c.lv_style_set_flex_main_place(&cont_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
     c.lv_style_set_layout(&cont_style, c.LV_LAYOUT_FLEX);
 
-    // Create the Containers for Display, Call / Cancel Buttons, Digit Buttons
+    // Create the Container for Display (700 x 150 pixels)
     const display_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(display_cont, 700, 150);
     c.lv_obj_align(display_cont, c.LV_ALIGN_TOP_MID, 0, 5);
     c.lv_obj_add_style(display_cont, &cont_style, 0);
 
+    // Create the Container for Call / Cancel Buttons (700 x 200 pixels)
     const call_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(call_cont, 700, 200);
     c.lv_obj_align_to(call_cont, display_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
     c.lv_obj_add_style(call_cont, &cont_style, 0);
 
+    // Create the Container for Digit Buttons (700 x 800 pixels)
     const digit_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(digit_cont, 700, 800);
     c.lv_obj_align_to(digit_cont, call_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
