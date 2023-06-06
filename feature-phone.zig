@@ -44,43 +44,28 @@ fn createWidgets() !void {
     debug("createWidgets: start", .{});
     defer debug("createWidgets: end", .{});
 
-    // Init the Display Text to `+`
-    display_text[0] = '+';
-
-    // Create the Styles for Display, Call / Cancel Buttons, Digit Buttons
-    display_style = std.mem.zeroes(c.lv_style_t);
-    c.lv_style_init(&display_style);
-    c.lv_style_set_flex_flow(&display_style, c.LV_FLEX_FLOW_ROW_WRAP);
-    c.lv_style_set_flex_main_place(&display_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
-    c.lv_style_set_layout(&display_style, c.LV_LAYOUT_FLEX);
-
-    call_style = std.mem.zeroes(c.lv_style_t);
-    c.lv_style_init(&call_style);
-    c.lv_style_set_flex_flow(&call_style, c.LV_FLEX_FLOW_ROW_WRAP);
-    c.lv_style_set_flex_main_place(&call_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
-    c.lv_style_set_layout(&call_style, c.LV_LAYOUT_FLEX);
-
-    digit_style = std.mem.zeroes(c.lv_style_t);
-    c.lv_style_init(&digit_style);
-    c.lv_style_set_flex_flow(&digit_style, c.LV_FLEX_FLOW_ROW_WRAP);
-    c.lv_style_set_flex_main_place(&digit_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
-    c.lv_style_set_layout(&digit_style, c.LV_LAYOUT_FLEX);
+    // Create the Style for the Containers
+    cont_style = std.mem.zeroes(c.lv_style_t);
+    c.lv_style_init(&cont_style);
+    c.lv_style_set_flex_flow(&cont_style, c.LV_FLEX_FLOW_ROW_WRAP);
+    c.lv_style_set_flex_main_place(&cont_style, c.LV_FLEX_ALIGN_SPACE_EVENLY);
+    c.lv_style_set_layout(&cont_style, c.LV_LAYOUT_FLEX);
 
     // Create the Containers for Display, Call / Cancel Buttons, Digit Buttons
     const display_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(display_cont, 700, 150);
     c.lv_obj_align(display_cont, c.LV_ALIGN_TOP_MID, 0, 5);
-    c.lv_obj_add_style(display_cont, &display_style, 0);
+    c.lv_obj_add_style(display_cont, &cont_style, 0);
 
     const call_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(call_cont, 700, 200);
     c.lv_obj_align_to(call_cont, display_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    c.lv_obj_add_style(call_cont, &call_style, 0);
+    c.lv_obj_add_style(call_cont, &cont_style, 0);
 
     const digit_cont = c.lv_obj_create(c.lv_scr_act()).?;
     c.lv_obj_set_size(digit_cont, 700, 800);
     c.lv_obj_align_to(digit_cont, call_cont, c.LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-    c.lv_obj_add_style(digit_cont, &digit_style, 0);
+    c.lv_obj_add_style(digit_cont, &cont_style, 0);
 
     // Create the Display Label
     try createDisplayLabel(display_cont);
@@ -94,6 +79,9 @@ fn createWidgets() !void {
 
 /// Create the Display Label
 fn createDisplayLabel(cont: *c.lv_obj_t) !void {
+    // Init the Display Text to `+`
+    display_text[0] = '+';
+
     // Get the Container
     var container = lvgl.Object.init(cont);
 
@@ -166,10 +154,8 @@ var display_text = std.mem.zeroes([64:0]u8);
 /// LVGL Display Label
 var display_label: lvgl.Label = undefined;
 
-/// LVGL Styles for Containers (std.mem.zeroes crashes the compiler)
-var display_style: c.lv_style_t = undefined;
-var call_style: c.lv_style_t = undefined;
-var digit_style: c.lv_style_t = undefined;
+/// LVGL Style for Containers (std.mem.zeroes crashes the compiler)
+var cont_style: c.lv_style_t = undefined;
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Handle Events
