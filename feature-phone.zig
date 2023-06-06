@@ -113,15 +113,13 @@ fn createDisplayLabel(cont: *c.lv_obj_t) !void {
 /// Create the Call and Cancel Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createCallButtons(cont: *c.lv_obj_t) !void {
-    var i: usize = 0;
-    while (i < call_labels.len) : (i += 1) {
-        const text = call_labels[i].ptr;
+    for (call_labels) |text| {
         const btn = c.lv_btn_create(cont);
         c.lv_obj_set_size(btn, 250, 100);
-        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text)));
+        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text.ptr)));
 
         const label = c.lv_label_create(btn);
-        c.lv_label_set_text(label, text);
+        c.lv_label_set_text(label, text.ptr);
         c.lv_obj_center(label);
     }
 }
@@ -129,15 +127,13 @@ fn createCallButtons(cont: *c.lv_obj_t) !void {
 /// Create the Digit Buttons
 /// https://docs.lvgl.io/8.3/examples.html#simple-buttons
 fn createDigitButtons(cont: *c.lv_obj_t) !void {
-    var i: usize = 0;
-    while (i < digit_labels.len) : (i += 1) {
-        const text = digit_labels[i].ptr;
+    for (digit_labels) |text| {
         const btn = c.lv_btn_create(cont);
         c.lv_obj_set_size(btn, 150, 120);
-        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text)));
+        _ = c.lv_obj_add_event_cb(btn, eventHandler, c.LV_EVENT_ALL, @intToPtr(*anyopaque, @ptrToInt(text.ptr)));
 
         const label = c.lv_label_create(btn);
-        c.lv_label_set_text(label, text);
+        c.lv_label_set_text(label, text.ptr);
         c.lv_obj_center(label);
     }
 }
