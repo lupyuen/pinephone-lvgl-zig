@@ -4,6 +4,8 @@
 
 Read the articles...
 
+-   ["NuttX RTOS for PinePhone: Feature Phone UI in LVGL, Zig and WebAssembly"](https://lupyuen.github.io/articles/lvgl4)
+
 -   ["(Possibly) LVGL in WebAssembly with Zig Compiler"](https://lupyuen.github.io/articles/lvgl3)
 
 -   ["NuttX RTOS for PinePhone: Boot to LVGL"](https://lupyuen.github.io/articles/lvgl2)
