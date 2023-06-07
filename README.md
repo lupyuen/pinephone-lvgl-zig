@@ -998,6 +998,10 @@ And the LVGL Button will respond correctly to Mouse and Touch Input in the Web B
 
 # Feature Phone UI
 
+Read the article...
+
+-   ["NuttX RTOS for PinePhone: Feature Phone UI in LVGL, Zig and WebAssembly"](https://lupyuen.github.io/articles/lvgl4)
+
 Let's create a Feature Phone UI for PinePhone on Apache NuttX RTOS!
 
 We create 3 LVGL Containers for the Display Label, Call / Cancel Buttons and Digit Buttons...
@@ -1107,10 +1111,6 @@ The exact same Zig Source File runs on both WebAssembly and PinePhone, no change
 [(Watch the demo on YouTube)](https://www.youtube.com/shorts/tOUnj0XEP-Q)
 
 [(See the PinePhone Log)](https://github.com/lupyuen/pinephone-lvgl-zig/blob/07ec0cd87b7888ac20736a7472643ee5d4758096/README.md#pinephone-log)
-
-# TODO
-
-TODO
 
 # LVGL Fonts
 
