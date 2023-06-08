@@ -1,4 +1,5 @@
 //! LVGL Functions specific to WebAssembly
+//! https://lupyuen.github.io/articles/lvgl4
 
 /// Import the Zig Standard Library
 const std = @import("std");
@@ -131,7 +132,7 @@ var indev_drv: c.lv_indev_drv_t = undefined;
 ///////////////////////////////////////////////////////////////////////////////
 //  LVGL Porting Layer for WebAssembly
 
-/// TODO: Return the number of elapsed milliseconds
+/// Return the number of elapsed milliseconds
 export fn millis() u32 {
     elapsed_ms += 1;
     return elapsed_ms;

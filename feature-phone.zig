@@ -1,6 +1,6 @@
 //! LVGL Feature Phone UI for PinePhone and WebAssembly.
 //! This app runs on PinePhone with Apache NuttX RTOS, and in a Web Browser with WebAssembly.
-//! https://lupyuen.github.io/articles/lvgl3
+//! https://lupyuen.github.io/articles/lvgl4
 
 /// Import the Zig Standard Library
 const std = @import("std");
